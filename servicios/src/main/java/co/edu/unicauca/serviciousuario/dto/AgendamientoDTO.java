@@ -5,8 +5,6 @@
  */
 package com.proyecto1.ServidorLaboratorio.dto;
 
-import java.util.ArrayList;
-import java.util.List;
 import lombok.Data;
 
 /**
@@ -14,11 +12,13 @@ import lombok.Data;
  * @author julio
  */
 @Data
-public class UsuarioDTO {
-    private String id;
-    private int idUsuario;
-    private String correo;
-    private String rol;
-    private String nombreCompleto;
-    private ArrayList<String> Cursos;
+public class AgendamientoDTO {
+    private Integer idAgendamiento;
+    private String idFranja;
+    private Integer codGrupal;
+    private String horaInicio;
+    private String horaFin;
+    private Integer codigoPlanta;
+    private Boolean estadoDisposicion;
+    private String fecha;
 }

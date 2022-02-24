@@ -5,20 +5,20 @@
  */
 package com.proyecto1.ServidorLaboratorio.dto;
 
-import java.util.ArrayList;
-import java.util.List;
 import lombok.Data;
 
-/**
- *
- * @author julio
- */
 @Data
-public class UsuarioDTO {
+public class PostDTO {
+    
+    //Prueba
     private String id;
-    private int idUsuario;
+    private String title;
+    private String content;
+    //Usuario
+    private Integer idUsuario;
     private String correo;
-    private String rol;
     private String nombreCompleto;
-    private ArrayList<String> Cursos;
+    private String rol;
+    private String archivos;
+    private Integer codigo;
 }
