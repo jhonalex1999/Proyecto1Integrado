@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.proyecto1.ServidorLaboratorio.dto;
+package co.edu.unicauca.servidor.dto;
 
+import java.util.ArrayList;
 import lombok.Data;
 
 /**
@@ -14,6 +15,9 @@ import lombok.Data;
 
 @Data
 public class CaidaLibreDTO {
-    private String id;
-    private Integer altura;
+    private ArrayList<Integer> altura;
+    private Integer codigo_planta;
+    private String foto;
+    private String id_practica;
+    private ArrayList<Integer> tiempo;
 }

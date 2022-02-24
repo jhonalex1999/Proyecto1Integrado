@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.unicauca.serviciousuario.dto;
+package co.edu.unicauca.servidor.dto;
 
 /**
  *
  * @author admin
  */
-public class Variables_Ley_Hooke {
+public class Variables_Caida_Libre {
     private String id_laboratorio;
-    private String rango_fuerza;
-    private String rango_elongacion;
-    private ArrayList<String> tipo_resorte;
+    private String altura_max;
+    private String num_lanzamientos;
 }

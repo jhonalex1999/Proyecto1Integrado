@@ -1,9 +1,11 @@
+package co.edu.unicauca.servidor.dto;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.proyecto1.ServidorLaboratorio.dto;
+
 
 import lombok.Data;
 
@@ -13,12 +15,18 @@ import lombok.Data;
  */
 @Data
 public class AgendamientoDTO {
-    private Integer idAgendamiento;
-    private String idFranja;
-    private Integer codGrupal;
-    private String horaInicio;
-    private String horaFin;
-    private Integer codigoPlanta;
-    private Boolean estadoDisposicion;
+    private Integer cod_grupal;
+    private Integer cod_planta;
+    private Boolean estado_disposicion;
     private String fecha;
+    private String hora_fin;
+    private String hora_inicio;
+    private String id_Franja;
+    private Integer id_agendamiento;
+
+
+
+
+  
+
 }

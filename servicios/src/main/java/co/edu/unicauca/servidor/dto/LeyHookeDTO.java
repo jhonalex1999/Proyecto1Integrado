@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.proyecto1.ServidorLaboratorio.dto;
+package co.edu.unicauca.servidor.dto;
 
+import java.util.ArrayList;
 import lombok.Data;
 
 /**
@@ -14,6 +15,10 @@ import lombok.Data;
 
 @Data
 public class LeyHookeDTO {
-    private String id;
-    private Integer elongacion;
+    private Integer codigo_planta;
+    private ArrayList<String> elongacion;
+    private String foto;
+    private ArrayList<String> fuerza; 
+    private String id_practica;
+    
 }
