@@ -14,11 +14,11 @@ import lombok.Data;
 @Data
 public class PracticaDTO {
 
-    private String id;
-    private Integer idPractica;
+    private Integer id_practica;
+    private Integer cod_planta;
     private String titulo;
     private String descripcion;
     private Integer estado;
-    private String fechaEntrega;
-    private Integer codigoPlanta;
+    private String fecha_entrega;
+    private Integer cod_planta;
 }

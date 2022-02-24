@@ -10,5 +10,8 @@ package co.edu.unicauca.serviciousuario.dto;
  * @author admin
  */
 public class Variables_Movimiento_Parabolico {
-    
+    private String id_laboratorio;
+    private ArrayList<String> angulo;
+    private String velocidad;
+   
 }

@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 public class ProblemaDTO {
-    private String id;
-    private int idLaboratorio;
+    private String id_problema;
+    private Integer id_laboratorio;
     private String descripcion;
 }

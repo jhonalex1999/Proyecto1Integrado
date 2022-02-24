@@ -15,10 +15,9 @@ import lombok.Data;
  */
 @Data
 public class UsuarioDTO {
-    private String id;
-    private int idUsuario;
+    private String id_usuario;
     private String correo;
     private String rol;
-    private String nombreCompleto;
+    private String nombre_completo;
     private ArrayList<String> Cursos;
 }

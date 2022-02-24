@@ -10,5 +10,7 @@ package co.edu.unicauca.serviciousuario.dto;
  * @author admin
  */
 public class Variables_Caida_Libre {
-    
+    private String id_laboratorio;
+    private String altura_max;
+    private String num_lanzamientos;
 }
