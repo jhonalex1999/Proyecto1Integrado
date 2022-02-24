@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "proyecto1-a009e": {
+      "hosting": {
+        "cliente": [
+          "proyecto1-a009e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "proyecto1-a009e"
+  }
+}
