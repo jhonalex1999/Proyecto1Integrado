@@ -1,0 +1,60 @@
+<body>
+  <!-- Header -->
+  <header class="text-center" name="home">
+    <div class="intro-text">
+      <h1><span class="color">Unicauca</span></h1>
+      <p>Loren... Luego se mete la monda del texto - ESTO ES EL LOGIN</p>
+      <div class="clearfix"></div>
+      <a href="#about-section" class="btn btn-default btn-lg page-scroll">Sobre Nosotros</a>
+    </div>
+  </header>
+  <!-- Login -->
+  <div id="about-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Login</h2>
+        <hr>
+      </div>
+      <div class="space"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 mx-auto">
+            <div id="first">
+              <div class="form-group">
+                <label for="exampleInputEmail1" >Email address</label>
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                  placeholder="{{ user?.email }}" readonly >
+              </div>
+
+              <p></p>
+
+              <div class="col-md-12 text-center ">
+                <div *ngIf="user">
+                  <div *ngIf="!validarEmail()">
+                  <button class=" btn btn-success" (click)="obtenerID(user.name)">
+                    Continuar
+                    </button>
+                  </div>
+                  <label for="exampleInputEmail1" *ngIf="validarEmail()">Email invalido - Utilice el correo institucional</label>
+                </div>
+              </div>
+
+              <p></p>
+
+              <div class="col-md-12 text-center ">
+                <button class=" btn btn-primary" (click)="signInWithGoogle()">
+                  Login with Google
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="container col-md-4">
+      <p>Copyright &copy; TeamProyecto1.</p>
+    </div>
+  </div>
+</body>

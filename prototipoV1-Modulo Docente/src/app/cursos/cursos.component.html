@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>{{title}}</h1>
+  <button type="button" class="btn btn-primary mb-3" [routerLink]="[url+'/form']">Nuevo Curso</button>
+  <div class="card-group" *ngFor="let curso of cursos">
+      <div class="card text-white bg-info mb-3" style="width: 18rem;">
+        <div class="card-body">
+          <a [routerLink]="[curso.id_curso+'/materia']"><h5 class="card-title">{{curso.nombre_curso}}</h5></a>
+          <p class="card-text">Codigo de Matricula: {{curso.cod_matricula}}</p>
+          <button type="button" class="btn btn-primary" style="margin-right: 5px;" [routerLink]="[url+'/form',curso.id_curso]">Editar</button>
+          <button type="button" class="btn btn-warning" (click)="delete(curso)">Borrar</button>
+        </div>
+    </div>
+  </div>
+</div>

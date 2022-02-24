@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="card-body">
+        <h1 class="card-title">Nueva Practica</h1>
+        <form>
+            <div class="form-group row">
+                <label for="nombres" class="col-form-label col-sm-2">Nombre Practica</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="nombre" [(ngModel)]="practicaNueva.titulo">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="codmatricula" class="col-form-label col-sm-2">Descripcion</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="nombre" [(ngModel)]="practicaNueva.descripcion">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fechacreacion" class="col-form-label col-sm-2">Codigo de la Planta</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="nombre" [(ngModel)]="practicaNueva.cod_planta">
+                </div>
+            </div>
+            <div class="form-group row">
+                <h4>Franja Horaria</h4>
+                <div>
+                    <label for="fechacreacion" class="col-form-label col-sm-2">Fecha Inicio</label>
+                    <div class="col-sm-6">
+                        <input type="date" class="form-control" name="nombre" [(ngModel)]="dateDia">
+                        <input type="time" class="form-control" name="nombre" [(ngModel)]="dateHora">
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success" (click)="create()">Crear Practica</button>
+        </form>
+    </div>
+    <button type="button" class="btn btn-warning" (click)="cargarCalendario()">Visualizar Eventos</button>
+
+    <div class="container" *ngIf="activarCalendario">
+        <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar>
+    </div>
+</div>

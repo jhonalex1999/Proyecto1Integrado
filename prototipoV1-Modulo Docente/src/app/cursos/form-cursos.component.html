@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="card-body">
+        <h5 class="card-title">Nuevo Curso</h5>
+        <form>
+            <div class="form-group row">
+                <label for="nombres" class="col-form-label col-sm-2">Nombre</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="nombre_curso" [(ngModel)]="curso.nombre_curso">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="codmatricula" class="col-form-label col-sm-2">Codigo de Matricula</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="cod_matricula" [(ngModel)]="curso.cod_matricula">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fechacreacion" class="col-form-label col-sm-2">Tamaño del Grupo</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="tam_grupos" [(ngModel)]="curso.tam_grupos">
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-success" role="button" (click)="create()">Guardar</button><p></p>
+            <button type="button" class="btn btn-success" role="button" (click)="update()">Actualizar</button>
+
+        </form>
+    </div>
+</div>
