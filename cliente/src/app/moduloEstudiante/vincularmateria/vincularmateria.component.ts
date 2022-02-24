@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from 'src/app/service/service.service';
 
 @Component({
   selector: 'app-vincularmateria',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VincularmateriaComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef:MatDialogRef<VincularmateriaComponent>,public authService: AuthService,
+    @Inject(MAT_DIALOG_DATA) public data:any) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+  }
+
+  enviarcodigo(data:any){
+    this.authService.codigos(data);
+    window.location.reload();
   }
 
 }

@@ -5,6 +5,7 @@ import { first, Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Agendamiento } from '../moduloEstudiante/modelos/agendamiento';
 //import { LoginData } from '../interfaces/login-data';
 
 

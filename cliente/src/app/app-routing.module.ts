@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [{ 
   path:'',
-  redirectTo: '/home',
+  redirectTo: '/inicio',
   pathMatch: 'full'
 },
 { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'inicio', loadChildren: () => import('./moduloEstudiante/inicio/inicio.module').then(m => m.InicioModule) },
+  { path: 'calendario', loadChildren: () => import('./moduloEstudiante/calendarios/calendario/calendario.module').then(m => m.CalendarioModule) },
 ];
 
 @NgModule({

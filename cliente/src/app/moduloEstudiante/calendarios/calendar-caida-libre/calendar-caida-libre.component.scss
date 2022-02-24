@@ -1,0 +1,47 @@
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    border: 1px dashed rgb(191, 202, 223);
+}  
+
+.content{
+    width:100vw;
+    height:100vh;
+    margin:0;
+    background-image: linear-gradient(rgba(1, 1, 1, 0.459), rgba(1, 1, 1, 0.6)), url("https://ocecauca.files.wordpress.com/2015/05/dsc_0801.jpg");
+    overflow:hidden !important;
+    font-family: 'Source Sans 3', sans-serif !important;
+    background-position:center center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--white);
+    position:relative;
+    
+    
+    
+}
+
+.mat-tab-label {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(49, 49, 49);
+}
+.mat-tab-label.mat-tab-label-active {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: rgb(65, 72, 85);
+    color: rgb(255, 255, 255);
+}
+.mat-ink-bar {
+    background-color: green;
+}
