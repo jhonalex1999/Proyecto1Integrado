@@ -1,0 +1,36 @@
+<head>
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<div class="col-lg-12 laboratorios">
+    <body>
+        <div *ngIf="(user$)!">
+            <h2>Bienvenido {{userName$}} a los laboratorios remotos de mécanica.</h2>
+            <nav>
+                <div class="salir">
+                    <button class="btn btn-danger" (click)="onLogout()">Logout</button>
+                </div>
+            </nav>
+        </div>
+    </body>
+</div>
+<div class="background">
+    <div class="materias">
+        <mat-card class="primera-card" *ngFor="let lista of listado">
+            <mat-card-title class="titulo-practica">{{lista}}</mat-card-title>
+            <mat-card-content> Content</mat-card-content>
+            <br>
+            <br>
+            <button mat-raised-button class="irPractica" routerLink="/materias">Ir al curso</button>
+        </mat-card>
+    </div>
+    <div class="opciones">
+        <button class="opCalendario" mat-raised-button routerLink="/calendario">Ver Calendario</button>
+        <button mat-raised-button (click)="openDialog()">Vincular Materia</button>
+    </div>
+</div>
+<br>
+<div>
+
+
+</div>

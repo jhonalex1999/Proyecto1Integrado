@@ -13,9 +13,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 
 export class AuthService {
-  
-  
-
   data = {};
   public listado : any = [];
 
@@ -23,7 +20,7 @@ export class AuthService {
   private API_BASE_LAB = 'http://localhost:8080/laboratorio';
   private API_BASE_PRACTICA = 'http://localhost:8080/practica';
 
-  logeado!: import("@angular/fire/auth").User;
+  logeado: import("@angular/fire/auth").User;
 
   public eventosQuemados: any = [];
 
@@ -90,7 +87,7 @@ export class AuthService {
     
   }
 
-  /*agendamiento(codigo_laboratorio : number): Observable<Agendamiento[]> {
+  agendamiento(codigo_laboratorio : number): Observable<Agendamiento[]> {
     console.log("Entro a Agendamiento");
     return this.httpClient.get<Agendamiento[]>(`${this.API_BASE_LAB}/`+ codigo_laboratorio + `/listarAgendamiento`);}
   codigos(codigo_materia:any) {
@@ -99,7 +96,7 @@ export class AuthService {
     //this.verificarmateria();
     //this.verCursosMatriculados();
     this.bandera;
-  }*/
+  }
 
   verCursosMatriculados(){
     console.log("Entro a vercursos");

@@ -26,10 +26,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VincularmateriaComponent } from './moduloEstudiante/vincularmateria/vincularmateria.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    //IntegrantesPracticaComponent,
+    VincularmateriaComponent,
   ],
   imports: [
     BrowserModule,

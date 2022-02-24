@@ -7,6 +7,7 @@ const routes: Routes = [{
   pathMatch: 'full'
 },
 { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
+  { path: 'inicio', loadChildren: () => import('./moduloEstudiante/inicio/inicio.module').then(m => m.InicioModule) },
 ];
 
 @NgModule({
