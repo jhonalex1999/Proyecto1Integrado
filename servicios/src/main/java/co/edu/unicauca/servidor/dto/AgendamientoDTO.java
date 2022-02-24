@@ -21,7 +21,7 @@ public class AgendamientoDTO {
     private String fecha;
     private String hora_fin;
     private String hora_inicio;
-    private String id_Franja;
+    private String id_franja;
     private Integer id_agendamiento;
 
 

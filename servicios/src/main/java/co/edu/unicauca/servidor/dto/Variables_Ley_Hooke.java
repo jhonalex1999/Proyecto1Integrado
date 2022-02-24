@@ -5,6 +5,8 @@
  */
 package co.edu.unicauca.servidor.dto;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author admin

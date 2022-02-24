@@ -20,5 +20,5 @@ public class PracticaDTO {
     private String descripcion;
     private Integer estado;
     private String fecha_entrega;
-    private Integer cod_planta;
+   
 }
