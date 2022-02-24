@@ -5,10 +5,16 @@
  */
 package co.edu.unicauca.servidor.service;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author julio
  */
 public interface UsuarioManagamentService {
+     public ArrayList<String> buscarCursosMatriculados (String correo);
     
+    public Boolean agregarCurso(String correo_institucional, int codigo_curso);
+    
+    public Boolean ingresarUsuario(String correo_institucional, String nombre);
 }
