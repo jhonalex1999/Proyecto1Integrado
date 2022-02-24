@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.unicauca.serviciousuario.dto;
+package co.edu.unicauca.servidor.dto;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author admin
  */
 public class HistorialDTO {
-    
+    private Integer cod_grupal;
+    private ArrayList<String> historial_usuarios;
 }

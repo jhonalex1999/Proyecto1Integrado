@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.proyecto1.ServidorLaboratorio.dto;
+package co.edu.unicauca.servidor.dto;
 
 import lombok.Data;
 
@@ -11,9 +11,11 @@ import lombok.Data;
  *
  * @author julio
  */
-
 @Data
-public class LeyHookeDTO {
+public class ParticipantesDTO {
     private String id;
-    private Integer elongacion;
+    private Integer codGrupal;
+    private String correo;
+    private String rol;
+    private Integer estado;
 }

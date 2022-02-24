@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.unicauca.serviciousuario.dto;
+package co.edu.unicauca.servidor.dto;
+
+import lombok.Data;
 
 /**
  *
- * @author admin
+ * @author julio
  */
-public class Variables_Movimiento_Parabolico {
-    
+@Data
+public class ProblemaDTO {
+    private String id;
+    private int idLaboratorio;
+    private String descripcion;
 }

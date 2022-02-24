@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.unicauca.serviciousuario.dto;
+package co.edu.unicauca.servidor.dto;
 
 /**
  *
  * @author admin
  */
-public class Variables_Caida_Libre {
+public class Variables_Movimiento_Parabolico {
     
 }

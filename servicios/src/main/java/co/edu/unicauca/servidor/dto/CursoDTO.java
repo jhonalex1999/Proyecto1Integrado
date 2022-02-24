@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.proyecto1.ServidorLaboratorio.dto;
+package co.edu.unicauca.servidor.dto;
 
 import lombok.Data;
 
@@ -13,11 +13,11 @@ import lombok.Data;
  */
 @Data
 public class CursoDTO {
+    private String codigo_matricula;
+    private String fecha_creacion;
+    private String fecha_eliminacion;
+    private String id_docente;
+    private String nombre_curso;
+    private Integer tamanio_grupo;
 
-    private String nombreCurso;
-    private Integer codigoMatricula;
-    private String fechaCreacion;
-    private String fechaEliminacion;
-    private Integer tamanoGrupo;
-    private String nombreCompleto;
 }
