@@ -5,7 +5,6 @@
  */
 package co.edu.unicauca.servidor.controller;
 
-
 import co.edu.unicauca.servidor.service.UsuarioManagamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,29 +29,28 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioManagamentService service;
- 
-    
-     @GetMapping(value = "/{correo}/buscarCursosMatriculados")
+
+    @GetMapping(value = "/{correo}/buscarCursosImpartidos")
     public ResponseEntity buscarCursosImpartidos(@PathVariable(value = "correo") String correo) {
         return new ResponseEntity(service.buscarCursosImpartidos(correo), HttpStatus.OK);
     }
- 
+
     @PostMapping(value = "{correo}/CrearCurso")
     public ResponseEntity crearCurso(@PathVariable(value = "correo") String correo) {
         return new ResponseEntity(service.crearCurso(correo), HttpStatus.OK);
     }
-    
-     @PutMapping(value = "{correo}/{codCurso}/matricularCurso")
+
+    @PutMapping(value = "{correo}/{codCurso}/matricularCurso")
     public ResponseEntity modificarCurso(@PathVariable(value = "codCurso") int codigoCurso, @PathVariable(value = "correo") String correo) {
         return new ResponseEntity(service.modificarCurso(correo, codigoCurso), HttpStatus.OK);
     }
-    
-     @DeleteMapping(value = "{correo}/{codCurso}/matricularCurso")
+
+    @DeleteMapping(value = "{correo}/{codCurso}/matricularCurso")
     public ResponseEntity eliminarCurso(@PathVariable(value = "codCurso") int codigoCurso, @PathVariable(value = "correo") String correo) {
         return new ResponseEntity(service.eliminarCurso(correo, codigoCurso), HttpStatus.OK);
     }
-    
-     @PostMapping(value = "{correo}/{codCurso}/matricularCurso")
+
+    @PostMapping(value = "{correo}/{codCurso}/matricularCurso")
     public ResponseEntity matricularCurso(@PathVariable(value = "codCurso") int codigoCurso, @PathVariable(value = "correo") String correo_institucional) {
         return new ResponseEntity(service.agregarCurso(correo_institucional, codigoCurso), HttpStatus.OK);
     }
@@ -63,8 +61,8 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "{correo}/{nombreCompleto}/ingresarUsuario")
-    public ResponseEntity ingresarUsuario(@PathVariable(value = "correo") String correo_institucional,@PathVariable(value = "nombreCompleto") String nombre) {
-        return new ResponseEntity(service.ingresarUsuario(correo_institucional,nombre), HttpStatus.OK);
+    public ResponseEntity ingresarUsuario(@PathVariable(value = "correo") String correo_institucional, @PathVariable(value = "nombreCompleto") String nombre) {
+        return new ResponseEntity(service.ingresarUsuario(correo_institucional, nombre), HttpStatus.OK);
     }
 
 }
