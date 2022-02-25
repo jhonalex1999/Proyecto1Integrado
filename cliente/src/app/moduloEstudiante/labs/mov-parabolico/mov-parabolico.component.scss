@@ -1,0 +1,325 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden !important;
+    font-family: "Source Sans 3", sans-serif !important;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+        76deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(0, 82, 255, 0.7903536414565826) 0%,
+        rgba(252, 252, 252, 1) 50%,
+        rgba(255, 0, 0, 0.8827906162464986) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    position: relative;
+}
+.emp-profile {
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+.container-min {
+    min-height: 700px;
+}
+.profile-img {
+    text-align: center;
+    background: rgba(0, 82, 255, 0.7903536414565826);
+}
+.profile-img img {
+    width: 70%;
+    height: 100%;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5 {
+    color: #333;
+}
+.profile-head h6 {
+    color: #0062cc;
+}
+.profile-edit-btn {
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+.proile-rating {
+    font-size: 12px;
+    color: #000000;
+    margin-top: 5%;
+}
+.tittle {
+    text-align: center;
+    font-size: 40px;
+    color: #000000;
+    margin-top: 0;
+}
+.proile-rating span {
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs {
+    margin-bottom: 5%;
+}
+.profile-head .nav-tabs .nav-link {
+    font-weight: 600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active {
+    border: none;
+    border-bottom: 2px solid #0062cc;
+}
+.profile-work {
+    padding: 14%;
+    margin-top: -15%;
+}
+.profile-work p {
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+}
+.profile-work a {
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+}
+.profile-work ul {
+    list-style: none;
+}
+.profile-tab label {
+    font-weight: 600;
+}
+.profile-tab p {
+    font-weight: 600;
+    color: #0062cc;
+}
+
+.text {
+    text-align: center;
+    font-size: 30px;
+    color: #000000;
+}
+
+.text-1 {
+    text-align: center;
+    font-size: 30px;
+    color: #000000;
+}
+
+.button {
+    margin-left: 40px;
+    width: 150px;
+    bottom: 0;
+    right: 0;
+}
+
+.button-1 {
+    margin-left: 10px;
+    width: 150px;
+    bottom: 0;
+    right: 0;
+}
+
+.button-2 {
+    margin-top: 20px;
+    margin-left: 230px;
+    width: 150px;
+    bottom: 0;
+    right: 0;
+}
+
+.button-3 {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 150px;
+    bottom: 0;
+    right: 0;
+}
+
+.button-4 {
+    margin-top: 20px;
+    margin-left: 235px;
+    width: 300px;
+    bottom: 0;
+    right: 0;
+}
+.col {
+    margin-top: 10px;
+}
+.container-practica {
+    float: left;
+    height: 300px;
+    width: 700px;
+}
+.container-espacio {
+    float: right;
+    margin-top: 10px;
+    width: 500px;
+    height: 300px;
+    background: rgb(54, 54, 52);
+}
+
+.datos-practica {
+    background: rgba(54, 54, 51, 0.027);
+    width: 700px;
+    height: 268px;
+}
+
+.grafica {
+    float: right;
+    width: 470px;
+    height: 400px;
+    background: rgba(223, 223, 223, 0.945);
+    margin-left: 10px;
+}
+
+.container-grabacion {
+    float: left;
+    width: 700px;
+    height: 400px;
+    background: rgba(85, 85, 84, 0.945);
+}
+
+.prueba {
+    width: 300px;
+    height: 400px;
+    background: rgba(243, 243, 35, 0.945);
+}
+
+.desplegable {
+    margin-top: 40px;
+    margin-left: 10px;
+    width: 180px;
+}
+
+@media screen and (max-width: 1280px) {
+    .container-grabacion {
+        float: left;
+        margin-top: 100px;
+        width: 500px;
+        height: 300px;
+        margin-right: 20px;
+        background: rgba(85, 85, 84, 0.945);
+        margin-bottom: 30px;
+    }
+
+    .grafica {
+        float: right;
+        width: 600px;
+        height: 200px;
+        margin: 20px;
+        margin-left: 20px;
+        margin-top: 100px;
+        background: rgba(223, 223, 223, 0.945);
+    }
+
+    .container-main{
+        width: 100%;
+    }
+}
+
+
+
+@media screen and (max-width: 1050px) {
+    .container-grabacion {
+        float: left;
+        margin-top: 100px;
+        width: 500px;
+        height: 300px;
+        margin-right: 20px;
+        background: rgba(85, 85, 84, 0.945);
+        margin-bottom: 30px;
+    }
+
+    .grafica {
+        float: right;
+        width: 300px;
+        height: 200px;
+        margin: 20px;
+        margin-left: 20px;
+        margin-top: 100px;
+        background: rgba(223, 223, 223, 0.945);
+    }
+
+    .container-main{
+        margin-top: 400px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1225px) {
+    .container-grabacion {
+        float: left;
+        margin-top: 100px;
+        width: 500px;
+        height: 300px;
+        margin-right: 20px;
+        background: rgba(85, 85, 84, 0.945);
+        margin-bottom: 30px;
+    }
+
+    .grafica {
+        float: right;
+        width: 500px;
+        height: 200px;
+        margin: 20px;
+        margin-left: 20px;
+        margin-top: 100px;
+        background: rgba(223, 223, 223, 0.945);
+    }
+
+    .container-main{
+        margin-top: 400px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container-grabacion {
+        float: left;
+        width: 800px;
+        height: 600px;
+        margin-right: 20px;
+        background: rgba(85, 85, 84, 0.945);
+        margin-bottom: 30px;
+    }
+    .container-main{
+        margin-top: 900px;
+        width: 100%;
+    }
+    .grafica {
+        float: right;
+        width: 600px;
+        height: 200px;
+        margin: 20px;
+        margin-left: 20px;
+        background: rgba(223, 223, 223, 0.945);
+    }
+}
