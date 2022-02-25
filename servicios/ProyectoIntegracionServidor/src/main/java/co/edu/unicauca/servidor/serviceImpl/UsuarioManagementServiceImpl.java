@@ -24,4 +24,24 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     private FirebaseInitializer firebase;
     List<CursoDTO> response = new ArrayList<>();
 
+    @Override
+    public Object buscarCursosImpartidos(String correo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object crearCurso(String correo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object eliminarCurso(String correo, int codigoCurso) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object modificarCurso(String correo, int codigoCurso) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

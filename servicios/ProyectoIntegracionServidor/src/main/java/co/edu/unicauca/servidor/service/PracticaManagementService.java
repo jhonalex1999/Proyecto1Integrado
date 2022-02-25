@@ -20,4 +20,10 @@ public interface PracticaManagementService {
     List<AgendamientoDTO> listarAgendamiento(int codigoPlanta);
     
     ArrayList<String> listarPracticasCurso(String correo);
+
+    public Object crearPractica(int codigoCurso);
+
+    public Object modificarPractica(int codigoCurso, String idPractica);
+
+    public Object eliminarPractica(int codigoCurso, String idPractica);
 }
