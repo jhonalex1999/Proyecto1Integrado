@@ -25,12 +25,12 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     List<CursoDTO> response = new ArrayList<>();
 
     @Override
-    public Object buscarCursosImpartidos(String correo) {
+    public Object crearCurso(String correo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object crearCurso(String correo) {
+    public Object modificarCurso(String correo, int codigoCurso) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -40,8 +40,10 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     }
 
     @Override
-    public Object modificarCurso(String correo, int codigoCurso) {
+    public Object buscarCursosImpartidos(String correo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
 
 }
