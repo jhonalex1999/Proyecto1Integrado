@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,30 +83,8 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         return null;
     }
     
-    private Map<String, Object> getDocDataParticipantes(ParticipantesDTO post) {
-        Map<String, Object> docData = new HashMap<>();
-        docData.put("codGrupal", post.getCod_grupal());
-        docData.put("correo", post.getCorreo());
-        docData.put("estado", post.getEstado());
-        docData.put("rol", post.getRol());
-        return docData;
-    }
-    
-        private Map<String, Object> getDataPractica(PracticaDTO post) {
-        Map<String, Object> docData = new HashMap<>();
 
-        //docData.put("archivos", post.);
-        docData.put("cod_planta", post.getCod_planta());
-        docData.put("id_curso", post.getId_practica());
-        docData.put("descripcion", post.getDescripcion());
-        docData.put("estado", post.getEstado());
-        docData.put("fecha_entrega", post.getFecha_entrega());
-        docData.put("titulo", post.getTitulo());
-
-        return docData;
-    }
       
-
     @Override
     public List<PracticaDTO> listarPracticas() {
         List<PracticaDTO> response = new ArrayList<>();
@@ -300,6 +279,22 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         }
         return Agendamiento;
     }
+    
+        
+        private Map<String, Object> getDataPractica(PracticaDTO post) {
+        Map<String, Object> docData = new HashMap<>();
+
+        //docData.put("archivos", post.);
+        docData.put("cod_planta", post.getCod_planta());
+        docData.put("id_curso", post.getId_practica());
+        docData.put("descripcion", post.getDescripcion());
+        docData.put("estado", post.getEstado());
+        docData.put("fecha_entrega", post.getFecha_entrega());
+        docData.put("titulo", post.getTitulo());
+
+        return docData;
+    }
+    
     private Map<String, Object> getDocDataParticipantes(ParticipantesDTO post) {
         Map<String, Object> docData = new HashMap<>();
         docData.put("codGrupal", post.getCod_grupal());
@@ -308,7 +303,6 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         docData.put("rol", post.getRol());
         return docData;
     }
-
     
     @Override
     public Boolean buscarHorario(int idAgendamiento, int codGrupal) {
@@ -340,24 +334,14 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
             return -1;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    private CollectionReference getCollection(String Colecion) {
-        return firebase.getFirestore().collection(Colecion);
-    }
+   
 
     @Override
     public Object crearPractica(int codigoCurso) {
         PracticaDTO Practica = null;
         Map<String, Object> docData = getDataPractica(Practica);
 
-        CollectionReference practicas = getCollection();
+        CollectionReference practicas = getCollection("practica");
         ApiFuture<WriteResult> writeResultApiFuture = practicas.document().create(docData);
 
         try {
@@ -374,7 +358,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     public Object modificarPractica(int codigoCurso, String idPractica) {
         PracticaDTO Practica = null;
         Map<String, Object> docData = getDataPractica(Practica);
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(idPractica).set(docData);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("practica").document(idPractica).set(docData);
         try {
             if(null != writeResultApiFuture.get()){
                 return Boolean.TRUE;
@@ -387,7 +371,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
 
     @Override
     public Object eliminarPractica(int codigoCurso, String idPractica) {
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(idPractica).delete();
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("practica").document(idPractica).delete();
         try {
             if(null != writeResultApiFuture.get()){
                 return Boolean.TRUE;
@@ -397,9 +381,9 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
             return Boolean.FALSE;
         }
     }
-    private CollectionReference getCollection() {
-
-        return firebase.getFirestore().collection("practica");
+    
+    private CollectionReference getCollection(String Colecion) {
+        return firebase.getFirestore().collection(Colecion);
     }
 
 }

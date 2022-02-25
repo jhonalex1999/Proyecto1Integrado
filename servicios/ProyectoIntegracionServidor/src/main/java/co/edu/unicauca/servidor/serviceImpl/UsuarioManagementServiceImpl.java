@@ -260,20 +260,4 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         }
         return null;
     }
-
-    private Map<String, Object> getDataCurso(CursoDTO curso) {
-        Map<String, Object> docData = new HashMap<>();
-        docData.put("nombre_curso", curso.getNombre_curso());
-        docData.put("codigo_matricula", curso.getCodigo_matricula());
-        docData.put("fecha_creacion", curso.getFecha_creacion());
-        docData.put("fecha_eliminacion", curso.getFecha_eliminacion());
-         docData.put("id_docente", curso.getId_docente());
-         docData.put("tamanio_grupo", curso.getTamanio_grupo());
-        return docData;
-    }
-
-    private CollectionReference getCollection(String colecion) {
-         return firebase.getFirestore().collection(colecion);
-    }
-
 }
