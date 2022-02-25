@@ -146,7 +146,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
 
     @Override
     public Object eliminarPractica(int codigoCurso, String idPractica) {
-         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(idPractica).delete();
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(idPractica).delete();
         try {
             if(null != writeResultApiFuture.get()){
                 return Boolean.TRUE;
