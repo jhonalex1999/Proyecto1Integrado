@@ -6,6 +6,7 @@
 package co.edu.unicauca.servidor.controller;
 
 import co.edu.unicauca.servidor.service.PracticaManagementService;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,7 +38,31 @@ public class PracticaController {
     public ResponseEntity listarAgendamiento(@PathVariable(value = "codigoPlanta") int codigoPlanta) {
         return new ResponseEntity(service.listarAgendamiento(codigoPlanta), HttpStatus.OK);
     }
-
+    @GetMapping(value = "/listarPracticas")
+    public ResponseEntity listarPracticas(){
+        return new ResponseEntity(service.listarPracticas(), HttpStatus.OK);
+    }
+    @GetMapping(value = "/{codGrupal}/verificarAgendamiento")
+    public ResponseEntity verificarAgendamiento(@PathVariable(value = "codGrupal") int codGrupal){
+        return new ResponseEntity(service.verificarAgendamiento(codGrupal), HttpStatus.OK);
+    }
+    @PostMapping(value = "/{idAgendamiento}/agregarParticipantes")
+    public ResponseEntity agregarParticipantes(@RequestBody ArrayList<String> participantes, @PathVariable(value = "idAgendamiento") Integer idAgendamiento) {
+        return new ResponseEntity(service.agregarParticipantes(participantes, idAgendamiento), HttpStatus.OK);
+    }
+    @GetMapping(value = "/{idAgendamiento}/{codGrupal}/buscarHorario")
+    public ResponseEntity buscarHorario(@PathVariable(value = "idAgendamiento") int idAgendamiento, @PathVariable(value = "codGrupal") int codGrupal) {
+        return new ResponseEntity(service.buscarHorario(idAgendamiento, codGrupal), HttpStatus.OK);
+    }
+    @GetMapping(value = "/{correo}/saberCodigoGrupo")
+    public ResponseEntity saberCodigoGrupo(@PathVariable(value = "correo") String correo) {
+        return new ResponseEntity(service.saberCodigoGrupo(correo), HttpStatus.OK);
+    }
+    
+    
+    
+    
+    
     @GetMapping(value = "/listarPracticasCurso/{correo}")
     public ResponseEntity listarPracticasCurso(@PathVariable(value = "correo") String correo){
         return new ResponseEntity(service.listarPracticasCurso(correo), HttpStatus.OK);

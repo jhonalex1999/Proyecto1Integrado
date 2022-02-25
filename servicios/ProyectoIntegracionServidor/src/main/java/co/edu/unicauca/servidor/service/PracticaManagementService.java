@@ -6,10 +6,11 @@
 package co.edu.unicauca.servidor.service;
 
 import co.edu.unicauca.servidor.dto.AgendamientoDTO;
-import co.edu.unicauca.servidor.dto.CursoDTO;
+
+import co.edu.unicauca.servidor.dto.PracticaDTO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+
 
 /**
  *
@@ -17,7 +18,13 @@ import java.util.concurrent.ExecutionException;
  */
 public interface PracticaManagementService {
 
-    List<AgendamientoDTO> listarAgendamiento(int codigoPlanta);
+    List<AgendamientoDTO> listarAgendamiento(int codigoPlanta);//practica
+    List<PracticaDTO> listarPracticas();
+    Boolean verificarAgendamiento(int codGrupal);
+    Integer agregarParticipantes(ArrayList<String> participantes,int idAgendamiento);//practica
+    Boolean buscarHorario(int idAgendamiento, int codGrupal);//practica
+    Integer saberCodigoGrupo(String correo);//practica
+    
     
     ArrayList<String> listarPracticasCurso(String correo);
 
