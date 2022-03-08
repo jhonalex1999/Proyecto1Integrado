@@ -13,7 +13,7 @@ import lombok.Data;
 
 /**
  *
- * @author julio
+ * @author Integracion Modulo Estudiante y Modulo Docente
  */
 @Data
 public class AgendamientoDTO {

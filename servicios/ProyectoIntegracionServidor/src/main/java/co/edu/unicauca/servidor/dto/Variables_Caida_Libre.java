@@ -9,10 +9,10 @@ package co.edu.unicauca.servidor.dto;
 
 /**
  *
- * @author admin
+ * @author Integracion Modulo Estudiante y Modulo Docente
  */
 public class Variables_Caida_Libre {
-    private String id_laboratorio;
-    private String altura_max;
+    private String id_practica;
+    private String rango_altura;
     private String num_lanzamientos;
 }

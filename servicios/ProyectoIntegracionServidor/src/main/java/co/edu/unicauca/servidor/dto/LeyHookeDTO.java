@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  *
- * @author julio
+ * @author Integracion Modulo Estudiante 
  */
 
 @Data

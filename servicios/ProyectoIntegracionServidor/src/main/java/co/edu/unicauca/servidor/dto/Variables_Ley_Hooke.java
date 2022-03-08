@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author admin
  */
 public class Variables_Ley_Hooke {
-    private String id_laboratorio;
+    private String id_practica;
     private String rango_fuerza;
     private String rango_elongacion;
     private ArrayList<String> tipo_resorte;

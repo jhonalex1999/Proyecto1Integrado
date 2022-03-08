@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 /**
  *
- * @author admin
+ * @author Integracion Modulo Estudiante y Modulo Docente
  */
 public class Variables_Movimiento_Parabolico {
-    private String id_laboratorio;
-    private ArrayList<String> angulo;
+    private String id_practica;
+    private ArrayList<String> rango_angulo;
     private String velocidad;
    
 }
