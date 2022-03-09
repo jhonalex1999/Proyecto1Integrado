@@ -2,14 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgendaComponent } from './moduloProfesor/agenda/agenda.component';
 import { CursosComponent } from './moduloProfesor/cursos/cursos.component';
+import { MateriaComponent } from './moduloProfesor/materia/materia.component';
+import { PracticaComponent } from './moduloProfesor/materia/practica.component';
 
 const routes: Routes = [{
   path: '',
-  redirectTo: '/inicio',
+  redirectTo: '/login',
   pathMatch: 'full'
 },
 { path: ':correo/cursos', component: CursosComponent },
 { path: ':correo/agenda', component: AgendaComponent },
+{ path: ':correo/cursos/materia', component: MateriaComponent },
+{ path: ':correo/cursos/materia/practica', component: PracticaComponent },
 
 
 { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },

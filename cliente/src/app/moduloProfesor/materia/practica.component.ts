@@ -11,7 +11,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { environment } from 'src/environments/environment';
 
-firebase.initializeApp(environment.firebaseConfig);
+firebase.initializeApp(environment.firebase);
 @Component({
   selector: 'app-practica',
   templateUrl: './practica.component.html',
@@ -61,9 +61,9 @@ export class PracticaComponent implements OnInit {
       e => this.practica = e
     );
 
-    this.franjaService.getAll().subscribe(
+    /*this.franjaService.getAll().subscribe(
       p => this.franjaHoraria = p
-    );
+    );*/
 
     this.options = {
       plugins: [dayGridPlugin, timeGridPlugin],
@@ -88,9 +88,9 @@ export class PracticaComponent implements OnInit {
   }
 
   cargar(): void {
-    this.franjaService.getAll().subscribe(
+    /*this.franjaService.getAll().subscribe(
       e => this.franjaHoraria = e
-    );
+    );*/
 
     this.events = [{}]
 
