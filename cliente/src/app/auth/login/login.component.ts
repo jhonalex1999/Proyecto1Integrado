@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  tipoUsuario : any  = '';
+  tipoUsuario : string  = '';
 
   iniciarSesion(){
     this.authService
@@ -32,7 +32,14 @@ export class LoginComponent implements OnInit {
         this.cookieService.set('Token_photo', res.user.photoURL || '' ,4, '/');
         
         this.authService.obtenerTipo().subscribe(respuesta => {
-          respuesta
+          if(respuesta=='Estudiante'){
+            this.router.navigate(['/inicio']);
+          }else if(respuesta=='Docente'){
+            this.router.navigate(['/1/cursos']);
+          }
+        });
+        
+        /* .subscribe((respuesta : any)  => {
           console.log(respuesta);
 
           if(respuesta=='Estudiante'){
@@ -41,7 +48,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/1/cursos']);
           }
           
-        });
+        });*/
         
 
         

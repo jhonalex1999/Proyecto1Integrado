@@ -19,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -47,6 +46,7 @@ import { FormCursosComponent } from './moduloProfesor/cursos/form-cursos.compone
 import { NavbarComponent } from './moduloProfesor/navbar/navbar.component';
 
 import { FullCalendarModule } from 'primeng/fullcalendar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({

@@ -71,12 +71,12 @@ export class AuthService {
 
   cambiarEstadoEntrada(){
     console.log("llegue");
-    return this.httpClient.get(`${this.API_BASE_LAB}/`+ this.cookie.get('Token_email') + `/` + `cambiarEstadoParticipanteEntrada`).subscribe(result => this.data = result);
+    return this.httpClient.get(`${this.API_BASE}/`+ this.cookie.get('Token_email') + `/` + `cambiarEstadoParticipanteEntrada`).subscribe(result => this.data = result);
   }
 
   cambiarEstadoSalida(){
     console.log("sali");
-    return this.httpClient.get(`${this.API_BASE_LAB}/`+ this.cookie.get('Token_email') + `/` + `cambiarEstadoParticipanteSalida`).subscribe(result => this.data = result);
+    return this.httpClient.get(`${this.API_BASE}/`+ this.cookie.get('Token_email') + `/` + `cambiarEstadoParticipanteSalida`).subscribe(result => this.data = result);
   }
 
   enviarDatos() {
@@ -164,6 +164,6 @@ export class AuthService {
 
   obtenerTipo(){
     console.log("Entro a obtenerTipo");
-    return this.httpClient.get(`${this.API_BASE}/`+ this.cookie.get('Token_email') + `/`  +`sacarRol`);
+    return this.httpClient.get(`${this.API_BASE}/`+ this.cookie.get('Token_email') + `/`  +`sacarRol`,{responseType:'text'});
   }
 }

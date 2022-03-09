@@ -267,6 +267,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 usuario = doc.toObject(UsuarioDTO.class);
+                System.out.println(usuario.getRol());
                 return usuario.getRol();
             }
             return "";
@@ -280,7 +281,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     public Boolean cambiarEstadoParticipanteEntrada(String correo) {
         String Participante = BuscarParticipante(correo);
 
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection("PARTICIPANTES").document(Participante).update("estado", 1);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("participantes").document(Participante).update("estado", 1);
         try {
             if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
@@ -295,7 +296,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     public Boolean cambiarEstadoParticipanteSalida(String correo) {
         String Participante = BuscarParticipante(correo);
 
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection("PARTICIPANTES").document(Participante).update("estado", 0);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("participantes").document(Participante).update("estado", 0);
         try {
             if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
