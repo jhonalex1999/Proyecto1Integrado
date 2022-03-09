@@ -161,4 +161,9 @@ export class AuthService {
     console.log("Entro a obtener opciones practica caida libre");
     return this.httpClient.get(`${this.API_BASE_LAB}/`+ codigo_planta + `/`  +`listar_Velocidad_MP`);
   }
+
+  obtenerTipo(){
+    console.log("Entro a obtenerTipo");
+    return this.httpClient.get(`${this.API_BASE}/`+ this.cookie.get('Token_email') + `/`  +`sacarRol`);
+  }
 }

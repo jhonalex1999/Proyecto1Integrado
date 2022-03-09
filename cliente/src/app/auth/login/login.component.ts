@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  tipoUsuario : any  = '';
+
   iniciarSesion(){
     this.authService
     .loginWithGoogle()
@@ -28,7 +30,22 @@ export class LoginComponent implements OnInit {
         this.cookieService.set('Token_name', res.user.displayName || '' ,4, '/');
         this.authService.cambiarEstadoEntrada();
         this.cookieService.set('Token_photo', res.user.photoURL || '' ,4, '/');
-        this.router.navigate(['/inicio']);
+        
+        this.authService.obtenerTipo().subscribe(respuesta => {
+          respuesta
+          console.log(respuesta);
+
+          if(respuesta=='Estudiante'){
+            this.router.navigate(['/inicio']);
+          }else if(respuesta=='Docente'){
+            this.router.navigate(['/1/cursos']);
+          }
+          
+        });
+        
+
+        
+
       } else {
         this.router.navigate(['/login']);
       }
