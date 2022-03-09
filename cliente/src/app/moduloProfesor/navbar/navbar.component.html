@@ -1,0 +1,21 @@
+<nav class="navbar" *ngIf="cargarNavBar()">
+    <div [routerLink]="urlInicio" class="nav_logo"></div>
+    <div style="padding-left: 60%;">
+        <button class="boton_menu" mat-button [routerLink]="urlAgenda">Agenda Plantas</button>
+    </div>
+    <span>
+        <ul mat-flat-button [matMenuTriggerFor]="menu" class="navbar-nav">
+            <img src="{{photo$}}">
+            <mat-menu #menu="matMenu">
+                <li>{{user$}}</li>
+                <li>{{userName$}}</li>
+                <li>
+                    <a (click)="signOut()">
+                        <button [routerLink]="['/login']" class=" btn btn-block mybtn btn-primary tx-tfm">Cerrar
+                            Sesion</button>
+                    </a>
+                </li>
+            </mat-menu>
+        </ul>
+    </span>
+</nav>

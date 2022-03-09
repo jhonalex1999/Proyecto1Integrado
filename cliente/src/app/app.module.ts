@@ -26,7 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VincularmateriaComponent } from './moduloEstudiante/vincularmateria/vincularmateria.component';
-
+import { AgendaComponent } from './moduloProfesor/agenda/agenda.component';
 
 
 import { MatMenuModule } from '@angular/material/menu';
@@ -40,14 +40,12 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatChipsModule} from '@angular/material/chips';
-import { LoginComponent } from './auth/login/login.component';
 import { CursosComponent } from './moduloProfesor/cursos/cursos.component';
 import { FormCursosComponent } from './moduloProfesor/cursos/form-cursos.component';
 import { NavbarComponent } from './moduloProfesor/navbar/navbar.component';
 
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { ReactiveFormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [
@@ -56,6 +54,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     VincularmateriaComponent,
     CursosComponent,
     FormCursosComponent,
+    NavbarComponent,
+    AgendaComponent
   ],
   imports: [
     BrowserModule,

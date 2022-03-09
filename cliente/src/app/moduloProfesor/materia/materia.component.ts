@@ -1,0 +1,71 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
+import { Curso } from '../cursos/curso';
+import { CursoService } from '../cursos/curso.service';
+import { FranjaHoraria } from './franja-horaria';
+import { FranjaHorariaService } from './franja-horaria.service';
+import { Practica } from './practica';
+import { PracticaService } from './practica.service';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+
+@Component({
+  selector: 'app-materia',
+  templateUrl: './materia.component.html',
+  styleUrls: ['./materia.component.css']
+})
+
+export class MateriaComponent implements OnInit {
+
+  //Calendario
+  public events: any[] | undefined;
+  public options: any;
+  public activarCalendario: boolean = false;
+  public franjaHoraria!: FranjaHoraria[];
+
+  practica: Practica[] | undefined;
+  curso: Curso | undefined;
+  url: string | undefined;
+
+  user: SocialUser | undefined;
+  loggedIn: boolean | undefined;
+
+  constructor(private practicaService: PracticaService, private cursoService: CursoService,
+    private authService: SocialAuthService, private router: Router) { }
+
+  ngOnInit() {
+    this.practicaService.getAll().subscribe(
+      e => this.practica = e
+    );
+
+    this.url = this.router.url;
+    var id = this.router.url.split('/')[3];
+    console.log(id);
+    this.cursoService.get(id).subscribe(
+      c => this.curso = c
+    );
+    
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+  }
+
+  suPractica(id: string): boolean {
+    if (id == this.router.url.split('/')[3]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  delete(practicaBorrar:Practica): void{
+    console.log("Delete practica con ID: "+practicaBorrar.idpractica);
+    this.practicaService.delete(practicaBorrar.idpractica!).subscribe(
+      res=>this.practicaService.getAll().subscribe(
+        response=>this.practica=response
+      )
+    );
+  }
+}

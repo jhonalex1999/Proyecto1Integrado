@@ -16,17 +16,13 @@ export class CursosComponent implements OnInit {
   loggedIn: boolean | undefined;
   url: string | undefined;
 
-  constructor(private cursoService: CursoService,
-    private  authService: AuthService, private router: Router) { }
+  constructor(private cursoService: CursoService,private router: Router) { }
 
   ngOnInit(): void {
-    
-
     this.url = this.router.url;
     this.cursoService.getAllById(this.router.url.split('/')[1]).subscribe(
       e => this.cursos = e
     );
-
 
   }
 

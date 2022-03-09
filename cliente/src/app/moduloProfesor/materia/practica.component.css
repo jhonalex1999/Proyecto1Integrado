@@ -1,0 +1,148 @@
+.banner_titulo{
+    width: 100%;
+    background-color: #3F51B5;
+}
+
+.contenedor_titulo{
+    padding-top:15px;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(70px, 1fr));
+}
+
+h1{
+    color: white;
+}
+
+.titulo_pagina{
+    width: 100%;
+}
+
+.contenedor_card_findo{
+    width: 90%;
+    padding-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.card_de_fondo{
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor_campos{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+
+}
+
+.campo_de_entrada_texta{
+    width: 350px;
+   
+
+}
+
+.txa{
+    height: 145px;
+}
+
+.campo_de_entrada{
+    width: 350px;
+
+}
+
+.subcampos{
+    display: grid;
+  
+}
+
+.form-control{
+width: 200px;
+height: 50px;
+}
+
+.calendario{
+    width: 700px;
+}
+
+
+.contenedor_botones{
+    width: 200px;
+    
+    display: grid;
+    grid-template-columns: repeat(2, minmax(70px, 1fr));
+    gap: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.col{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #afafaf;
+    margin-top: 1%;
+    display: grid;
+    place-items: center;
+    margin: 0.2%;
+    justify-items: left;
+}
+
+div.row{
+    margin-bottom: 3%;
+}
+
+#Practica{
+    width: auto;
+}
+
+#franjaHoraria{
+    width: auto;
+}
+
+#documento{
+    width: auto;
+}
+
+#eventos{
+    margin: 3%;
+}
+
+#crearPractica{
+    margin: 3%;
+}

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           if(respuesta=='Estudiante'){
             this.router.navigate(['/inicio']);
           }else if(respuesta=='Docente'){
-            this.router.navigate(['/1/cursos']);
+            this.router.navigate(['/'+res.user.email+'/cursos']);
           }
         });
         

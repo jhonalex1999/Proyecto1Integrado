@@ -8,7 +8,7 @@ import { Curso } from './curso';
 })
 export class CursoService {
 
-  private url:string="http://localhost:8002/curso";
+  private url:string="http://localhost:8080/usuario";
 
   constructor(private http:HttpClient) { }
 
@@ -18,8 +18,8 @@ export class CursoService {
   }
 
   //Obtener Cursos
-  getAllById(id:string):Observable<Curso[]>{
-    return this.http.get<Curso[]>(this.url+'/listbydocente/'+id);
+  getAllById(correo:string):Observable<Curso[]>{
+    return this.http.get<Curso[]>(this.url+'/'+correo+'/buscarCursosImpartidos');
   }
 
   //Crear curso

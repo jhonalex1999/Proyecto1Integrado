@@ -1,0 +1,136 @@
+.contenedor_titulo{
+    padding-top:15px;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(70px, 1fr));
+}
+
+.boton_add{
+    float: right;
+    margin-right: 0;
+}
+
+h1{
+    color: white;
+}
+
+.banner_titulo{
+    width: 100%;
+    background-color: #3F51B5;
+}
+
+.contenedor_practicas{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 20px;
+}
+
+.desc_practica{
+width: 100%;
+}
+
+.desc{
+    width: 60%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container_cursos{
+    margin-top: 1%;
+    display: grid;
+    place-items: center;
+}
+
+.card_cursos{
+    width: 80%;
+}
+.card-body {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #afafaf;
+}
+
+.card-body:hover{
+    box-shadow: 5px 5px 18px #afafaf;
+    transition-duration: 0.3s;
+    
+}
+
+
+
+a {
+    font-size: 30px;
+    color: rgb(102, 102, 102);
+    font-weight: 500;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1717FF;
+    cursor: pointer;
+}
+
+button {
+    margin-right: 30px;
+}
+
+#mas_opt{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 9%;
+}
+
+.listcursos{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+}
+
+#listitle{
+    font-size: 25px;
+    font-weight: 400;
+    height: 50%;
+    margin-top: 30px;
+    margin-bottom: auto;
+}
+
+#btnc{
+    float: right;
+    margin-right: -0.3%;
+}
+
+h5{
+    font-size: medium;
+}
