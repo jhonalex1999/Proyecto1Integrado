@@ -1,5 +1,6 @@
 package co.edu.unicauca.servidor.dto;
 
+import java.util.ArrayList;
 import lombok.Data;
 
 /*
@@ -16,6 +17,6 @@ import lombok.Data;
 @Data
 public class Variables_Caida_LibreDTO {
     private String id_practica;
-    private String rango_altura;
-    private String num_lanzamientos;
+    private ArrayList<String> rango_altura;
+    private ArrayList<String> num_lanzamientos;
 }
