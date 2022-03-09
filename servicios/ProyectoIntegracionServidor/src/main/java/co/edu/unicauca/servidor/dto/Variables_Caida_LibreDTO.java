@@ -1,5 +1,7 @@
 package co.edu.unicauca.servidor.dto;
 
+import lombok.Data;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,15 +9,13 @@ package co.edu.unicauca.servidor.dto;
  */
 
 
-import java.util.ArrayList;
-
 /**
  *
- * @author admin
+ * @author Integracion Modulo Estudiante y Modulo Docente
  */
-public class Variables_Ley_Hooke {
+@Data
+public class Variables_Caida_LibreDTO {
     private String id_practica;
-    private String rango_fuerza;
-    private String rango_elongacion;
-    private ArrayList<String> tipo_resorte;
+    private String rango_altura;
+    private String num_lanzamientos;
 }

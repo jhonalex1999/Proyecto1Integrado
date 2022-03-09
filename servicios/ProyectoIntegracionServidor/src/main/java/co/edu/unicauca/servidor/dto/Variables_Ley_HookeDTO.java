@@ -7,12 +7,15 @@ package co.edu.unicauca.servidor.dto;
  */
 
 
+import java.util.ArrayList;
+
 /**
  *
- * @author Integracion Modulo Estudiante y Modulo Docente
+ * @author admin
  */
-public class Variables_Caida_Libre {
+public class Variables_Ley_HookeDTO {
     private String id_practica;
-    private String rango_altura;
-    private String num_lanzamientos;
+    private String rango_fuerza;
+    private String rango_elongacion;
+    private ArrayList<String> tipo_resorte;
 }

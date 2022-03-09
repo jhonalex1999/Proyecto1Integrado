@@ -13,13 +13,14 @@ import java.util.ArrayList;
  */
 public interface UsuarioManagamentService {
 
-    public Object buscarCursosImpartidos(String correo);
+    public ArrayList<String> buscarCursosImpartidos(String correo);
 
     public Object crearCurso(String correo);
 
     public Object modificarCurso(String correo, int codigoCurso);
 
     public Object eliminarCurso(String correo, int codigoCurso);
+    
 
     public ArrayList<String> buscarCursosMatriculados (String correo);
     

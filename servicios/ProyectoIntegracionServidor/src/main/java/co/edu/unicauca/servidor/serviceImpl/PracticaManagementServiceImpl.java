@@ -9,6 +9,9 @@ import co.edu.unicauca.servidor.dto.AgendamientoDTO;
 import co.edu.unicauca.servidor.dto.CursoDTO;
 import co.edu.unicauca.servidor.dto.ParticipantesDTO;
 import co.edu.unicauca.servidor.dto.PracticaDTO;
+import co.edu.unicauca.servidor.dto.Variables_Ley_HookeDTO;
+import co.edu.unicauca.servidor.dto.Variables_Caida_LibreDTO;
+import co.edu.unicauca.servidor.dto.Variables_Movimiento_ParabolicoDTO;
 import co.edu.unicauca.servidor.dto.UsuarioDTO;
 import co.edu.unicauca.servidor.firebase.FirebaseInitializer;
 import co.edu.unicauca.servidor.service.PracticaManagementService;
@@ -280,29 +283,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         return Agendamiento;
     }
     
-        
-        private Map<String, Object> getDataPractica(PracticaDTO post) {
-        Map<String, Object> docData = new HashMap<>();
-
-        //docData.put("archivos", post.);
-        docData.put("cod_planta", post.getCod_planta());
-        docData.put("id_curso", post.getId_practica());
-        docData.put("descripcion", post.getDescripcion());
-        docData.put("estado", post.getEstado());
-        docData.put("fecha_entrega", post.getFecha_entrega());
-        docData.put("titulo", post.getTitulo());
-
-        return docData;
-    }
-    
-    private Map<String, Object> getDocDataParticipantes(ParticipantesDTO post) {
-        Map<String, Object> docData = new HashMap<>();
-        docData.put("codGrupal", post.getCod_grupal());
-        docData.put("correo", post.getCorreo());
-        docData.put("estado", post.getEstado());
-        docData.put("rol", post.getRol());
-        return docData;
-    }
+  
     
     @Override
     public Boolean buscarHorario(int idAgendamiento, int codGrupal) {
@@ -337,7 +318,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
    
 
     @Override
-    public Object crearPractica(int codigoCurso) {
+    public Object crearPractica(String codigoCurso) {
         PracticaDTO Practica = null;
         Map<String, Object> docData = getDataPractica(Practica);
 
@@ -355,7 +336,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     }
 
     @Override
-    public Object modificarPractica(int codigoCurso, String idPractica) {
+    public Object modificarPractica(String codigoCurso, String idPractica) {
         PracticaDTO Practica = null;
         Map<String, Object> docData = getDataPractica(Practica);
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("practica").document(idPractica).set(docData);
@@ -370,7 +351,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     }
 
     @Override
-    public Object eliminarPractica(int codigoCurso, String idPractica) {
+    public Object eliminarPractica(String codigoCurso, String idPractica) {
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("practica").document(idPractica).delete();
         try {
             if(null != writeResultApiFuture.get()){
@@ -382,8 +363,73 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         }
     }
     
-    private CollectionReference getCollection(String Colecion) {
-        return firebase.getFirestore().collection(Colecion);
+  
+
+ 
+    @Override
+    public ArrayList<String> listarVariablesPorDefecto(String idPractica) {
+        Variables_Caida_LibreDTO Practica_Caida_Libre = null;
+        Map<String, Object> docData = getDocDataVariablesLeydeHooke(Practica_Caida_Libre);
+        return null;
     }
 
+    @Override
+    public ArrayList<String> listarVariablesPracticasCurso(String idPractica) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object crearVariablesPractica(String idPractica) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object modificarVariablesPractica(String codigoCurso, String idPractica) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object eliminarVariablesPractica(String codigoCurso, String idPractica) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+        
+    private Map<String, Object> getDataPractica(PracticaDTO post) {
+        Map<String, Object> docData = new HashMap<>();
+
+        //docData.put("archivos", post.);
+        docData.put("cod_planta", post.getCod_planta());
+        docData.put("id_curso", post.getId_practica());
+        docData.put("descripcion", post.getDescripcion());
+        docData.put("estado", post.getEstado());
+        docData.put("fecha_entrega", post.getFecha_entrega());
+        docData.put("titulo", post.getTitulo());
+
+        return docData;
+    }
+    
+    private Map<String, Object> getDocDataParticipantes(ParticipantesDTO post) {
+        Map<String, Object> docData = new HashMap<>();
+        docData.put("codGrupal", post.getCod_grupal());
+        docData.put("correo", post.getCorreo());
+        docData.put("estado", post.getEstado());
+        docData.put("rol", post.getRol());
+        return docData;
+    }
+    
+    private Map<String, Object> getDocDataVariablesLeydeHooke(Variables_Caida_LibreDTO post) {
+        Map<String, Object> docData = new HashMap<>();
+        docData.put("id_practica", post.getId_practica());
+        docData.put("num_lanzamientos", post.getNum_lanzamientos());
+        docData.put("rango_altura", post.getRango_altura());
+        return docData;
+    }
+    
+    
+    
+      private CollectionReference getCollection(String Colecion) {
+        return firebase.getFirestore().collection(Colecion);
+    }
+    
 }

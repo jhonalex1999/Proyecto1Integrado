@@ -69,17 +69,17 @@ public class PracticaController {
     }
     
      @PostMapping(value = "{codigoCurso}/CrearPractica")
-    public ResponseEntity crearPractica(@PathVariable(value = "codigoCurso") int codigoCurso) {
+    public ResponseEntity crearPractica(@PathVariable(value = "codigoCurso") String codigoCurso) {
         return new ResponseEntity(service.crearPractica(codigoCurso), HttpStatus.OK);
     }
     
      @PutMapping(value = "{codCurso}/modificarPractica/{idPractica}")
-    public ResponseEntity modificarPractica(@PathVariable(value = "codCurso") int codigoCurso, @PathVariable(value = "idPractica") String idPractica) {
+    public ResponseEntity modificarPractica(@PathVariable(value = "codCurso") String codigoCurso, @PathVariable(value = "idPractica") String idPractica) {
         return new ResponseEntity(service.modificarPractica(codigoCurso, idPractica), HttpStatus.OK);
     }
     
      @DeleteMapping(value = "{codCurso}/eliminarPractica/{idPractica}")
-    public ResponseEntity eliminarPractica(@PathVariable(value = "codCurso") int codigoCurso, @PathVariable(value = "idPractica") String idPractica) {
+    public ResponseEntity eliminarPractica(@PathVariable(value = "codCurso") String codigoCurso, @PathVariable(value = "idPractica") String idPractica) {
         return new ResponseEntity(service.eliminarPractica(codigoCurso, idPractica), HttpStatus.OK);
     }
     

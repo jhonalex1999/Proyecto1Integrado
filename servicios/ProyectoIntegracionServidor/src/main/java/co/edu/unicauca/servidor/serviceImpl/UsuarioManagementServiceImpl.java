@@ -243,7 +243,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     }
 
     @Override
-    public Object buscarCursosImpartidos(String correo) {
+    public ArrayList<String> buscarCursosImpartidos(String correo) {
         ArrayList<String> cursos;
         UsuarioDTO docente;
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("usuario").whereEqualTo("correo", correo).get();
