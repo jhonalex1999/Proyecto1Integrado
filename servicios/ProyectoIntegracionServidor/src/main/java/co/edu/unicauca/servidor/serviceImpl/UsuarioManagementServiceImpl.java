@@ -6,6 +6,7 @@
 package co.edu.unicauca.servidor.serviceImpl;
 
 import co.edu.unicauca.servidor.dto.CursoDTO;
+import co.edu.unicauca.servidor.dto.ParticipantesDTO;
 import co.edu.unicauca.servidor.dto.UsuarioDTO;
 import co.edu.unicauca.servidor.firebase.FirebaseInitializer;
 import co.edu.unicauca.servidor.service.UsuarioManagamentService;
@@ -34,12 +35,12 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
 
     @Autowired
     private FirebaseInitializer firebase;
-  
+
     @Override
     public Boolean ingresarUsuario(String correo, String nombre) {
         UsuarioDTO usuario = new UsuarioDTO();
         Boolean existe = buscarUsuario(correo);
-        if (existe == false) {       
+        if (existe == false) {
             String rol = "Estudiante";
             usuario.setNombre_completo(nombre);
             usuario.setRol(rol);
@@ -60,7 +61,6 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         }
     }
 
-    
     @Override
     public Boolean agregarCurso(String correo_institucional, int codigo) {
         String Agendamiento = "vacio";
@@ -70,7 +70,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         //Si lo encontro matriculara y devolvera un TRUE, de lo contrario mandara un FALSE
         if (existe > 0) {
             if (!"".equals(nombre_curso)) {
-                ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("usuario").whereEqualTo("correo",correo_institucional).get();
+                ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("usuario").whereEqualTo("correo", correo_institucional).get();
                 try {
                     for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                         Agendamiento = doc.getId();
@@ -116,7 +116,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
                 cursos = grupo.getCursos();
                 return cursos;
             }
-           
+
         } catch (Exception e) {
             return null;
         }
@@ -131,7 +131,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 usuario = doc.toObject(UsuarioDTO.class);
-             
+
                 return true;
             }
             return false;
@@ -178,7 +178,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         docData.put("correo", usuario.getCorreo());
         docData.put("rol", usuario.getRol());
         docData.put("nombre_completo", usuario.getNombre_completo());
-        
+
         return docData;
     }
 
@@ -188,11 +188,10 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         docData.put("codigo_matricula", curso.getCodigo_matricula());
         docData.put("fecha_creacion", curso.getFecha_creacion());
         docData.put("fecha_eliminacion", curso.getFecha_eliminacion());
-         docData.put("id_docente", curso.getId_docente());
-         docData.put("tamanio_grupo", curso.getTamanio_grupo());
+        docData.put("id_docente", curso.getId_docente());
+        docData.put("tamanio_grupo", curso.getTamanio_grupo());
         return docData;
     }
-
 
     @Override
     public Object crearCurso(String correo) {
@@ -203,23 +202,23 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         ApiFuture<WriteResult> writeResultApiFuture = cursos.document().create(docData);
 
         try {
-            if(null != writeResultApiFuture.get()){
+            if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
             }
             return Boolean.FALSE;
-        } catch (Exception e){
+        } catch (Exception e) {
             return Boolean.FALSE;
         }
     }
 
     @Override
     public Object modificarCurso(String correo, int codigoCurso) {
-        String codCurso= Integer.toString(codigoCurso);
+        String codCurso = Integer.toString(codigoCurso);
         CursoDTO Curso = null;
         Map<String, Object> docData = getDataCurso(Curso);
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("curso").document(codCurso).set(docData);
         try {
-            if(null != writeResultApiFuture.get()){
+            if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
             }
             return Boolean.FALSE;
@@ -230,10 +229,10 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
 
     @Override
     public Object eliminarCurso(String correo, int codigoCurso) {
-        String codCurso= Integer.toString(codigoCurso);
+        String codCurso = Integer.toString(codigoCurso);
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("curso").document(codCurso).delete();
         try {
-            if(null != writeResultApiFuture.get()){
+            if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
             }
             return Boolean.FALSE;
@@ -254,10 +253,27 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
                 cursos = docente.getCursos();
                 return cursos;
             }
-           
+
         } catch (Exception e) {
             return null;
         }
         return null;
     }
+
+    @Override
+    public String sacarRol(String correo) {
+        UsuarioDTO usuario;
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("usuario").whereEqualTo("correo", correo).get();
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                usuario = doc.toObject(UsuarioDTO.class);
+                return usuario.getRol();
+            }
+            return "";
+
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
 }

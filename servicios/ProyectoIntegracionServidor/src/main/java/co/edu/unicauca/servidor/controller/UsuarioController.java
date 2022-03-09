@@ -65,4 +65,9 @@ public class UsuarioController {
         return new ResponseEntity(service.ingresarUsuario(correo_institucional, nombre), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/{correo}/sacarRol")
+    public ResponseEntity sacarRol(@PathVariable(value = "correo") String correo) {
+        return new ResponseEntity(service.sacarRol(correo), HttpStatus.OK);
+    }
+
 }
