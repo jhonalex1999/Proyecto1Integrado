@@ -14,6 +14,9 @@ import { Agendamiento } from '../moduloEstudiante/modelos/agendamiento';
 })
 
 export class AuthService {
+  
+  
+
   data = {};
   public listado : any = [];
 
@@ -33,7 +36,9 @@ export class AuthService {
 
   constructor(private auth: Auth, private httpClient: HttpClient, private cookie: CookieService) { }
 
-
+  public obtenerUser(){
+    return this.auth.currentUser!;
+  }
   async loginWithGoogle() {
     try {
       var correo = signInWithPopup(this.auth, new GoogleAuthProvider());
@@ -42,6 +47,7 @@ export class AuthService {
       if (Number(idx) > -1) {
         //alert("Bienvenido " + (await correo).user?.displayName);
         this.enviarDatos();
+
         return await correo;
       }
       alert("Error correo no universitario");
@@ -53,30 +59,37 @@ export class AuthService {
 
   }
 
-  enviarDatos() {
-    console.log("Entro a enviarDatos()");
-    //return this.httpClient.post(`${this.API_BASE}/`+this.logeado.email+ `/` +this.logeado.displayName+ `/ingresarUsuario`,this.logeado);
-    return this.httpClient.post(`${this.API_BASE}/`+ this.logeado.email + `/` + this.logeado.displayName + `/ingresarUsuario`,this.logeado).subscribe(result => this.data = result);
-  }
-
 //return this.httpClient.get(`${this.API_BASE}/pdf`).subscribe(result => this.data = result);
   logout() {
     try {
+      this.cambiarEstadoSalida();
       this.auth.signOut();
     } catch (error) {
       console.log(error);
     }
   }
 
-  /*descargar() {
+  cambiarEstadoEntrada(){
+    console.log("llegue");
+    return this.httpClient.get(`${this.API_BASE}/`+ this.cookie.get('Token_email') + `/` + `cambiarEstadoParticipanteEntrada`).subscribe(result => this.data = result);
+  }
+
+  cambiarEstadoSalida(){
+    console.log("sali");
+    return this.httpClient.get(`${this.API_BASE}/`+ this.cookie.get('Token_email') + `/` + `cambiarEstadoParticipanteSalida`).subscribe(result => this.data = result);
+  }
+
+  enviarDatos() {
+    console.log("Entro a enviarDatos()");
+    //return this.httpClient.post(`${this.API_BASE}/`+this.logeado.email+ `/` +this.logeado.displayName+ `/ingresarUsuario`,this.logeado);
+    return this.httpClient.post(`${this.API_BASE}/`+ this.logeado.email + `/` + this.logeado.displayName + `/ingresarUsuario`,this.logeado).subscribe(result => this.data = result);
+  }
+
+
+  descargar() {
     console.log('Descargó')
-    //return this.httpClient.get(`${this.API_BASE}/pdf`).subscribe(result => this.data = result);
+    return this.httpClient.get(`${this.API_BASE}/pdf`).subscribe(result => this.data = result);
 
-  }*/
-
-  traerrol() {
-    console.log('rol');
-    //return this.httpClient.get(`${this.API_BASE}/rol`).subscribe(result => this.data = result);
   }
 
  
@@ -114,13 +127,43 @@ export class AuthService {
     return this.httpClient.get(`${this.API_BASE_LAB}/`+ this.cookie.get('Token_email') + `/` + `saberCodigoGrupo`,{responseType:'text'});
   }
 
-  verificarAgendamientoGrupo(codigo:any) : Observable<Boolean>{
+  verificarAgendamientoGrupo(codigo:any,codigo_planta:number) : Observable<Boolean>{
     console.log("Entro a verificarAgendamiento");
-    return this.httpClient.get<Boolean>(`${this.API_BASE_PRACTICA}/`+ codigo + `/` + `verificarAgendamiento`);
+    return this.httpClient.get<Boolean>(`${this.API_BASE_PRACTICA}/`+ codigo + `/`+ codigo_planta + `/` + `verificarAgendamiento`);
   }
   verificarGrupoCompleto(codigo:any){
     console.log("Entro a verificargrupos");
-    return this.httpClient.get(`${this.API_BASE_LAB}/`+ codigo + `/` + `buscarCompletitudEstudiantes`);
+    return this.httpClient.get(`${this.API_BASE_LAB}/`+ codigo + `/`  +`buscarCompletitudEstudiantes`);
   }
  
+  finalizarPractica(codigo_grupo:any){
+    console.log("Entro a finalizar practica");
+    return this.httpClient.delete(`${this.API_BASE_LAB}/`+ codigo_grupo + `/` + `finalizarPractica`);
+  }
+
+  obtenerOpcionesCL(codigo_planta:number){
+    console.log("Entro a obtener opciones practica caida libre");
+    return this.httpClient.get(`${this.API_BASE_LAB}/`+ codigo_planta + `/`  +`listar_Altura_CL`);
+  }
+  obtenerOpcionesLH_Elongacion(codigo_planta:number){
+    console.log("Entro a obtener opciones practica caida libre");
+    return this.httpClient.get(`${this.API_BASE_LAB}/`+ codigo_planta + `/`  +`listar_Elongacion_LH`);
+  }
+  obtenerOpcionesLH_Fuerza(codigo_planta:number){
+    console.log("Entro a obtener opciones practica caida libre");
+    return this.httpClient.get(`${this.API_BASE_LAB}/`+ codigo_planta + `/`  +`listar_Fuerza_LH`);
+  }
+  obtenerOpcionesMP_Angulo(codigo_planta:number){
+    console.log("Entro a obtener opciones practica caida libre");
+    return this.httpClient.get(`${this.API_BASE_LAB}/`+ codigo_planta + `/`  +`listar_Angulo_MP`);
+  }
+  obtenerOpcionesMP_Velocidad(codigo_planta:number){
+    console.log("Entro a obtener opciones practica caida libre");
+    return this.httpClient.get(`${this.API_BASE_LAB}/`+ codigo_planta + `/`  +`listar_Velocidad_MP`);
+  }
+
+  obtenerTipo(){
+    console.log("Entro a obtenerTipo");
+    return this.httpClient.get(`${this.API_BASE}/`+ this.cookie.get('Token_email') + `/`  +`sacarRol`,{responseType:'text'});
+  }
 }

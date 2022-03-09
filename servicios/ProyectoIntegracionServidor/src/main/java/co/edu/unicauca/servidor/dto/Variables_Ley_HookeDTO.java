@@ -8,14 +8,16 @@ package co.edu.unicauca.servidor.dto;
 
 
 import java.util.ArrayList;
+import lombok.Data;
 
 /**
  *
  * @author admin
  */
-public class Variables_Ley_Hooke {
-    private String id_laboratorio;
-    private String rango_fuerza;
-    private String rango_elongacion;
+
+@Data
+public class Variables_Ley_HookeDTO {
+    private String id_practica;
+    private ArrayList<String> rango_fuerza;
     private ArrayList<String> tipo_resorte;
 }

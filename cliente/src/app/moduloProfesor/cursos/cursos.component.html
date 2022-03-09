@@ -1,0 +1,41 @@
+<div class="banner_titulo">
+  <div class="contenedor_titulo">
+    <div class="titulo_pagina">
+      <h1>Cursos activos</h1>
+    </div>
+    <div>
+      <button class="boton_agregar" mat-flat-button [routerLink]="[url+'/form']">Nuevo Curso</button>
+    </div>
+  </div>
+</div>
+
+<div class="contenedor_cursos">
+  <div class="subcontenedor_cursos" *ngFor="let curso of cursos">
+    <mat-card class="card_principal">
+      <mat-card-title>
+        <a [routerLink]="[curso.id_curso+'/materia']">
+          {{curso.nombre_curso}}
+        </a>
+      </mat-card-title>
+
+      <mat-card-subtitle>Código de Matricula: {{curso.cod_matricula}}</mat-card-subtitle>
+
+      <mat-card-footer>
+        <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="[url+'/form',curso.id_curso]">
+              <mat-icon>mode_edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item (click)="delete(curso)">
+              <mat-icon>delete</mat-icon>
+              <span>Borrar</span>
+            </button>
+          </mat-menu>
+        </button>
+        
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

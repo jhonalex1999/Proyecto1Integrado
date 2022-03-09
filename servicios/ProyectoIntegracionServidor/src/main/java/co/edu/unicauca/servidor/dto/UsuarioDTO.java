@@ -13,7 +13,7 @@ import lombok.Data;
 
 /**
  *
- * @author julio
+ * @author Integracion Modulo Estudiante y Modulo Docente
  */
 @Data
 public class UsuarioDTO {
@@ -21,5 +21,5 @@ public class UsuarioDTO {
     private String correo;
     private String rol;
     private String nombre_completo;
-    private ArrayList<String> Cursos;
+    private ArrayList<String> cursos;
 }

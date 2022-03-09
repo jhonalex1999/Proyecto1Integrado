@@ -11,11 +11,11 @@ import lombok.Data;
 
 /**
  *
- * @author julio
+ * @author Integracion Modulo Estudiante y Modulo Docente
  */
 @Data
 public class ProblemaDTO {
     private String id_problema;
-    private Integer id_laboratorio;
+    private Integer id_practica;
     private String descripcion;
 }

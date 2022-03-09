@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author admin
+ * @author Integracion Modulo Estudiante 
  */
 public class DesempenioGrupo {
     private Integer cod_Grupal;

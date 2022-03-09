@@ -9,7 +9,7 @@ package co.edu.unicauca.servidor.dto;
 
 /**
  *
- * @author admin
+ * @author Integracion Modulo Estudiante y Modulo Docente
  */
 public class FranjaHorariaDTO {
     private String fecha;
