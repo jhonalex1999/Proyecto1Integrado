@@ -1,0 +1,66 @@
+<div class="banner_titulo">
+    <div class="contenedor_titulo">
+        <div class="titulo_pagina">
+            <h1>Editar información del curso</h1>
+        </div>
+        <div>
+            <button class="boton_agregar" mat-flat-button *ngIf="rutaLlegada() == true"
+                (click)="create()">Guardar</button>
+
+            <button class="boton_agregar" mat-flat-button *ngIf="rutaLlegada() == false"
+                (click)="update()">Actualizar</button>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="contenedor_editar">
+
+
+    <div class="cont-max">
+        <div class="contenedor_info">
+            <p>Informacion del curso</p>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre del curso</mat-label>
+                <input matInput placeholder="Ingrese un nombre claro y descriptivo" name="nombre_curso"
+                    [(ngModel)]="curso.nombre_curso">
+                <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Código de matricula</mat-label>
+                <input matInput placeholder="Cree un código alfanumerico" name="cod_matricula"
+                    [(ngModel)]="curso.cod_matricula">
+                <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Tamaño de los grupos</mat-label>
+                <input matInput placeholder="Ingrese un numero entero mayor a cero" name="tam_grupos"
+                    [(ngModel)]="curso.tam_grupos">
+                <mat-hint></mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="conten_card">
+
+        <mat-card class="card_principal">
+            <mat-card-title>
+                <a>
+                    {{curso.nombre_curso}}
+                </a>
+            </mat-card-title>
+
+            <mat-card-subtitle>Código de Matricula: {{curso.cod_matricula}}</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <mat-card-footer>
+                <button class="boton_mas" mat-icon-button></button>
+            </mat-card-footer>
+        </mat-card>
+
+    </div>
+
+</div>

@@ -1,0 +1,45 @@
+.contenedor_titulo{
+    padding-top:15px;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(70px, 1fr));
+}
+
+h1{
+    color: white;
+}
+
+.banner_titulo{
+    width: 100%;
+    background-color: #3F51B5;
+}
+
+.contenedor_editar{
+    display: grid;
+    width: 90%;
+    padding-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.contenedor_info{
+    display: grid;
+    width: 350px;
+}
+
+.conten_card{
+    width: 100%;
+    display: grid;
+    place-content: center;
+}
+
+.cont-max{
+    width: 100%;
+}
+
+.boton_agregar{
+    float: right;
+}

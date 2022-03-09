@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>VINCULAR MATERIA</h2>
+<mat-dialog-content>
+        <p>Ingresa el codigo de vinculacion de la materia:</p>
+        <mat-form-field appearance="fill">
+            <mat-label>codigo</mat-label>
+            <input matInput [(ngModel)]="data.codigo">
+          </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button [mat-dialog-close]="data.codigo" cdkFocusInitial (click)="enviarcodigo(data.codigo)"> 
+        Enviar
+    </button>
+</mat-dialog-actions>

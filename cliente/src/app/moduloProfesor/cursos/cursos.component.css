@@ -1,0 +1,59 @@
+.contenedor_cursos{
+    width: 90%;
+    padding-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 20px;
+}
+
+a{
+    text-decoration: none;
+}
+
+h1{
+    color: white;
+}
+
+.subcontenedor_cursos{
+    align-items: center;
+    justify-content: center;
+}
+
+.card_principal{
+    height: 100%;
+}
+
+.boton_mas{
+    float: right;
+}
+
+.contenedor_titulo{
+    padding-top:15px;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(70px, 1fr));
+}
+
+.boton_agregar{
+    float: right;
+}
+
+.banner_titulo{
+    width: 100%;
+    background-color: #3F51B5;
+}
+
+.chips{
+padding-left: 10px;
+padding-bottom: 10px;
+}
+
+
+
+
+
+

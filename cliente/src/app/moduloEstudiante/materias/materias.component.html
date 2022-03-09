@@ -1,0 +1,84 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<mat-toolbar color="primary">
+
+    <button mat-button routerLink="/inicio">
+    <mat-icon>home</mat-icon> 
+    {{userName$}}</button>
+    <img class = "img1" src="{{userPhoto$}}" id="user-photo">
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button routerLink="/calendario">Ver Calendario</button>
+    </div>
+
+</mat-toolbar>
+<body>
+    <div class="content">
+        <mat-card class="primera-card">
+            <mat-card-title class="titulo-practica">Practica Caida Libre</mat-card-title>  
+            <mat-card-content> Ingrese a la practica correspondiente</mat-card-content>
+            <br>
+            <br>
+            <section class="button">
+
+                    <!--<button mat-raised-button  class="irPractica" routerLink="/leyhooke">Ir a la ley de hook</button>-->
+                    <br>
+                    <br>
+                    <button mat-raised-button  class="irPractica" (click)="verificarAgendamiento(1)">Ir a Caida Libre</button>
+                    <br>
+                    <br>
+                    <button mat-raised-button  class="irPractica" (click)="verificarAgendamiento(2)">Ir a Ley Hooke</button>
+                    <br>
+                    <br>
+                    <button mat-raised-button  class="irPractica" (click)="verificarAgendamiento(3)">Ir a Movimiento Parabólico</button>
+                    
+            </section>
+            
+        </mat-card>
+        <br>
+        <br>
+        <!--  
+        <mat-card class="primera-card">
+            <mat-card-title class="titulo-practica">Practica Movimiento Parabolico</mat-card-title>  
+            <mat-card-content> Ingrese a la practica correspondiente</mat-card-content>
+            <br>
+            <br>
+            <button mat-raised-button  class="irPractica" routerLink="/movparabolico">Ir a la practica</button>
+            <br>
+            <br>
+            <button mat-raised-button  class="irPractica" routerLink="/materias">Ir a las materias</button>
+        </mat-card>
+        -->
+    </div>
+</body>
+
+
+
+<!--
+<body>
+    <div class="content">
+        <h1>BIENVENIDO<br><br> A LA PAGINA DE <br><br>LABORATORIOS REMOTOS</h1>
+        <br>
+        <h2>¡En esta pagina podras llevar a cabo tus practicas haciendo uso de los laboratorios de la Universidad
+            del Cauca de manera remota!
+        </h2>
+        <div class="arrow bounce">
+            <a class="fa fa-arrow-down" href="#"></a>
+        </div>
+        <section class="button">
+            <div class="searchBox">
+                <button class="searchButton nav-link" routerLink="/login">Ingresar</button>
+            </div>
+        </section>
+        <section class="social_icons">
+            <a href="http://www.unicauca.edu.co/versionP/" title="Pagina Web Unicauca" target="_blank"><i class="fa fa-university"></i></a>
+            <a href="https://es-la.facebook.com/universidadelcauca/" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.instagram.com/universidadelcauca/?hl=es" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="https://twitter.com/unicauca" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/c/unicaucapopayan/featured" title="YouTube" target="_blank"><i class="fa fa-youtube"></i></a>
+        </section>
+    </div>
+</body>-->

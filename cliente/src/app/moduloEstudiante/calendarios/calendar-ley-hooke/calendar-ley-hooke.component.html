@@ -1,0 +1,73 @@
+<mat-tab-group mat-align-tabs="start">
+  
+    <mat-tab class label="Ingreso">
+      <div class="content">
+      <button mat-raised-button tabindex="-1" type="button" color="warn" (click)='moveToSelectedTab("rEALxd")'>Move to
+        Tab 1</button>
+      </div>
+    </mat-tab>
+
+
+  <mat-tab label="rEALxd">
+    <div class="float-container">
+      <div class="float-child">
+        <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
+
+        </mwl-demo-utils-calendar-header>
+
+        <div class="alert alert-info">
+          Click on a day or time slot on the view.
+          <strong *ngIf="clickedDate">You clicked on this time: {{ clickedDate | date:'medium' }}</strong>
+          <strong *ngIf="clickedColumn !== undefined">You clicked on this column: {{ clickedColumn }}</strong>
+        </div>
+
+        <div [ngSwitch]="view">
+          <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events"
+            [excludeDays]="excludeDays" (columnHeaderClicked)="clickedColumn = $event.isoDayNumber"
+            (dayClicked)="clickedDate = $event.day.date">
+          </mwl-calendar-month-view>
+          <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [dayStartHour]="7"
+            [excludeDays]="excludeDays" [dayEndHour]="19" (dayHeaderClicked)="clickedDate = $event.day.date"
+            (hourSegmentClicked)="clickedDate = $event.date" (eventClicked)="eventClicked($event)">
+          </mwl-calendar-week-view>
+          <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [dayStartHour]="7"
+            [dayEndHour]="19" (hourSegmentClicked)="clickedDate = $event.date" (eventClicked)="eventClicked($event)">
+          </mwl-calendar-day-view>
+        </div>
+
+      </div>
+
+      <div class="float-child">
+        <h2>INTEGRANTES DE LA PRACTICA</h2>
+        <h2 *ngIf="infoEvent()">{{ eventSelected | date:'medium' }}
+
+
+        </h2>
+          <p>Ingresa los integrantes de la practica</p>
+          <form [formGroup]="integrantes">
+            <mat-form-field  appearance="fill">
+              <mat-label>Integrante 1</mat-label>
+              <input matInput value="" formControlName="integrante_1">
+              
+            </mat-form-field>
+            <br>
+            <mat-form-field  appearance="fill">
+              <mat-label>Integrante 2</mat-label>
+              <input matInput value="" formControlName="integrante_2">
+            </mat-form-field>
+            <br>
+            <mat-form-field  appearance="fill">
+              <mat-label>Integrante 3</mat-label>
+              <input matInput value="" formControlName="integrante_3">
+            </mat-form-field>
+            <br>
+          </form>
+          <button mat-raised-button cdkFocusInitial (click)="enviarIntegrantes()" [disabled]="integrantes.invalid"> 
+            Enviar
+          </button>
+      </div>
+    </div>
+
+
+  </mat-tab>
+</mat-tab-group>
