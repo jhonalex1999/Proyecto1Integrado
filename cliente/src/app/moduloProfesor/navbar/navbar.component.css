@@ -1,0 +1,44 @@
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: auto;
+}
+
+nav {
+    background-color: #3F51B5;
+    box-shadow: 2px 2px 10px #261550;
+    height: 100px;
+}
+
+li {
+    text-align: center;
+    list-style: none;
+}
+
+.nav_logo {
+    content: url(https://israteneda.com/fisicamru/img/logo.png);
+    object-fit: contain;
+    height: 50px;
+    width: 90px;
+    margin-right: 10px;
+    margin-left: 30px;
+}
+
+.navbar-nav {
+    align-items: center;
+    margin-right: 10px;
+}
+
+img {
+    border: 1px solid rgba(0, 0, 0, 0.411);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    margin-right: 30px;
+}
+
+.boton_menu{
+    color: white;
+}

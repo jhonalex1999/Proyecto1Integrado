@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CursosComponent } from './moduloProfesor/cursos/cursos.component';
 
 const routes: Routes = [{ 
   path:'',
   redirectTo: '/inicio',
   pathMatch: 'full'
 },
+{ path: ':id_user/cursos', component: CursosComponent },//,canActivate: [AuthGuard]},
 { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'inicio', loadChildren: () => import('./moduloEstudiante/inicio/inicio.module').then(m => m.InicioModule) },
   { path: 'calendario', loadChildren: () => import('./moduloEstudiante/calendarios/calendario/calendario.module').then(m => m.CalendarioModule) },
