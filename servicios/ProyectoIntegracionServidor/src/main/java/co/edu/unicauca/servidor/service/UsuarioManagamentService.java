@@ -21,11 +21,15 @@ public interface UsuarioManagamentService {
 
     public Object eliminarCurso(String correo, int codigoCurso);
 
-    public ArrayList<String> buscarCursosMatriculados (String correo);
-    
+    public ArrayList<String> buscarCursosMatriculados(String correo);
+
     public Boolean agregarCurso(String correo_institucional, int codigo_curso);
-    
+
     public Boolean ingresarUsuario(String correo_institucional, String nombre);
-    
+
     public String sacarRol(String correo);
+
+    Boolean cambiarEstadoParticipanteEntrada(String correo);
+
+    Boolean cambiarEstadoParticipanteSalida(String correo);
 }

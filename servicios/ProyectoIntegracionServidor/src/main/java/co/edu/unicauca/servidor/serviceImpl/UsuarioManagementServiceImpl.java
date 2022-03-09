@@ -276,4 +276,50 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         }
     }
 
+    @Override
+    public Boolean cambiarEstadoParticipanteEntrada(String correo) {
+        String Participante = BuscarParticipante(correo);
+
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("PARTICIPANTES").document(Participante).update("estado", 1);
+        try {
+            if (null != writeResultApiFuture.get()) {
+                return Boolean.TRUE;
+            }
+            return Boolean.TRUE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
+    @Override
+    public Boolean cambiarEstadoParticipanteSalida(String correo) {
+        String Participante = BuscarParticipante(correo);
+
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("PARTICIPANTES").document(Participante).update("estado", 0);
+        try {
+            if (null != writeResultApiFuture.get()) {
+                return Boolean.TRUE;
+            }
+            return Boolean.TRUE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
+    private String BuscarParticipante(String correo) {
+        String Participante = "vacio";
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("PARTICIPANTES").whereEqualTo("correo", correo).get();
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                Participante = doc.getId();
+                return Participante;
+            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(LaboratorioManagementServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(LaboratorioManagementServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Participante;
+    }
+
 }
