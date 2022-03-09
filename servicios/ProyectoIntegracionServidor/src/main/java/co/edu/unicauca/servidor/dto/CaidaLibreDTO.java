@@ -5,20 +5,20 @@ package co.edu.unicauca.servidor.dto;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.ArrayList;
 import lombok.Data;
 
 /**
  *
- * @author julio
+ * @author Julio
  */
-
 @Data
 public class CaidaLibreDTO {
+    private String id;
     private ArrayList<Integer> altura;
     private Integer codigo_planta;
     private String foto;
     private String id_practica;
     private ArrayList<Integer> tiempo;
+    private ArrayList<String> rangos_altura;
 }

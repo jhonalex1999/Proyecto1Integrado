@@ -13,7 +13,7 @@ import lombok.Data;
 
 /**
  *
- * @author julio
+ * @author Integracion Modulo Estudiante y Modulo Docente
  */
 @Data
 public class AgendamientoDTO {
@@ -24,7 +24,7 @@ public class AgendamientoDTO {
     private String hora_fin;
     private String hora_inicio;
     private String id_franja;
-    private String id_agendamiento;
+    private Integer id_agendamiento;
 
 
 

@@ -8,14 +8,16 @@ package co.edu.unicauca.servidor.dto;
 
 
 import java.util.ArrayList;
+import lombok.Data;
 
 /**
  *
- * @author admin
+ * @author Integracion Modulo Estudiante y Modulo Docente
  */
-public class Variables_Movimiento_Parabolico {
-    private String id_laboratorio;
-    private ArrayList<String> angulo;
+@Data
+public class Variables_Movimiento_ParabolicoDTO {
+    private String id_practica;
+    private ArrayList<String> rango_angulo;
     private String velocidad;
    
 }

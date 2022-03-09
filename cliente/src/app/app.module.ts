@@ -19,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -29,11 +28,34 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VincularmateriaComponent } from './moduloEstudiante/vincularmateria/vincularmateria.component';
 
 
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatStepperModule} from '@angular/material/stepper';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatChipsModule} from '@angular/material/chips';
+import { LoginComponent } from './auth/login/login.component';
+import { CursosComponent } from './moduloProfesor/cursos/cursos.component';
+import { FormCursosComponent } from './moduloProfesor/cursos/form-cursos.component';
+import { NavbarComponent } from './moduloProfesor/navbar/navbar.component';
+
+import { FullCalendarModule } from 'primeng/fullcalendar';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     //IntegrantesPracticaComponent,
     VincularmateriaComponent,
+    CursosComponent,
+    FormCursosComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +78,20 @@ import { VincularmateriaComponent } from './moduloEstudiante/vincularmateria/vin
     FormsModule,
     MatFormFieldModule,
     NgbModule,
-    [HttpClientModule,  ]
+    [HttpClientModule,  ],
+    MatMenuModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatCardModule,
+    MatDividerModule,
+    MatListModule,
+    MatStepperModule,
+    CdkAccordionModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatChipsModule,
+    FullCalendarModule,
+
   ],
   providers: [
     ScreenTrackingService,UserTrackingService,[CookieService]
