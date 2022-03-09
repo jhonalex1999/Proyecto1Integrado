@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgendaComponent } from './moduloProfesor/agenda/agenda.component';
 import { CursosComponent } from './moduloProfesor/cursos/cursos.component';
+import { FormCursosComponent } from './moduloProfesor/cursos/form-cursos.component';
 import { MateriaComponent } from './moduloProfesor/materia/materia.component';
 import { PracticaComponent } from './moduloProfesor/materia/practica.component';
 
@@ -11,6 +12,7 @@ const routes: Routes = [{
   pathMatch: 'full'
 },
 { path: ':correo/cursos', component: CursosComponent },
+{ path: ':correo/cursos/form', component: FormCursosComponent },
 { path: ':correo/agenda', component: AgendaComponent },
 { path: ':correo/cursos/materia', component: MateriaComponent },
 { path: ':correo/cursos/materia/practica', component: PracticaComponent },

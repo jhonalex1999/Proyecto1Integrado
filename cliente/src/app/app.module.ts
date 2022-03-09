@@ -57,7 +57,8 @@ import { PracticaComponent } from './moduloProfesor/materia/practica.component';
     NavbarComponent,
     AgendaComponent,
     PracticaComponent,
-    MateriaComponent
+    MateriaComponent,
+    FormCursosComponent
   ],
   imports: [
     BrowserModule,

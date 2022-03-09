@@ -39,20 +39,6 @@ export class LoginComponent implements OnInit {
           }
         });
         
-        /* .subscribe((respuesta : any)  => {
-          console.log(respuesta);
-
-          if(respuesta=='Estudiante'){
-            this.router.navigate(['/inicio']);
-          }else if(respuesta=='Docente'){
-            this.router.navigate(['/1/cursos']);
-          }
-          
-        });*/
-        
-
-        
-
       } else {
         this.router.navigate(['/login']);
       }
