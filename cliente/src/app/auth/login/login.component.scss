@@ -1,47 +1,52 @@
 a {
-    color: #838383;
-    margin-top: 30px;
-    text-decoration: none;
-  }
-  
-  h1 {
-    color: #5e74d6;
-    font-weight: bolder;
-    margin-bottom: 20px;
-  }
-  
-  h5 {
-    color: #838383;
-  }
-  
-  button {
-    border-radius: 20px;
-    padding: 0 50px;
-  }
-  
-  p {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .background {
-    width:100vw;
-    height:100vh;
-    margin:0;
-    overflow:hidden !important;
-    font-family: 'Source Sans 3', sans-serif !important;
-    //background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));;
-    background: linear-gradient(rgba(1, 1, 1, 0.459), rgba(1, 1, 1, 0.6)), url("https://www.unicauca.edu.co/versionP/sites/default/files/images/Unicauca-ing-ambiental.jpg");
-    background-position:center;
-    background-size:cover;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--white);
-    position:relative;
-  }
-  
-  /*.login-container {
+  color: #838383;
+  margin-top: 30px;
+  text-decoration: none;
+}
+
+h1 {
+  color: #5e74d6;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+
+h5 {
+  color: #838383;
+}
+
+button {
+  border-radius: 20px;
+  padding: 0 50px;
+}
+
+p {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden !important;
+  font-family: "Source Sans 3", sans-serif !important;
+  //background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));;
+  background-color: #e4e6f6;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  position: relative;
+}
+
+#logo-u {
+  width: 100px;
+  height: 150px;
+}
+
+/*.login-container {
     border-radius: 10px;
     box-shadow: 0 0 10px 1px #e4e4e4;
     display: flex;
@@ -49,55 +54,48 @@ a {
     position: absolute right;
     width: 60%;
   }*/
-  
-  .text-container {
-    align-items: center;
-    background-color: #5e7ad6;
-    border-radius: 10px 0 0 10px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: right;
-    padding: 50px;
-    width: 30%;
-  }
-  
-  .form-container {
-    align-items: center;
-    background-color: #fff;
-    border-radius: 10px 10px 10px 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 50px;
-    width: 100%;
-  }
 
-  .mat-raised-button{
-    width: 260px;
-    height: 35px;
-    background: rgb(68, 32, 201);
-    border: 1px solid rgb(35, 12, 165);
-    cursor: pointer;
-    border-radius: 2px;
-    color: #ffffff;
-    font-family: 'Exo', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 6px;
-    margin-top: 10px;
-  }
-  
-  .text-container h1 {
-    color: #fff;
-  }
-  
-  .text-container button {
-    background-color: transparent;
-    border: 1px solid #fff;
-  }
+.text-container {
+  align-items: center;
+  background-color: #5e7ad6;
+  border-radius: 10px 0 0 10px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  padding: 50px;
+  width: 30%;
+}
 
+.form-container {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  width: 100%;
+}
 
-  //Código implementado nuevo
+.mat-raised-button {
+  width: 260px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #ffffff;
+  font-family: "Exo", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
 
- 
+.text-container h1 {
+  color: #fff;
+}
+
+.text-container button {
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+//Código implementado nuevo
