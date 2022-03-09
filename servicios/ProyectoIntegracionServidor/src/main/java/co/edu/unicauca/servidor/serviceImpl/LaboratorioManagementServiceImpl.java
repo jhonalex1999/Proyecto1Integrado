@@ -38,8 +38,8 @@ import org.springframework.stereotype.Service;
  * @author julio
  */
 @Service
-public class LaboratorioManagementServiceImpl implements LaboratorioManagementService{
-      
+public class LaboratorioManagementServiceImpl implements LaboratorioManagementService {
+
     @Autowired
     private FirebaseInitializer firebase;
 
@@ -64,7 +64,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
 
     @Override
     public List<MovimientoParabolicoDTO> listarDatosHardwareMovimientoParabolico() {
-         List<MovimientoParabolicoDTO> response = new ArrayList<>();
+        List<MovimientoParabolicoDTO> response = new ArrayList<>();
         MovimientoParabolicoDTO post;
 
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("laboratorio_movimiento_parabolico").get();
@@ -102,8 +102,8 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
 
     @Override
     public Boolean crearPdf() {
-     List<CaidaLibreDTO> response = new ArrayList<>();
-     CaidaLibreDTO post;
+        List<CaidaLibreDTO> response = new ArrayList<>();
+        CaidaLibreDTO post;
 
         Document documento = new Document();
 
@@ -154,24 +154,102 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         documento.close();
 
         return Boolean.TRUE;
-   
+
     }
-
-
 
     @Override
     public Boolean finalizarPractica(int codGrupal) {
-        return false;
+        List<String> response = new ArrayList<>();
+        List<String> agendamiento = new ArrayList<>();
+        List<String> nombres = new ArrayList<>();
+        response = buscarGrupo(codGrupal);
+        agendamiento = buscarAgendamiento(codGrupal);
+        Boolean bandera = false;
+        Map<String, Object> docData = new HashMap<>();
+        nombres = obtenerNombresEstudiantes(codGrupal);
+        docData.put("cod_grupal", codGrupal);
+        docData.put("nombres", nombres);
+        ApiFuture<WriteResult> writeResultApiFutureHistorial = getCollection("historial").document().create(docData);
+        //ApiFuture<WriteResult> writeResultApiFutureNombres = getCollection("HISTORIAL").document(Agendamiento).update("codGrupal", codGrupal, "nombres", FieldValue.arrayUnion(nombres));
+        for (int i = 0; i < agendamiento.size(); i++) {
+            //ApiFuture<WriteResult> writeResultApiFutureAgendamiento = getCollection("agendamiento").document(agendamiento.get(i)).delete();
+        }
+        for (int id = 0; id < response.size(); id++) {
+
+            ApiFuture<WriteResult> writeResultApiFuture = getCollection("participantes").document(response.get(id)).delete();
+            try {
+                if (null != writeResultApiFutureHistorial.get()) {
+                    bandera = true;
+                } else {
+                    bandera = false;
+                }
+            } catch (Exception e) {
+                bandera = false;
+            }
+        }
+        return bandera;
     }
+
     private List<String> buscarGrupo(int codGrupal) {
-       return null;
+        List<String> response = new ArrayList<>();
+        ParticipantesDTO participantes;
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("participantes").whereEqualTo("cod_grupal", codGrupal).get();
+
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                participantes = doc.toObject(ParticipantesDTO.class);
+                participantes.setId_participante(doc.getId());
+                response.add(participantes.getId_participante());
+
+            }
+            return response;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private List<String> buscarAgendamiento(int codGrupal) {
+        List<String> response = new ArrayList<>();
+        ParticipantesDTO participantes;
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("agendamiento").whereEqualTo("cod_grupal", codGrupal).get();
+
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                participantes = doc.toObject(ParticipantesDTO.class);
+                participantes.setId_participante(doc.getId());
+                response.add(participantes.getId_participante());
+
+            }
+            return response;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public ArrayList<String> obtenerNombresEstudiantes(int codGrupal) {
+        ArrayList<String> nombres = new ArrayList();
+        ParticipantesDTO participantes;
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("participantes").whereEqualTo("cod_grupal", codGrupal).get();
+
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                participantes = doc.toObject(ParticipantesDTO.class);
+                participantes.setId_participante(doc.getId());
+                nombres.add(participantes.getCorreo());
+                //System.out.println(cursos);
+            }
+            return nombres;
+            //return cursos;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
     public Boolean buscarCompletitudEstudiantes(int codGrupal) {
         ParticipantesDTO grupo;
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("participantes").whereEqualTo("cod_grupal", codGrupal).get();
-       
+
         int contados = 0;
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
@@ -211,7 +289,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
 
     @Override
     public Boolean reportarError(int idLaboratorio, String descripcion) {
-      Map<String, Object> docData = new HashMap<>();
+        Map<String, Object> docData = new HashMap<>();
         docData.put("id_laboratorio", idLaboratorio);
         docData.put("problema", descripcion);
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("problema").document().create(docData);
