@@ -5,8 +5,6 @@ package co.edu.unicauca.servidor.dto;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.util.ArrayList;
 import lombok.Data;
 
@@ -16,8 +14,9 @@ import lombok.Data;
  */
 @Data
 public class Variables_Movimiento_ParabolicoDTO {
+
     private String id_practica;
     private ArrayList<String> rango_angulo;
-    private String velocidad;
-   
+    private ArrayList<String> velocidad;
+
 }

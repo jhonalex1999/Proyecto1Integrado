@@ -5,8 +5,6 @@ package co.edu.unicauca.servidor.dto;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.util.ArrayList;
 import lombok.Data;
 
@@ -26,7 +24,4 @@ public class PracticaDTO {
     private String id_curso;
     private String titulo;
 
- 
- 
-   
 }

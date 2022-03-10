@@ -8,14 +8,13 @@ import lombok.Data;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author Integracion Modulo Estudiante y Modulo Docente
  */
 @Data
 public class Variables_Caida_LibreDTO {
+
     private String id_practica;
     private ArrayList<String> rango_altura;
     private ArrayList<String> num_lanzamientos;

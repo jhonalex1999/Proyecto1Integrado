@@ -14,6 +14,7 @@ import lombok.Data;
  */
 @Data
 public class LeyHookeDTO {
+
     private String id;
     private Integer codigo_planta;
     private ArrayList<String> elongacion;

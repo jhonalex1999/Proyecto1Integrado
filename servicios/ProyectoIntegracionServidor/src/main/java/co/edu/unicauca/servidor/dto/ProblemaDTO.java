@@ -5,8 +5,6 @@ package co.edu.unicauca.servidor.dto;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import lombok.Data;
 
 /**
@@ -15,6 +13,7 @@ import lombok.Data;
  */
 @Data
 public class ProblemaDTO {
+
     private String id_problema;
     private Integer id_practica;
     private String descripcion;

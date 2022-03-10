@@ -14,6 +14,7 @@ import lombok.Data;
  */
 @Data
 public class MovimientoParabolicoDTO {
+
     private String id;
     private String id_practica;
     private Integer cod_planta;
