@@ -8,7 +8,7 @@ import { Practica } from './practica';
 })
 export class PracticaService {
 
-  private url:string="http://localhost:8003/practica";
+  private url:string="http://localhost:8080/practica";
 
   constructor(private http:HttpClient) { }
 
@@ -23,8 +23,8 @@ export class PracticaService {
   }
 
   //Obtener un Curso
-  get(id:string):Observable<Practica>{
-    return this.http.get<Practica>(this.url+'/list/{'+id+'}');
+  get(id:string):Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+'/listarPracticasCurso/'+id);
   }
 
   //Update Curso

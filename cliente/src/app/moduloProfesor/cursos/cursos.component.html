@@ -13,13 +13,12 @@
   <div class="subcontenedor_cursos" *ngFor="let curso of cursos">
     <mat-card class="card_principal">
       <mat-card-title>
-        <a [routerLink]="[curso.id_curso+'/materia']">
+        <a [routerLink]="[url+'/'+curso.id_curso+'/materia']">
           {{curso.nombre_curso}}
         </a>
       </mat-card-title>
-
-      <mat-card-subtitle>Código de Matricula: {{curso.cod_matricula}}</mat-card-subtitle>
-
+      <button (click)="test()"></button>
+      <mat-card-subtitle>Código de Matricula: {{curso.codigo_matricula}}</mat-card-subtitle>
       <mat-card-footer>
         <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>

@@ -3,6 +3,7 @@ import { Curso } from './curso';
 import { CursoService } from './curso.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/service.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-cursos',
@@ -11,19 +12,23 @@ import { AuthService } from 'src/app/service/service.service';
 })
 export class CursosComponent implements OnInit {
   title: string = "Lista de cursos";
-  cursos!: Curso[];
+  cursos: Curso[];
 
   loggedIn: boolean | undefined;
   url: string | undefined;
 
-  constructor(private cursoService: CursoService,private router: Router) { }
+  constructor(private cursoService: CursoService,private router: Router, private cookieService: CookieService) { }
+  public user$ = this.cookieService.get('Token_email');
 
   ngOnInit(): void {
     this.url = this.router.url;
-    this.cursoService.getAllById(this.router.url.split('/')[1]).subscribe(
+    this.cursoService.getAllById(this.user$).subscribe(
       e => this.cursos = e
     );
+  }
 
+  test():void{
+    console.log(this.cursos);
   }
 
   delete(curso: Curso): void {

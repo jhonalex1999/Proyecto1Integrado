@@ -8,6 +8,7 @@ import { Practica } from './practica';
 import { PracticaService } from './practica.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-materia',
@@ -29,10 +30,11 @@ export class MateriaComponent implements OnInit {
 
   loggedIn: boolean | undefined;
 
-  constructor(private practicaService: PracticaService, private cursoService: CursoService,private router: Router) { }
+  constructor(private practicaService: PracticaService, private cursoService: CursoService,private router: Router, private cookieService: CookieService) { }
 
+  public user$ = this.cookieService.get('Token_email');
   ngOnInit() {
-    this.practicaService.getAll().subscribe(
+    this.practicaService.get(this.user$).subscribe(
       e => this.practica = e
     );
 

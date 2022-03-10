@@ -14,7 +14,7 @@ const routes: Routes = [{
 { path: ':correo/cursos', component: CursosComponent },
 { path: ':correo/cursos/form', component: FormCursosComponent },
 { path: ':correo/agenda', component: AgendaComponent },
-{ path: ':correo/cursos/materia', component: MateriaComponent },
+{ path: ':correo/cursos/:id/materia', component: MateriaComponent },
 { path: ':correo/cursos/materia/practica', component: PracticaComponent },
 
 

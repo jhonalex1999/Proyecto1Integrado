@@ -10,6 +10,7 @@ import { FranjaHoraria } from './franja-horaria';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 firebase.initializeApp(environment.firebase);
 @Component({
@@ -52,12 +53,13 @@ export class PracticaComponent implements OnInit {
     this.meridian = !this.meridian;
   }
 
-  constructor(private practicaService: PracticaService, private franjaService: FranjaHorariaService, private router: Router) { }
-
+  constructor(private practicaService: PracticaService, private franjaService: FranjaHorariaService, private router: Router, private cookieService: CookieService) { }
+  
+  public user$ = this.cookieService.get('Token_email');
   ngOnInit() {
     this.url = this.router.url;
 
-    this.practicaService.getAll().subscribe(
+    this.practicaService.get(this.user$).subscribe(
       e => this.practica = e
     );
 
