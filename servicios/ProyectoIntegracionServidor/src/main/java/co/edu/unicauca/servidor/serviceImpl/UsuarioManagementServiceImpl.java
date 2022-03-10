@@ -12,6 +12,7 @@ import co.edu.unicauca.servidor.firebase.FirebaseInitializer;
 import co.edu.unicauca.servidor.service.UsuarioManagamentService;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.FieldValue;
 import com.google.cloud.firestore.QuerySnapshot;
@@ -306,6 +307,8 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
             return Boolean.FALSE;
         }
     }
+    
+    
 
     private String BuscarParticipante(String correo) {
         String Participante = "vacio";
@@ -322,5 +325,86 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         }
         return Participante;
     }
+    
+    
+    @Override
+    public List<UsuarioDTO> list() {
+
+        List<UsuarioDTO> response = new ArrayList<>();
+        UsuarioDTO usuario;
+
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("USUARIO").get();
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                usuario = doc.toObject(UsuarioDTO.class);
+                usuario.setId_usuario(doc.getId());
+                response.add(usuario);
+            }
+            return response;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public UsuarioDTO listById(String id) throws ExecutionException, InterruptedException {
+        DocumentReference ref = getCollection("USUARIO").document(id);
+        ApiFuture<DocumentSnapshot> docData = ref.get();
+        DocumentSnapshot doc = docData.get();
+
+        if(doc.exists()){
+            UsuarioDTO usuario = doc.toObject(UsuarioDTO.class);
+            usuario.setId_usuario(doc.getId());
+            return usuario;
+        }
+
+        return null;
+    }
+
+    @Override
+    public Boolean add(UsuarioDTO usuario) {
+        Map<String, Object> docData = getDocData(usuario);
+
+        CollectionReference usuarios = getCollection("USUARIO");
+        ApiFuture<WriteResult> writeResultApiFuture = usuarios.document().create(docData);
+
+        try {
+            if(null != writeResultApiFuture.get()){
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e){
+            return Boolean.FALSE;
+        }
+    }
+
+    @Override
+    public Boolean edit(String id, UsuarioDTO usuario) {
+        Map<String, Object> docData = getDocData(usuario);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("USUARIO").document(id).set(docData);
+        try {
+            if(null != writeResultApiFuture.get()){
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
+    @Override
+    public Boolean delete(String id) {
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("USUARIO").document(id).delete();
+        try {
+            if(null != writeResultApiFuture.get()){
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+    
 
 }

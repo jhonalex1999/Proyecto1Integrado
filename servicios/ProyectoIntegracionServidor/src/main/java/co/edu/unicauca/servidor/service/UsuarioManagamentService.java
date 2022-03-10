@@ -5,7 +5,10 @@
  */
 package co.edu.unicauca.servidor.service;
 
+import java.util.concurrent.ExecutionException;
+import co.edu.unicauca.servidor.dto.UsuarioDTO;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -32,4 +35,12 @@ public interface UsuarioManagamentService {
     Boolean cambiarEstadoParticipanteEntrada(String correo);
 
     Boolean cambiarEstadoParticipanteSalida(String correo);
+    
+    
+    List<UsuarioDTO> list();
+    UsuarioDTO listById(String id) throws ExecutionException, InterruptedException;
+    Boolean add(UsuarioDTO usuario);
+    Boolean edit(String id, UsuarioDTO usuario);
+    Boolean delete(String id);
+    
 }

@@ -83,6 +83,33 @@ public class PracticaController {
         return new ResponseEntity(service.eliminarPractica(codigoCurso, idPractica), HttpStatus.OK);
     }
     
+    /*
+    
+     @GetMapping(value = "/list")
+    public ResponseEntity list(){
+        return new ResponseEntity(service.list(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/list/{id}")
+    public ResponseEntity edit(@PathVariable(value = "id") String id) throws ExecutionException, InterruptedException, ExecutionException {
+        return new ResponseEntity(service.listById(id), HttpStatus.OK);
+    }
+    @PostMapping(value = "/add")
+    public ResponseEntity add(@RequestBody PracticeDTO practica){
+        return new ResponseEntity(service.add(practica), HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity edit(@PathVariable(value = "id") String id, @RequestBody PracticaDTO practica){
+        return new ResponseEntity(service.edit(id, practica), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") String id){
+        return new ResponseEntity(service.delete(id), HttpStatus.OK);
+    }
+    
+    */
     
     
 }
