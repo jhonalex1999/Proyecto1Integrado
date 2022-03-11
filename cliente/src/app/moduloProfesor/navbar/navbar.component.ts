@@ -14,14 +14,17 @@ export class NavbarComponent implements OnInit {
   public user$ = this.cookieService.get('Token_email');
   public userName$ = this.cookieService.get('Token_name');
   public photo$ = this.cookieService.get('Token_photo');
+  public rol$ = this.cookieService.get('Token_rol');
   
   loggedIn: boolean | undefined;
   activar: boolean | undefined;
   urlInicio: any = "";
   urlAgenda: any = "";
+  urlUsuario: any = "";
 
   ngOnInit(): void {
     this.urlAgenda = this.router.url + '/agenda';
+    this.urlUsuario = this.router.url + '/' + this.user$ +'/usuario';
   }
 
   signOut(): void {
@@ -32,7 +35,7 @@ export class NavbarComponent implements OnInit {
   cargarNavBar(): boolean {
     this.urlInicio = this.router.url.split('/')[1]+"/cursos";
     this.urlAgenda = this.router.url.split('/')[1]+"/agenda";
-    if (this.router.url.includes("curso") || this.router.url.includes("agenda")) {
+    if (this.router.url.includes("curso") || this.router.url.includes("agenda") || this.router.url.includes("usuario")) {
       return true;
     } else {
       return false;

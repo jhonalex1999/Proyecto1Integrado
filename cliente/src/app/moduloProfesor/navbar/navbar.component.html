@@ -15,6 +15,11 @@
                             Sesion</button>
                     </a>
                 </li>
+                <li *ngIf="rol$.includes('Admin')">
+                    <a>
+                        <button [routerLink]="[urlUsuario]" class=" btn btn-block mybtn btn-info tx-tfm">Ingresar Docente</button>
+                    </a>
+                </li>
             </mat-menu>
         </ul>
     </span>
