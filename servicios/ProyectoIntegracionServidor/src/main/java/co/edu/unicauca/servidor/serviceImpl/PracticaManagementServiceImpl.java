@@ -513,26 +513,23 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
 
     @Override
     public List<PracticaDTO> listByIdDocente(String correo) {
-         List<PracticaDTO> response = new ArrayList<>();
-        PracticaDTO Practica;
+        List<PracticaDTO> response = new ArrayList<>();
+        PracticaDTO practica;
 
         Query query =  firebase.getFirestore().collection("practica").whereEqualTo("id_curso", correo);
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
 
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
-                
-                Practica = doc.toObject(PracticaDTO.class);
-                System.out.println(Practica);
-                Practica.setId_practica(doc.getId());
-                response.add(Practica);
+                practica = doc.toObject(PracticaDTO.class);
+                practica.setId_practica(doc.getId());
+                response.add(practica);
             }
             return response;
 
         } catch (Exception e) {
-            System.out.println(e);
             return null;
-        }  
+        }
     }
     
     
