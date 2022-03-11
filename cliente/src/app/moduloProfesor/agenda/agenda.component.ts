@@ -59,6 +59,7 @@ export class AgendaComponent implements OnInit {
   }
 
   cargar() {
+    this.events = [{}]
     for (let index = 0; index < this.franjaHoraria.length; index++) {
       this.practicaService.getById(this.franjaHoraria[index].id_practica).subscribe(
         e => this.practica = e
@@ -68,7 +69,7 @@ export class AgendaComponent implements OnInit {
   }
 
   eventosCargar(id: string, index: number) {
-    this.events = [{}]
+    
     this.events.push({
       title: this.practica.titulo,
       start: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_inicio,

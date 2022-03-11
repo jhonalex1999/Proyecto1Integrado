@@ -32,7 +32,18 @@
             </button>
           </mat-menu>
         </button>
-        
+        <div *ngFor="let practica of practica">
+          <div class="chips" *ngIf="practica.id_curso == curso.id_curso">
+            <mat-chip-list aria-label="Practicas activas" *ngIf="practica.estado == '1'">
+              <mat-chip>
+                <mat-chip-avatar>
+                  <mat-icon matSuffix>assignment</mat-icon>
+                </mat-chip-avatar>
+                {{practica.titulo}}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
       </mat-card-footer>
     </mat-card>
   </div>

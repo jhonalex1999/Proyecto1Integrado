@@ -48,9 +48,9 @@ export class MateriaComponent implements OnInit {
   }
 
   delete(practicaBorrar:Practica): void{
-    console.log("Delete practica con ID: "+practicaBorrar.idpractica);
-    this.practicaService.delete(practicaBorrar.idpractica!).subscribe(
-      res=>this.practicaService.getAll().subscribe(
+    console.log("Delete practica con ID: "+practicaBorrar.id_practica);
+    this.practicaService.delete(practicaBorrar.id_practica!).subscribe(
+      res=>this.practicaService.get(this.router.url.split('/')[3]).subscribe(
         response=>this.practica=response
       )
     );

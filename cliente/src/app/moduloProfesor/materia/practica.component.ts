@@ -59,8 +59,8 @@ export class PracticaComponent implements OnInit {
   ngOnInit() {
     this.url = this.router.url;
 
-    this.practicaService.get(this.user$).subscribe(
-      e => this.practica = e
+    this.practicaService.get(this.router.url.split('/')[3]).subscribe(
+      res => this.practica = res
     );
 
     this.franjaService.getAll().subscribe(
@@ -90,6 +90,7 @@ export class PracticaComponent implements OnInit {
   }
 
   cargar(): void {
+    this.events = [{}]
     for (let index = 0; index < this.franjaHoraria.length; index++) {
       this.practicaService.getById(this.franjaHoraria[index].id_practica).subscribe(
         e => this.practicaUnica = e
@@ -98,8 +99,8 @@ export class PracticaComponent implements OnInit {
     }
   }
 
-  eventosCargar(id: string, index: number){
-    this.events = [{}]
+  eventosCargar(id: string, index: number) {
+    
     this.events.push({
       title: this.practicaUnica.titulo,
       start: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_inicio,
@@ -129,25 +130,45 @@ export class PracticaComponent implements OnInit {
     this.practicaNueva.estado = "1";
     this.practicaNueva.fecha_entrega = this.dateDia + 'T' + this.dateHora + ':00';
 
-    //Franja Nueva
-    this.franjaNueva.id_practica = this.practicaNueva.idpractica;
-    this.franjaNueva.fecha = this.practicaNueva.id_curso;
-    this.franjaNueva.hora_inicio = this.dateInicioDia + 'T' + this.dateInicioHora + ':00';
-    this.franjaNueva.hora_fin = this.dateFinDia + 'T' + this.dateFinHora + ':00';
-
-    console.log(this.router.url.split('/')[3]);
     var back = this.url.split('/practica');
+    this.practicaService.create(this.practicaNueva).subscribe(
+      res => this.router.navigate([back[0]])
+    );
+
+    setTimeout(() => {
+      this.recargar();
+    }, 1500);
+
+  }
+
+  recargar() {
+    this.practicaService.get(this.router.url.split('/')[3]).subscribe(
+      res => this.practica = res
+    );
+
+    setTimeout(() => {
+      this.crearFranja();
+    }, 1500);
+  }
+
+  crearFranja(): void {
+
+    for (let i = 0; i < this.practica.length; i++) {
+      if (this.practica[i].titulo == this.practicaNueva.titulo) {
+        this.franjaNueva.id_practica = this.practica[i].id_practica;
+      }
+    }
+
+    //Franja Nueva
+    this.franjaNueva.fecha = this.dateInicioDia;
+    this.franjaNueva.hora_inicio = this.dateInicioHora + ':00';
+    this.franjaNueva.hora_fin = this.dateFinHora + ':00';
 
     //Subir Archivos
     if (this.event!) {
       this.subirArchivos();
     }
-    //this.franjaService.create(this.franjaNueva).subscribe();
-    
-    this.practicaService.create(this.practicaNueva).subscribe(
-      res => this.router.navigate([back[0]])
-    );
-
+    this.franjaService.create(this.franjaNueva).subscribe();
   }
 
   event: any;

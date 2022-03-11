@@ -1,5 +1,5 @@
 export class Practica {
-    idpractica: string | undefined;
+    id_practica: string | undefined;
     id_curso: string | undefined;
     cod_planta: string | undefined;
     descripcion: string | undefined;

@@ -19,7 +19,6 @@ export class PracticaService {
 
   //Crear Practica
   create(practica:Practica):Observable<Practica>{
-    console.log(practica);
     return this.http.post<Practica>(this.url+'/add', practica);
   }
 
@@ -29,14 +28,12 @@ export class PracticaService {
   }
 
   getById(id:string):Observable<Practica>{
-    console.log(this.url+'/list/'+id);
     return this.http.get<Practica>(this.url+'/list/'+id);
   }
 
   //Update Curso
   update(practica:Practica):Observable<Practica>{
-    console.log(practica.idpractica);
-    return this.http.put<Practica>(this.url+'/update'+'/'+practica.idpractica,practica);
+    return this.http.put<Practica>(this.url+'/update'+'/'+practica.id_practica,practica);
   }
 
   //Eliminar Curso
