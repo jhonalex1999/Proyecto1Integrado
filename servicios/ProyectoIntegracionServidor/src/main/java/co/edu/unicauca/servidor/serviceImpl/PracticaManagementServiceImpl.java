@@ -429,7 +429,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     
      @Override
     public PracticaDTO listById(String id) throws ExecutionException, InterruptedException {
-        DocumentReference ref = getCollection("PRACTICA").document(id);
+        DocumentReference ref = getCollection("practica").document(id);
         ApiFuture<DocumentSnapshot> docData = ref.get();
         DocumentSnapshot doc = docData.get();
 
@@ -446,7 +446,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
 
         Map<String, Object> docData = getDataPractica(practica);
 
-        CollectionReference practicas = getCollection("PRACTICA");
+        CollectionReference practicas = getCollection("practica");
         ApiFuture<WriteResult> writeResultApiFuture = practicas.document().create(docData);
 
         try {
@@ -461,7 +461,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     @Override
     public Boolean edit(String id, PracticaDTO practica) {
         Map<String, Object> docData = getDataPractica(practica);
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection("PRACTICA").document(id).set(docData);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("practica").document(id).set(docData);
         try {
             if(null != writeResultApiFuture.get()){
                 return Boolean.TRUE;
@@ -473,7 +473,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     }
     @Override
     public Boolean delete(String id) {
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection("PRACTICA").document(id).delete();
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("practica").document(id).delete();
         try {
             if(null != writeResultApiFuture.get()){
                 return Boolean.TRUE;
@@ -491,12 +491,11 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     }
 
     @Override
-   
-         public List<PracticaDTO> list(){
+        public List<PracticaDTO> list(){
         List<PracticaDTO> response = new ArrayList<>();
         PracticaDTO practice;
 
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("PRACTICA").get();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("practica").get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 practice = doc.toObject(PracticaDTO.class);
@@ -505,7 +504,8 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
             }
             return response;
 
-        } catch (Exception e) {
+        } catch (Exception a) {
+            System.out.println(a);
             return null;
         }
 
@@ -516,18 +516,21 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
          List<PracticaDTO> response = new ArrayList<>();
         PracticaDTO Practica;
 
-        Query query =  firebase.getFirestore().collection("Practica").whereEqualTo("correo", correo);
+        Query query =  firebase.getFirestore().collection("practica").whereEqualTo("id_curso", correo);
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
 
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                
                 Practica = doc.toObject(PracticaDTO.class);
-                Practica.setId_curso(doc.getId());
+                System.out.println(Practica);
+                Practica.setId_practica(doc.getId());
                 response.add(Practica);
             }
             return response;
 
         } catch (Exception e) {
+            System.out.println(e);
             return null;
         }  
     }

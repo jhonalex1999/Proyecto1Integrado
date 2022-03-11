@@ -16,24 +16,24 @@
                             <p>1.1 Complete la informacion basica de la practica</p>
                             <mat-form-field class="campo_de_entrada" appearance="outline">
                                 <mat-label>Título</mat-label>
-                                <input matInput placeholder="Escriba un título claro y descriptivo">
+                                <input matInput placeholder="Escriba un título claro y descriptivo" [(ngModel)]="practicaNueva.titulo">
                                 <mat-icon matSuffix>info</mat-icon>
                                 <mat-hint></mat-hint>
                             </mat-form-field>
                             <mat-form-field class="campo_de_entrada_texta" appearance="outline">
                                 <mat-label>Descripción</mat-label>
                                 <textarea class="txa" matInput
-                                    placeholder="Describa las actividades y requerimientos de la practica"></textarea>
+                                    placeholder="Describa las actividades y requerimientos de la practica" [(ngModel)]="practicaNueva.descripcion"></textarea>
                             </mat-form-field>
                         </div>
                         <div class="subcampos">
                             <p>1.2 Escoja la planta y parametros de trabajo</p>
                             <mat-form-field class="campo_de_entrada" appearance="outline">
                                 <mat-label>Planta Asociada</mat-label>
-                                <mat-select>
-                                    <mat-option value="one">Planta - Caida Libre</mat-option>
-                                    <mat-option value="two">Planta - Movimiento Parabolico</mat-option>
-                                    <mat-option value="three">Planta - Ley de Hooke</mat-option>
+                                <mat-select [(ngModel)]="practicaNueva.cod_planta">
+                                    <mat-option value="1">Planta - Caida Libre</mat-option>
+                                    <mat-option value="2">Planta - Movimiento Parabolico</mat-option>
+                                    <mat-option value="3">Planta - Ley de Hooke</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

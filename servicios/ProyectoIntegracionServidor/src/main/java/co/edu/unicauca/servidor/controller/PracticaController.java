@@ -98,7 +98,7 @@ public class PracticaController {
     }
     
     @GetMapping(value = "/listbyCorreo/{correo}")
-    public ResponseEntity listIdDocente(@PathVariable(value = "correo") String correo)  {
+    public ResponseEntity listDocente(@PathVariable(value = "correo") String correo)  {
         return new ResponseEntity(service.listByIdDocente(correo), HttpStatus.OK);
     }
     

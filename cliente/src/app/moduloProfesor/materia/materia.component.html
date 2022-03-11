@@ -14,12 +14,11 @@
   <div id="listitle" style="width: 40%;">Practicas en curso</div>
   <div style="width: 10%;"></div>
 </div>
-
 <div class="contenedor_practicas">
 
   <mat-accordion *ngFor="let practica of practica">
-    <mat-expansion-panel *ngIf="practica.estado == 'activo'">
-      <mat-expansion-panel-header *ngIf="suPractica(practica.id_curso!)">
+    <mat-expansion-panel *ngIf="practica.estado == '1'">
+      <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon matSuffix>assignment</mat-icon>{{practica.titulo}}
         </mat-panel-title>
@@ -28,7 +27,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <mat-panel-description *ngIf="suPractica(practica.id_curso!)">
+      <mat-panel-description >
         <div class="desc_practica">
           <div class="desc">
             {{practica.descripcion}}
@@ -56,12 +55,11 @@
   <div style="width: 10%;"></div>
 </div>
 
-
 <div class="contenedor_practicas">
 
   <mat-accordion *ngFor="let practica of practica">
-    <mat-expansion-panel  *ngIf="practica.estado == 'oculto'">
-      <mat-expansion-panel-header *ngIf="suPractica(practica.id_curso!)">
+    <mat-expansion-panel  *ngIf="practica.estado == '0'">
+      <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon matSuffix>assignment</mat-icon>{{practica.titulo}}
         </mat-panel-title>
@@ -70,7 +68,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <mat-panel-description *ngIf="suPractica(practica.id_curso!)">
+      <mat-panel-description>
         <div class="desc_practica">
           <div class="desc">
             {{practica.descripcion}}

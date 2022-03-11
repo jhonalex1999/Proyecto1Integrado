@@ -19,12 +19,13 @@ export class PracticaService {
 
   //Crear Practica
   create(practica:Practica):Observable<Practica>{
+    console.log(practica);
     return this.http.post<Practica>(this.url+'/add', practica);
   }
 
   //Obtener un Curso
-  get(id:string):Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+'/listarPracticasCurso/'+id);
+  get(correo:string):Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+'/listbyCorreo/'+correo);
   }
 
   //Update Curso

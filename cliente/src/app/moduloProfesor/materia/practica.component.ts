@@ -119,7 +119,7 @@ export class PracticaComponent implements OnInit {
   create(): void {
     //Practica Nueva
     this.practicaNueva.id_curso = this.router.url.split('/')[3];
-    this.practicaNueva.estado = "activo";
+    this.practicaNueva.estado = "1";
     this.practicaNueva.fecha_entrega = this.dateDia + 'T' + this.dateHora + ':00';
 
     //Franja Nueva
@@ -136,7 +136,7 @@ export class PracticaComponent implements OnInit {
       this.subirArchivos();
     }
 
-    this.franjaService.create(this.franjaNueva).subscribe();
+    //this.franjaService.create(this.franjaNueva).subscribe();
     this.practicaService.create(this.practicaNueva).subscribe(
       res => this.router.navigate([back[0]])
     );

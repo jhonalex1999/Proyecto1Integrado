@@ -12,10 +12,11 @@ const routes: Routes = [{
   pathMatch: 'full'
 },
 { path: ':correo/cursos', component: CursosComponent },
+{ path: ':correo/cursos/:id/form', component: FormCursosComponent },
 { path: ':correo/cursos/form', component: FormCursosComponent },
 { path: ':correo/agenda', component: AgendaComponent },
 { path: ':correo/cursos/:id/materia', component: MateriaComponent },
-{ path: ':correo/cursos/materia/practica', component: PracticaComponent },
+{ path: ':correo/cursos/:id/materia/practica', component: PracticaComponent },
 
 
 { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },

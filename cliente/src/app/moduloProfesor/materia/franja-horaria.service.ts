@@ -8,13 +8,13 @@ import { FranjaHoraria } from './franja-horaria';
 })
 export class FranjaHorariaService {
 
-  private url:string="http://localhost:8080/practica";
+  private url:string="http://localhost:8080/franja";
 
   constructor(private http:HttpClient) { }
 
   //Obtener FranjaHoraria
-  getAll(id:string):Observable<FranjaHoraria[]>{
-    return this.http.get<FranjaHoraria[]>(this.url+'/'+id+'/listarAgendamiento');
+  getAll():Observable<FranjaHoraria[]>{
+    return this.http.get<FranjaHoraria[]>(this.url+'/list');
   }
 
   //Crear FranjaHoraria

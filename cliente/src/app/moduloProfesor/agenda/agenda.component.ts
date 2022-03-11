@@ -21,9 +21,9 @@ export class AgendaComponent implements OnInit {
 
 
   ngOnInit(): void {
-    /*this.franjaService.getAll().subscribe(
+    this.franjaService.getAll().subscribe(
       p => this.franjaHoraria = p
-    );*/
+    );
 
     this.options = {
       plugins: [dayGridPlugin, timeGridPlugin],
