@@ -50,7 +50,38 @@ h1{
 .chips{
 padding-left: 10px;
 padding-bottom: 10px;
+display: flex;
 }
+
+.listchips{
+    display: flex;
+}
+
+.chipcontent{
+max-width: 190px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.chips{
+    float: left;
+    
+}
+
+.cardfooter{
+    overflow: auto;
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
