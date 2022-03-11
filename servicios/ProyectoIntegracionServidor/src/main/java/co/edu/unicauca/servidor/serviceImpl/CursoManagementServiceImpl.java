@@ -140,10 +140,10 @@ public class CursoManagementServiceImpl implements CursoManagementService {
 
         docData.put("nombre_curso", curso.getNombre_curso());
         docData.put("id_docente", curso.getId_docente());
-        docData.put("cod_matricula", curso.getCodigo_matricula());
+        docData.put("codigo_matricula", curso.getCodigo_matricula());
         docData.put("fecha_creacion", curso.getFecha_creacion());
         docData.put("fecha_eliminacion", curso.getFecha_eliminacion());
-        docData.put("tam_grupos", curso.getTamanio_grupo());
+        docData.put("tamanio_grupos", curso.getTamanio_grupo());
 
         return docData;
     }

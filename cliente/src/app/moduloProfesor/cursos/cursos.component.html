@@ -17,13 +17,12 @@
           {{curso.nombre_curso}}
         </a>
       </mat-card-title>
-      <button (click)="test()"></button>
       <mat-card-subtitle>Código de Matricula: {{curso.codigo_matricula}}</mat-card-subtitle>
       <mat-card-footer>
         <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="[url+'/form',curso.id_curso]">
+            <button mat-menu-item [routerLink]="[url+'/'+curso.id_curso+'/form']">
               <mat-icon>mode_edit</mat-icon>
               <span>Editar</span>
             </button>

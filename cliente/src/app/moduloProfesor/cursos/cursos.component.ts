@@ -27,10 +27,6 @@ export class CursosComponent implements OnInit {
     );
   }
 
-  test():void{
-    console.log(this.cursos);
-  }
-
   delete(curso: Curso): void {
     console.log("Delete curso con ID: " + curso.id_curso);
     this.cursoService.delete(curso.id_curso!).subscribe(
