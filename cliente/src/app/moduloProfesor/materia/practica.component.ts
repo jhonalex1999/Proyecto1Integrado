@@ -142,8 +142,8 @@ export class PracticaComponent implements OnInit {
     if (this.event!) {
       this.subirArchivos();
     }
-
     //this.franjaService.create(this.franjaNueva).subscribe();
+    
     this.practicaService.create(this.practicaNueva).subscribe(
       res => this.router.navigate([back[0]])
     );

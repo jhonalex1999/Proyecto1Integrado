@@ -34,13 +34,13 @@ export class MateriaComponent implements OnInit {
 
   public user$ = this.cookieService.get('Token_email');
   ngOnInit() {
-
-    this.practicaService.getAll().subscribe(
-      e => this.practica = e
-    );
-
     this.url = this.router.url;
     var id = this.router.url.split('/')[3];
+
+    this.practicaService.get(id).subscribe(
+      e => this.practica = e
+    );
+    
     this.cursoService.get(id).subscribe(
       c => this.curso = c
     );

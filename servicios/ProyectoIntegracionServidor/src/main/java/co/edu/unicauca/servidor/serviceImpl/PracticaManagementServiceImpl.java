@@ -401,7 +401,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
 
         //docData.put("archivos", post.);
         docData.put("cod_planta", post.getCod_planta());
-        docData.put("id_curso", post.getId_practica());
+        docData.put("id_curso", post.getId_curso());
         docData.put("descripcion", post.getDescripcion());
         docData.put("estado", post.getEstado());
         docData.put("fecha_entrega", post.getFecha_entrega());
