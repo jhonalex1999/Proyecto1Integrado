@@ -55,5 +55,7 @@ public interface PracticaManagementService {
     Boolean add(PracticaDTO practica);
     Boolean edit(String id, PracticaDTO practica);
     Boolean delete(String id);
+
+    public List<PracticaDTO> listByIdDocente(String correo);
     
 }

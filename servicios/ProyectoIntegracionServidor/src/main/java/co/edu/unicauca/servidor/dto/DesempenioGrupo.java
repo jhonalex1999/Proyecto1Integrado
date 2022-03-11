@@ -7,11 +7,13 @@ package co.edu.unicauca.servidor.dto;
 
 
 import java.util.ArrayList;
+import lombok.Data;
 
 /**
  *
  * @author Integracion Modulo Estudiante 
  */
+@Data
 public class DesempenioGrupo {
     private Integer cod_Grupal;
     private Integer num_prueba;

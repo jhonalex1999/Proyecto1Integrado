@@ -19,6 +19,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import java.time.LocalDateTime;
@@ -485,7 +486,6 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     
     
     
-    
       private CollectionReference getCollection(String Colecion) {
         return firebase.getFirestore().collection(Colecion);
     }
@@ -510,6 +510,31 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         }
 
     }
+
+    @Override
+    public List<PracticaDTO> listByIdDocente(String correo) {
+         List<PracticaDTO> response = new ArrayList<>();
+        PracticaDTO Practica;
+
+        Query query =  firebase.getFirestore().collection("Practica").whereEqualTo("correo", correo);
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
+
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                Practica = doc.toObject(PracticaDTO.class);
+                Practica.setId_curso(doc.getId());
+                response.add(Practica);
+            }
+            return response;
+
+        } catch (Exception e) {
+            return null;
+        }  
+    }
     
     
+    
+    
+  
+
 }

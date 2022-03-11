@@ -6,11 +6,15 @@ package co.edu.unicauca.servidor.dto;
  * and open the template in the editor.
  */
 import java.util.ArrayList;
+import lombok.Data;
 
 /**
  *
  * @author admin
  */
+
+
+@Data
 public class HistorialDTO {
 
     private Integer cod_grupal;

@@ -94,7 +94,15 @@ public class PracticaController {
     @GetMapping(value = "/list/{id}")
     public ResponseEntity edit(@PathVariable(value = "id") String id) throws ExecutionException, InterruptedException, ExecutionException {
         return new ResponseEntity(service.listById(id), HttpStatus.OK);
+            
     }
+    
+    @GetMapping(value = "/listbyCorreo/{correo}")
+    public ResponseEntity listIdDocente(@PathVariable(value = "correo") String correo)  {
+        return new ResponseEntity(service.listByIdDocente(correo), HttpStatus.OK);
+    }
+    
+
     @PostMapping(value = "/add")
     public ResponseEntity add(@RequestBody PracticaDTO practica){
         return new ResponseEntity(service.add(practica), HttpStatus.OK);
@@ -110,7 +118,6 @@ public class PracticaController {
         return new ResponseEntity(service.delete(id), HttpStatus.OK);
     }
     
-    
-    
+     
     
 }
