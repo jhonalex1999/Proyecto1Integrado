@@ -5,6 +5,7 @@
  */
 package co.edu.unicauca.servidor.controller;
 
+import co.edu.unicauca.servidor.dto.PracticaDTO;
 import co.edu.unicauca.servidor.service.PracticaManagementService;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -83,7 +84,7 @@ public class PracticaController {
         return new ResponseEntity(service.eliminarPractica(codigoCurso, idPractica), HttpStatus.OK);
     }
     
-    /*
+    
     
      @GetMapping(value = "/list")
     public ResponseEntity list(){
@@ -95,7 +96,7 @@ public class PracticaController {
         return new ResponseEntity(service.listById(id), HttpStatus.OK);
     }
     @PostMapping(value = "/add")
-    public ResponseEntity add(@RequestBody PracticeDTO practica){
+    public ResponseEntity add(@RequestBody PracticaDTO practica){
         return new ResponseEntity(service.add(practica), HttpStatus.OK);
     }
 
@@ -109,7 +110,7 @@ public class PracticaController {
         return new ResponseEntity(service.delete(id), HttpStatus.OK);
     }
     
-    */
+    
     
     
 }

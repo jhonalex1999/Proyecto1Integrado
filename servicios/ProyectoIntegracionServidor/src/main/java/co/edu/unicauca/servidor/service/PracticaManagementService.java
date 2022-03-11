@@ -10,6 +10,7 @@ import co.edu.unicauca.servidor.dto.AgendamientoDTO;
 import co.edu.unicauca.servidor.dto.PracticaDTO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  *
@@ -46,4 +47,13 @@ public interface PracticaManagementService {
     public Object modificarVariablesPractica(String codigoCurso, String idPractica);
 
     public Object eliminarVariablesPractica(String codigoCurso, String idPractica);
+    
+    List<PracticaDTO> list();
+    
+    PracticaDTO listById(String id) throws ExecutionException, InterruptedException;
+
+    Boolean add(PracticaDTO practica);
+    Boolean edit(String id, PracticaDTO practica);
+    Boolean delete(String id);
+    
 }

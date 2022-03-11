@@ -426,6 +426,64 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         return docData;
     }
     
+     @Override
+    public PracticaDTO listById(String id) throws ExecutionException, InterruptedException {
+        DocumentReference ref = getCollection("PRACTICA").document(id);
+        ApiFuture<DocumentSnapshot> docData = ref.get();
+        DocumentSnapshot doc = docData.get();
+
+        if(doc.exists()){
+            PracticaDTO practica = doc.toObject(PracticaDTO.class);
+            practica.setId_practica(doc.getId());
+            return practica;
+        }
+
+        return null;
+    }
+    @Override
+    public Boolean add(PracticaDTO practica) {
+
+        Map<String, Object> docData = getDataPractica(practica);
+
+        CollectionReference practicas = getCollection("PRACTICA");
+        ApiFuture<WriteResult> writeResultApiFuture = practicas.document().create(docData);
+
+        try {
+            if(null != writeResultApiFuture.get()){
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e){
+            return Boolean.FALSE;
+        }
+    }
+    @Override
+    public Boolean edit(String id, PracticaDTO practica) {
+        Map<String, Object> docData = getDataPractica(practica);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("PRACTICA").document(id).set(docData);
+        try {
+            if(null != writeResultApiFuture.get()){
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+    @Override
+    public Boolean delete(String id) {
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("PRACTICA").document(id).delete();
+        try {
+            if(null != writeResultApiFuture.get()){
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+    
+    
     
     
       private CollectionReference getCollection(String Colecion) {
