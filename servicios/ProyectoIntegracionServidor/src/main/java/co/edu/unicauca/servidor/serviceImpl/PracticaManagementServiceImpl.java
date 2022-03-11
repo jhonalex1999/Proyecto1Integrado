@@ -489,5 +489,27 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
       private CollectionReference getCollection(String Colecion) {
         return firebase.getFirestore().collection(Colecion);
     }
+
+    @Override
+   
+         public List<PracticaDTO> list(){
+        List<PracticaDTO> response = new ArrayList<>();
+        PracticaDTO practice;
+
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("PRACTICA").get();
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                practice = doc.toObject(PracticaDTO.class);
+                practice.setId_practica(doc.getId());
+                response.add(practice);
+            }
+            return response;
+
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+    
     
 }
