@@ -29,8 +29,7 @@ export class FranjaHorariaService {
 
   //Update Curso
   update(FranjaHoraria:FranjaHoraria):Observable<FranjaHoraria>{
-    console.log(FranjaHoraria.id_franja);
-    return this.http.put<FranjaHoraria>(this.url+'/update'+'/'+FranjaHoraria.id_franja,FranjaHoraria);
+    return this.http.put<FranjaHoraria>(this.url+'/update'+'/'+FranjaHoraria.id_franja_horaria,FranjaHoraria);
   }
 
   //Eliminar Curso

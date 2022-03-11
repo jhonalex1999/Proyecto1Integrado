@@ -74,11 +74,8 @@
                         </div>
                         <div class="calendario">
                             <div id="eventos" class="eventos">
-                                <button type="button" class="btn btn-warning" (click)="cargarCalendario()">
-                                    Visualizar Agenda
-                                </button>
-                                <div class="container" *ngIf="activarCalendario">
-                                    <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar>
+                                <div class="container">
+                                    <p-fullCalendar *ngIf="validarHorario()" [events]="events" [options]="options"></p-fullCalendar>
                                 </div>
                             </div>
                         </div>

@@ -28,6 +28,11 @@ export class PracticaService {
     return this.http.get<Practica[]>(this.url+'/listbyCorreo/'+correo);
   }
 
+  getById(id:string):Observable<Practica>{
+    console.log(this.url+'/list/'+id);
+    return this.http.get<Practica>(this.url+'/list/'+id);
+  }
+
   //Update Curso
   update(practica:Practica):Observable<Practica>{
     console.log(practica.idpractica);
