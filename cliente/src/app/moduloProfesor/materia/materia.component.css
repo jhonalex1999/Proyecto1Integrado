@@ -12,6 +12,13 @@
     margin-right: 0;
 }
 
+.boton_ests{
+    float: right;
+    margin-right: 20px;
+    color: white;
+   
+}
+
 h1{
     color: white;
 }
@@ -138,3 +145,4 @@ button {
 h5{
     font-size: medium;
 }
+
