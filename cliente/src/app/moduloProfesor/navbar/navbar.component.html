@@ -6,15 +6,17 @@
         <button class="boton_menu" mat-icon-button [routerLink]="urlAgenda">
             <mat-icon>calendar_month</mat-icon>
         </button>
-        <button class="boton_menu" mat-icon-button [routerLink]="urlAgenda">
+
+        <button class="boton_menu" mat-icon-button [matMenuTriggerFor]="problemas">
             <mat-icon >error_outline</mat-icon>
+            <mat-menu #problemas="">
+                <li>Errores</li>
+            </mat-menu>
         </button>
     </div>
 
     <span>
-
         <ul mat-flat-button [matMenuTriggerFor]="menu" class="navbar-nav">
-
             <div>
                 <img src="{{photo$}}">
                 <mat-menu #menu="matMenu">
@@ -34,9 +36,6 @@
                     </li>
                 </mat-menu>
             </div>
-
         </ul>
     </span>
-
-
 </nav>
