@@ -7,10 +7,13 @@
             <mat-icon>calendar_month</mat-icon>
         </button>
 
-        <button class="boton_menu" mat-icon-button [matMenuTriggerFor]="problemas">
-            <mat-icon >error_outline</mat-icon>
-            <mat-menu #problemas="">
-                <li>Errores</li>
+        <button class="boton_menu" mat-icon-button [matMenuTriggerFor]="matProblemas">
+            <mat-icon>error_outline</mat-icon>
+            <mat-menu #matProblemas="">
+                <li><h2>Errores</h2></li>
+                <ul *ngFor="let problema of problemas">
+                    <li>{{problema.descripcion}}</li>
+                </ul>
             </mat-menu>
         </button>
     </div>

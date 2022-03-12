@@ -60,7 +60,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
     PracticaComponent,
     MateriaComponent,
     FormCursosComponent,
-    UsuarioComponent
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,
