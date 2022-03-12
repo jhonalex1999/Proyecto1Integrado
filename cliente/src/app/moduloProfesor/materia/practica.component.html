@@ -37,9 +37,10 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                        <div class="subcampos">
+                        <div class="subcamposdate">
                             <p>1.3 Escoja la fecha y hora de entrega</p>
                             <input type="date" class="form-control" name="dateDia" [(ngModel)]="dateDia">
+                            <div style="height: 25px;"></div>
                             <input type="time" class="form-control" name="dateHora" [(ngModel)]="dateHora">
                         </div>
                     </div>
@@ -48,8 +49,10 @@
                     </div>
                 </mat-step>
                 <mat-step label="Adjuntos" completed="false" optional="">
-                    <p>Carque los archivos que consideres necesarios</p>
-                    <input type="file" accept="" multiple (change)="cargarEvento($event)">
+                    <p>Cargue los archivos que considere necesarios</p>
+                    
+                    <input style="padding-bottom: 20px;" type="file" accept="" multiple (change)="cargarEvento($event)">
+
                     <div class="contenedor_botones">
                         <button mat-raised-button matStepperPrevious>Atras</button>
                         <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
@@ -63,13 +66,20 @@
                                 <label for="FechaInicio" class="col-form-label">Fecha Inicio</label>
                                 <div class="col-sm-6">
                                     <input type="date" class="form-control" name="nombre" [(ngModel)]="dateInicioDia">
+                                    <div style="height: 15px;"></div>
                                     <input type="time" class="form-control" name="nombre" [(ngModel)]="dateInicioHora">
                                 </div>
                                 <label for="FechaFin" class="col-form-label">Fecha Fin</label>
                                 <div class="col-sm-6">
                                     <input type="date" class="form-control" name="nombre" [(ngModel)]="dateFinDia">
+                                    <div style="height: 15px;"></div>
                                     <input type="time" class="form-control" name="nombre" [(ngModel)]="dateFinHora">
                                 </div>
+                            </div>
+                            <div style="height: 25px;"></div>
+                            <div class="contenedor_botones">
+                                <button mat-raised-button matStepperPrevious>Atras</button>
+                                <button mat-raised-button color="primary" matStepperNext (click)="create()">Guardar</button>
                             </div>
                         </div>
                         <div class="calendario">
@@ -80,10 +90,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="contenedor_botones">
-                        <button mat-raised-button matStepperPrevious>Atras</button>
-                        <button mat-raised-button color="primary" matStepperNext (click)="create()">Guardar</button>
-                    </div>
+                    
                 </mat-step>
             </mat-horizontal-stepper>
         </mat-card-content>
