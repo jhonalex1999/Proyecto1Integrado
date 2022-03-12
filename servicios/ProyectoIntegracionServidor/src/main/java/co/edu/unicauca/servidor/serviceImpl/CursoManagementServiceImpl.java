@@ -24,8 +24,8 @@ import java.util.concurrent.ExecutionException;
  * @author Modulo de Docentes
  */
 @Service
-
 public class CursoManagementServiceImpl implements CursoManagementService {
+
     @Autowired
     private FirebaseInitializer firebase;
 
