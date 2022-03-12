@@ -42,7 +42,21 @@
                 <div class="chipcontent">
                   {{practica.titulo}}
                 </div>
+                <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>expand_more</mat-icon>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="updatePractica(practica)">
+                        <mat-icon>done</mat-icon>
+                        <span>Marcar Como Completada</span>
+                      </button>
+                    <button mat-menu-item (click)="deletePractica(practica)">
+                      <mat-icon>delete</mat-icon>
+                      <span>Borrar</span>
+                    </button>
+                  </mat-menu>
+                </button>
               </mat-chip>
+
             </mat-chip-list>
           </div>
         </div>

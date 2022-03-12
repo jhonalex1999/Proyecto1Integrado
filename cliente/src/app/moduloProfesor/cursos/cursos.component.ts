@@ -16,11 +16,11 @@ export class CursosComponent implements OnInit {
   title: string = "Lista de cursos";
   cursos: Curso[];
   practica: Practica[];
-  
+
   loggedIn: boolean | undefined;
   url: string | undefined;
 
-  constructor(private cursoService: CursoService,private router: Router, private cookieService: CookieService, private practicaService: PracticaService) { }
+  constructor(private cursoService: CursoService, private router: Router, private cookieService: CookieService, private practicaService: PracticaService) { }
   public user$ = this.cookieService.get('Token_email');
 
   ngOnInit(): void {
@@ -41,5 +41,20 @@ export class CursosComponent implements OnInit {
         response => this.cursos = response
       )
     );
+  }
+
+  deletePractica(practicaBorrar: Practica): void {
+    console.log("Delete practica con ID: " + practicaBorrar.id_practica);
+    this.practicaService.delete(practicaBorrar.id_practica!).subscribe(
+      res => this.practicaService.get(this.router.url.split('/')[3]).subscribe(
+        response => this.practica = response
+      )
+    );
+  }
+
+  updatePractica(practica: Practica): void{
+    console.log("Update practica con ID: " + practica.id_practica);
+    practica.estado = "0";
+    this.practicaService.update(practica).subscribe();
   }
 }

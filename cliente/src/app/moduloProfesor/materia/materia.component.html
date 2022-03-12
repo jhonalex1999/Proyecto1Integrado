@@ -52,8 +52,10 @@
               <mat-icon>mode_edit</mat-icon>
               <span>Editar</span>
             </button>-->
-
-            
+          <button mat-menu-item (click)="updatePractica(practica)">
+            <mat-icon>done</mat-icon>
+            <span>Marcar Como Completada</span>
+          </button>
           <button mat-menu-item (click)="delete(practica)">
             <mat-icon>delete</mat-icon>
             <span>Borrar</span>
@@ -101,7 +103,17 @@
           </div>
         </div>
       </mat-panel-description>
-
+      <mat-card-footer>
+        <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="delete(practica)">
+              <mat-icon>delete</mat-icon>
+              <span>Borrar</span>
+            </button>
+          </mat-menu>
+        </button>
+      </mat-card-footer>
     </mat-expansion-panel>
   </mat-accordion>
 
