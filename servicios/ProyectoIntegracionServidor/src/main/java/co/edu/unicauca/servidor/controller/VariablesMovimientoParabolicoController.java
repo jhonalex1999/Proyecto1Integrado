@@ -33,22 +33,22 @@ public class VariablesMovimientoParabolicoController {
      @Autowired
     private VariablesManagementService service;
 
-    @GetMapping(value = "/1/listarVariables/{idvariables}")
+    @GetMapping(value = "/3/listarVariables/{idvariables}")
     public ResponseEntity listarPracticasCurso(@PathVariable(value = "idvaraibles") String idvariables, @RequestBody Variables_Movimiento_ParabolicoDTO variables) {
         return new ResponseEntity(service.listarVariables(idvariables,variables), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/1/add")
+    @PostMapping(value = "/3/add")
     public ResponseEntity add(@RequestBody Variables_Movimiento_ParabolicoDTO variables) {
         return new ResponseEntity(service.add(variables), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/1/update/{idvariable}")
+    @PutMapping(value = "/3/update/{idvariable}")
     public ResponseEntity edit(@PathVariable(value = "idvariable") String idvariable, @RequestBody Variables_Movimiento_ParabolicoDTO variables) {
         return new ResponseEntity(service.edit(idvariable, variables), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/1/delete/{idvariable}")
+    @DeleteMapping(value = "/3/delete/{idvariable}")
     public ResponseEntity delete(@PathVariable(value = "idvariable") String idvariable, @RequestBody Variables_Movimiento_ParabolicoDTO variables) {
         return new ResponseEntity(service.delete(idvariable,variables), HttpStatus.OK);
     }
