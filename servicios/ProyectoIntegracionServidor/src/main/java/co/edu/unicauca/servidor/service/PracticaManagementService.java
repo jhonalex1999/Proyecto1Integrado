@@ -6,8 +6,8 @@
 package co.edu.unicauca.servidor.service;
 
 import co.edu.unicauca.servidor.dto.AgendamientoDTO;
-
 import co.edu.unicauca.servidor.dto.PracticaDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;

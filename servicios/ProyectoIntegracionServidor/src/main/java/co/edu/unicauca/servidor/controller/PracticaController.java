@@ -86,7 +86,7 @@ public class PracticaController {
     
     
     
-     @GetMapping(value = "/list")
+    @GetMapping(value = "/list")
     public ResponseEntity list(){
         return new ResponseEntity(service.list(), HttpStatus.OK);
     }
