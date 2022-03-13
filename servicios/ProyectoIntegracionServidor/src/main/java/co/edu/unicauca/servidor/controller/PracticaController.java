@@ -43,6 +43,7 @@ public class PracticaController {
     public ResponseEntity listarPracticas(){
         return new ResponseEntity(service.listarPracticas(), HttpStatus.OK);
     }
+
     @GetMapping(value = "/{codGrupal}/verificarAgendamiento")
     public ResponseEntity verificarAgendamiento(@PathVariable(value = "codGrupal") int codGrupal){
         return new ResponseEntity(service.verificarAgendamiento(codGrupal), HttpStatus.OK);
@@ -97,9 +98,9 @@ public class PracticaController {
             
     }
     
-    @GetMapping(value = "/listbyCorreo/{correo}")
-    public ResponseEntity listIdDocente(@PathVariable(value = "correo") String correo)  {
-        return new ResponseEntity(service.listByIdDocente(correo), HttpStatus.OK);
+    @GetMapping(value = "/listbyCorreo/{id}")
+    public ResponseEntity listByIdCurso(@PathVariable(value = "id") String id)  {
+        return new ResponseEntity(service.listByIdDocente(id), HttpStatus.OK);
     }
     
 

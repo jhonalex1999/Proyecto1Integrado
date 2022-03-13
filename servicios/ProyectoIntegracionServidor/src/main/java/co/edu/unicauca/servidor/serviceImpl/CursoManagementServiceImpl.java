@@ -24,8 +24,8 @@ import java.util.concurrent.ExecutionException;
  * @author Modulo de Docentes
  */
 @Service
-
 public class CursoManagementServiceImpl implements CursoManagementService {
+
     @Autowired
     private FirebaseInitializer firebase;
 
@@ -143,7 +143,7 @@ public class CursoManagementServiceImpl implements CursoManagementService {
         docData.put("codigo_matricula", curso.getCodigo_matricula());
         docData.put("fecha_creacion", curso.getFecha_creacion());
         docData.put("fecha_eliminacion", curso.getFecha_eliminacion());
-        docData.put("tamanio_grupos", curso.getTamanio_grupo());
+        docData.put("tamanio_grupo", curso.getTamanio_grupo());
 
         return docData;
     }

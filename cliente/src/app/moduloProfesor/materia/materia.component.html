@@ -4,7 +4,9 @@
       <h1>{{curso?.nombre_curso}}</h1>
     </div>
     <div>
+      
       <button class="boton_add" mat-flat-button [routerLink]="[url+'/practica']">Nueva Practica</button>
+      <button class="boton_ests" mat-icon-button [routerLink]=""><mat-icon>people</mat-icon></button>
     </div>
   </div>
 </div>
@@ -18,8 +20,8 @@
 <div class="contenedor_practicas">
 
   <mat-accordion *ngFor="let practica of practica">
-    <mat-expansion-panel *ngIf="practica.estado == 'activo'">
-      <mat-expansion-panel-header *ngIf="suPractica(practica.id_curso!)">
+    <mat-expansion-panel *ngIf="practica.estado == '1'">
+      <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon matSuffix>assignment</mat-icon>{{practica.titulo}}
         </mat-panel-title>
@@ -28,27 +30,46 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <mat-panel-description *ngIf="suPractica(practica.id_curso!)">
+      <mat-panel-description>
         <div class="desc_practica">
           <div class="desc">
             {{practica.descripcion}}
           </div>
           <div>
-            <h3>Documentos adjuntos</h3> 
+            <h3>Documentos adjuntos</h3>
           </div>
 
           <div>
-            <h3>Asignados:</h3> 
-            <h3>Entregados:</h3> 
+            <h3>Asignados:</h3>
+            <h3>Entregados:</h3>
           </div>
         </div>
       </mat-panel-description>
 
+
+      <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+        <mat-menu #menu="matMenu">
+          <!--<button mat-menu-item [routerLink]="[url+'/'+curso.id_curso+'/form']">
+              <mat-icon>mode_edit</mat-icon>
+              <span>Editar</span>
+            </button>-->
+          <button mat-menu-item (click)="updatePractica(practica)">
+            <mat-icon>done</mat-icon>
+            <span>Marcar Como Completada</span>
+          </button>
+          <button mat-menu-item (click)="delete(practica)">
+            <mat-icon>delete</mat-icon>
+            <span>Borrar</span>
+          </button>
+        </mat-menu>
+      </button>
+
     </mat-expansion-panel>
+
   </mat-accordion>
 
 </div>
-
 
 <div class="listcursos">
   <div style="width: 10%;"></div>
@@ -56,12 +77,11 @@
   <div style="width: 10%;"></div>
 </div>
 
-
 <div class="contenedor_practicas">
 
   <mat-accordion *ngFor="let practica of practica">
-    <mat-expansion-panel  *ngIf="practica.estado == 'oculto'">
-      <mat-expansion-panel-header *ngIf="suPractica(practica.id_curso!)">
+    <mat-expansion-panel *ngIf="practica.estado == '0'">
+      <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon matSuffix>assignment</mat-icon>{{practica.titulo}}
         </mat-panel-title>
@@ -70,22 +90,32 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <mat-panel-description *ngIf="suPractica(practica.id_curso!)">
+      <mat-panel-description>
         <div class="desc_practica">
           <div class="desc">
             {{practica.descripcion}}
           </div>
           <div>
-            <h3>Documentos adjuntos</h3> 
+            <h3>Documentos adjuntos</h3>
           </div>
 
           <div>
-            <h3>Asignados:</h3> 
-            <h3>Entregados:</h3> 
+            <h3>Asignados:</h3>
+            <h3>Entregados:</h3>
           </div>
         </div>
       </mat-panel-description>
-
+      <mat-card-footer>
+        <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="delete(practica)">
+              <mat-icon>delete</mat-icon>
+              <span>Borrar</span>
+            </button>
+          </mat-menu>
+        </button>
+      </mat-card-footer>
     </mat-expansion-panel>
   </mat-accordion>
 

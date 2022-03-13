@@ -34,33 +34,31 @@ export class MateriaComponent implements OnInit {
 
   public user$ = this.cookieService.get('Token_email');
   ngOnInit() {
-    this.practicaService.get(this.user$).subscribe(
-      e => this.practica = e
-    );
-
     this.url = this.router.url;
     var id = this.router.url.split('/')[3];
-    console.log(id);
+
+    this.practicaService.get(id).subscribe(
+      e => this.practica = e
+    );
+    
     this.cursoService.get(id).subscribe(
       c => this.curso = c
     );
 
   }
 
-  suPractica(id: string): boolean {
-    if (id == this.router.url.split('/')[3]) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   delete(practicaBorrar:Practica): void{
-    console.log("Delete practica con ID: "+practicaBorrar.idpractica);
-    this.practicaService.delete(practicaBorrar.idpractica!).subscribe(
-      res=>this.practicaService.getAll().subscribe(
+    console.log("Delete practica con ID: "+practicaBorrar.id_practica);
+    this.practicaService.delete(practicaBorrar.id_practica!).subscribe(
+      res=>this.practicaService.get(this.router.url.split('/')[3]).subscribe(
         response=>this.practica=response
       )
     );
+  }
+
+  updatePractica(practica: Practica): void{
+    console.log("Update practica con ID: " + practica.id_practica);
+    practica.estado = "0";
+    this.practicaService.update(practica).subscribe();
   }
 }

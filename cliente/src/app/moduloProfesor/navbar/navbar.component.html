@@ -1,21 +1,44 @@
 <nav class="navbar" *ngIf="cargarNavBar()">
-    <div [routerLink]="urlInicio" class="nav_logo"></div>
-    <div style="padding-left: 60%;">
-        <button class="boton_menu" mat-button [routerLink]="urlAgenda">Agenda Plantas</button>
+    <div [routerLink]="urlInicio" class="nav_logo">
+
     </div>
+    <div>
+        <button class="boton_menu" mat-icon-button [routerLink]="urlAgenda">
+            <mat-icon>calendar_month</mat-icon>
+        </button>
+
+        <button class="boton_menu" mat-icon-button [matMenuTriggerFor]="matProblemas">
+            <mat-icon>error_outline</mat-icon>
+            <mat-menu #matProblemas="">
+                <li><h2>Errores</h2></li>
+                <ul *ngFor="let problema of problemas">
+                    <li>{{problema.descripcion}}</li>
+                </ul>
+            </mat-menu>
+        </button>
+    </div>
+
     <span>
         <ul mat-flat-button [matMenuTriggerFor]="menu" class="navbar-nav">
-            <img src="{{photo$}}">
-            <mat-menu #menu="matMenu">
-                <li>{{user$}}</li>
-                <li>{{userName$}}</li>
-                <li>
-                    <a (click)="signOut()">
-                        <button [routerLink]="['/login']" class=" btn btn-block mybtn btn-primary tx-tfm">Cerrar
-                            Sesion</button>
-                    </a>
-                </li>
-            </mat-menu>
+            <div>
+                <img src="{{photo$}}">
+                <mat-menu #menu="matMenu">
+                    <li>{{user$}}</li>
+                    <li>{{userName$}}</li>
+                    <li>
+                        <a (click)="signOut()">
+                            <button [routerLink]="['/login']" class=" btn btn-block mybtn btn-primary tx-tfm">Cerrar
+                                Sesion</button>
+                        </a>
+                    </li>
+                    <li *ngIf="rol$.includes('Admin')">
+                        <a>
+                            <button [routerLink]="[urlUsuario]" class=" btn btn-block mybtn btn-info tx-tfm">Ingresar
+                                Docente</button>
+                        </a>
+                    </li>
+                </mat-menu>
+            </div>
         </ul>
     </span>
 </nav>

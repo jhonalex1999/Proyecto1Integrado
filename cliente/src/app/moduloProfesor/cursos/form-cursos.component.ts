@@ -20,7 +20,7 @@ export class FormCursosComponent implements OnInit {
   }
 
   cargar(): void {
-    this.auxIdCurso = this.router.url.split('/')[4];
+    this.auxIdCurso = this.router.url.split('/')[3];
     console.log(this.auxIdCurso);
     this.activatedRoute.params.subscribe(
       e => {

@@ -1,7 +1,7 @@
 export class FranjaHoraria {
-    id_franja: string | undefined;
-    id_curso: string | undefined;
-    titulo: string | undefined;
-    fecha_inicio: string | undefined;
-    fecha_fin: string | undefined;
+    id_franja_horaria: string | undefined;
+    id_practica: string | undefined;
+    fecha: string | undefined;
+    hora_inicio: string | undefined;
+    hora_fin: string | undefined;
 }

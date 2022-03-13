@@ -25,10 +25,10 @@ export class PracticaComponent implements OnInit {
   //Variables del Calendario-Observable
   public events: any[] | undefined;
   public options: any;
-  public practica!: Practica[];
-  public franjaHoraria!: FranjaHoraria[];
-  public activarCalendario: boolean = false;
+  public practica: Practica[];
+  public franjaHoraria: FranjaHoraria[];
   url!: string;
+  public practicaUnica: Practica;
 
   //Variables Form
   practicaNueva: Practica = new Practica();
@@ -54,18 +54,18 @@ export class PracticaComponent implements OnInit {
   }
 
   constructor(private practicaService: PracticaService, private franjaService: FranjaHorariaService, private router: Router, private cookieService: CookieService) { }
-  
+
   public user$ = this.cookieService.get('Token_email');
   ngOnInit() {
     this.url = this.router.url;
 
-    this.practicaService.get(this.user$).subscribe(
-      e => this.practica = e
+    this.practicaService.get(this.router.url.split('/')[3]).subscribe(
+      res => this.practica = res
     );
 
-    /*this.franjaService.getAll().subscribe(
+    this.franjaService.getAll().subscribe(
       p => this.franjaHoraria = p
-    );*/
+    );
 
     this.options = {
       plugins: [dayGridPlugin, timeGridPlugin],
@@ -90,57 +90,85 @@ export class PracticaComponent implements OnInit {
   }
 
   cargar(): void {
-    /*this.franjaService.getAll().subscribe(
-      e => this.franjaHoraria = e
-    );*/
-
     this.events = [{}]
-
     for (let index = 0; index < this.franjaHoraria.length; index++) {
-      this.events.push({
-        title: this.franjaHoraria[index].titulo, //Titulo practica
-        start: this.franjaHoraria[index].fecha_inicio, //'2022-02-21T10:00:00' 
-        end: this.franjaHoraria[index].fecha_fin
-      });
+      this.practicaService.getById(this.franjaHoraria[index].id_practica).subscribe(
+        e => this.practicaUnica = e
+      );
+      this.eventosCargar(this.practicaUnica.titulo, index);
     }
   }
 
-  cargarCalendario(): boolean {
-    this.cargar();
-    if (this.activarCalendario == true) {
-      this.activarCalendario = false;
+  eventosCargar(id: string, index: number) {
+    
+    this.events.push({
+      title: this.practicaUnica.titulo,
+      start: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_inicio,
+      end: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_fin
+    });
+  }
+
+  public band: boolean = false;
+  async validarHorario(): Promise<boolean> {
+    try {
+      if (this.franjaHoraria.length && this.band == false) {
+        await this.cargar();
+        this.band = true;
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
       return true;
-    } else {
-      this.activarCalendario = true;
-      return false;
     }
+
   }
 
   create(): void {
     //Practica Nueva
     this.practicaNueva.id_curso = this.router.url.split('/')[3];
-    this.practicaNueva.estado = "activo";
+    this.practicaNueva.estado = "1";
     this.practicaNueva.fecha_entrega = this.dateDia + 'T' + this.dateHora + ':00';
 
-    //Franja Nueva
-    this.franjaNueva.titulo = this.practicaNueva.titulo;
-    this.franjaNueva.id_curso = this.practicaNueva.id_curso;
-    this.franjaNueva.fecha_inicio = this.dateInicioDia + 'T' + this.dateInicioHora + ':00';
-    this.franjaNueva.fecha_fin = this.dateFinDia + 'T' + this.dateFinHora + ':00';
-
-    console.log(this.router.url.split('/')[3]);
     var back = this.url.split('/practica');
+    this.practicaService.create(this.practicaNueva).subscribe(
+      res => this.router.navigate([back[0]])
+    );
+
+    setTimeout(() => {
+      this.recargar();
+    }, 1500);
+
+  }
+
+  recargar() {
+    this.practicaService.get(this.router.url.split('/')[3]).subscribe(
+      res => this.practica = res
+    );
+
+    setTimeout(() => {
+      this.crearFranja();
+    }, 1500);
+  }
+
+  crearFranja(): void {
+
+    for (let i = 0; i < this.practica.length; i++) {
+      if (this.practica[i].titulo == this.practicaNueva.titulo) {
+        this.franjaNueva.id_practica = this.practica[i].id_practica;
+      }
+    }
+
+    //Franja Nueva
+    this.franjaNueva.fecha = this.dateInicioDia;
+    this.franjaNueva.hora_inicio = this.dateInicioHora + ':00';
+    this.franjaNueva.hora_fin = this.dateFinHora + ':00';
 
     //Subir Archivos
     if (this.event!) {
       this.subirArchivos();
     }
-
     this.franjaService.create(this.franjaNueva).subscribe();
-    this.practicaService.create(this.practicaNueva).subscribe(
-      res => this.router.navigate([back[0]])
-    );
-
   }
 
   event: any;
@@ -157,7 +185,7 @@ export class PracticaComponent implements OnInit {
       reader.readAsDataURL(archivos[index]);
       reader.onloadend = () => {
         this.archivosFuera.push(reader.result);
-        this.subirArchivosFire(this.router.url.split('/')[3]+'/'+archivos[index].name, reader.result);
+        this.subirArchivosFire(this.router.url.split('/')[3] + '/' + archivos[index].name, reader.result);
       }
     }
     //console.log(file.name);

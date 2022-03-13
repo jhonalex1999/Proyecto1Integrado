@@ -23,14 +23,17 @@ export class PracticaService {
   }
 
   //Obtener un Curso
-  get(id:string):Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+'/listarPracticasCurso/'+id);
+  get(correo:string):Observable<Practica[]>{
+    return this.http.get<Practica[]>(this.url+'/listbyCorreo/'+correo);
+  }
+
+  getById(id:string):Observable<Practica>{
+    return this.http.get<Practica>(this.url+'/list/'+id);
   }
 
   //Update Curso
   update(practica:Practica):Observable<Practica>{
-    console.log(practica.idpractica);
-    return this.http.put<Practica>(this.url+'/update'+'/'+practica.idpractica,practica);
+    return this.http.put<Practica>(this.url+'/update'+'/'+practica.id_practica,practica);
   }
 
   //Eliminar Curso

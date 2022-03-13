@@ -5,6 +5,7 @@ import { CursosComponent } from './moduloProfesor/cursos/cursos.component';
 import { FormCursosComponent } from './moduloProfesor/cursos/form-cursos.component';
 import { MateriaComponent } from './moduloProfesor/materia/materia.component';
 import { PracticaComponent } from './moduloProfesor/materia/practica.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 const routes: Routes = [{
   path: '',
@@ -12,10 +13,12 @@ const routes: Routes = [{
   pathMatch: 'full'
 },
 { path: ':correo/cursos', component: CursosComponent },
+{ path: ':correo/usuario', component: UsuarioComponent },
+{ path: ':correo/cursos/:id/form', component: FormCursosComponent },
 { path: ':correo/cursos/form', component: FormCursosComponent },
 { path: ':correo/agenda', component: AgendaComponent },
 { path: ':correo/cursos/:id/materia', component: MateriaComponent },
-{ path: ':correo/cursos/materia/practica', component: PracticaComponent },
+{ path: ':correo/cursos/:id/materia/practica', component: PracticaComponent },
 
 
 { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },

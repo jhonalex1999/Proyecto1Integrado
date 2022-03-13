@@ -333,7 +333,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         List<UsuarioDTO> response = new ArrayList<>();
         UsuarioDTO usuario;
 
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("USUARIO").get();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("usuario").get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 usuario = doc.toObject(UsuarioDTO.class);
@@ -349,7 +349,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
 
     @Override
     public UsuarioDTO listById(String id) throws ExecutionException, InterruptedException {
-        DocumentReference ref = getCollection("USUARIO").document(id);
+        DocumentReference ref = getCollection("usuario").document(id);
         ApiFuture<DocumentSnapshot> docData = ref.get();
         DocumentSnapshot doc = docData.get();
 
@@ -366,7 +366,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     public Boolean add(UsuarioDTO usuario) {
         Map<String, Object> docData = getDocData(usuario);
 
-        CollectionReference usuarios = getCollection("USUARIO");
+        CollectionReference usuarios = getCollection("usuario");
         ApiFuture<WriteResult> writeResultApiFuture = usuarios.document().create(docData);
 
         try {
@@ -382,7 +382,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     @Override
     public Boolean edit(String id, UsuarioDTO usuario) {
         Map<String, Object> docData = getDocData(usuario);
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection("USUARIO").document(id).set(docData);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("usuario").document(id).set(docData);
         try {
             if(null != writeResultApiFuture.get()){
                 return Boolean.TRUE;
@@ -395,7 +395,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
 
     @Override
     public Boolean delete(String id) {
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection("USUARIO").document(id).delete();
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("usuario").document(id).delete();
         try {
             if(null != writeResultApiFuture.get()){
                 return Boolean.TRUE;

@@ -47,6 +47,7 @@ import { NavbarComponent } from './moduloProfesor/navbar/navbar.component';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PracticaComponent } from './moduloProfesor/materia/practica.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { PracticaComponent } from './moduloProfesor/materia/practica.component';
     AgendaComponent,
     PracticaComponent,
     MateriaComponent,
-    FormCursosComponent
+    FormCursosComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,

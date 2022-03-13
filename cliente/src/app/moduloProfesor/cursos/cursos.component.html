@@ -18,7 +18,7 @@
         </a>
       </mat-card-title>
       <mat-card-subtitle>Código de Matricula: {{curso.codigo_matricula}}</mat-card-subtitle>
-      <mat-card-footer>
+      <mat-card-footer class="cardfooter">
         <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
           <mat-menu #menu="matMenu">
@@ -32,7 +32,34 @@
             </button>
           </mat-menu>
         </button>
-        
+        <div *ngFor="let practica of practica">
+          <div class="chips" *ngIf="practica.id_curso == curso.id_curso">
+            <mat-chip-list class="listchips" aria-label="Practicas activas" *ngIf="practica.estado == '1'">
+              <mat-chip class="chip">
+                <mat-chip-avatar>
+                  <mat-icon matSuffix>assignment</mat-icon>
+                </mat-chip-avatar>
+                <div class="chipcontent">
+                  {{practica.titulo}}
+                </div>
+                <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>expand_more</mat-icon>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="updatePractica(practica)">
+                        <mat-icon>done</mat-icon>
+                        <span>Marcar Como Completada</span>
+                      </button>
+                    <button mat-menu-item (click)="deletePractica(practica)">
+                      <mat-icon>delete</mat-icon>
+                      <span>Borrar</span>
+                    </button>
+                  </mat-menu>
+                </button>
+              </mat-chip>
+
+            </mat-chip-list>
+          </div>
+        </div>
       </mat-card-footer>
     </mat-card>
   </div>
