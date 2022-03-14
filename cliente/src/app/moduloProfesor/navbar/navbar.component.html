@@ -7,16 +7,27 @@
             <mat-icon>calendar_month</mat-icon>
         </button>
 
-        <button class="boton_menu" mat-icon-button matBadge="{{numNotificaciones}}" matBadgeSize="small" matBadgeColor="warn"  [matMenuTriggerFor]="matProblemas">
+        <button class="boton_menu" mat-icon-button matBadge="{{numNotificaciones}}" matBadgeSize="small"
+            matBadgeColor="warn" [matMenuTriggerFor]="matProblemas">
             <mat-icon>error_outline</mat-icon>
             <mat-menu #matProblemas="">
-                <li><h2>Errores</h2></li>
-                <ul *ngFor="let problema of problemas">
-                    <li>
-                        {{problema.descripcion}}
-                        <mat-icon>done</mat-icon>
-                    </li>
-                </ul>
+                <li>
+                    <h2>Errores</h2>
+                </li>
+                <div >
+                    <table style="margin: 2%;">
+                        <tr>
+                            <th>Descripcion</th>
+                            <th></th>
+                        </tr>
+                        <tr *ngFor="let problema of problemas">
+                            <td>{{problema.descripcion}}</td>
+                            <td style="float: right;" (click)="deleteProble(problema)"><abbr title="Error Solucionado">
+                                    <mat-icon>done</mat-icon>
+                                </abbr></td>
+                        </tr>
+                    </table>
+                </div>
             </mat-menu>
         </button>
     </div>

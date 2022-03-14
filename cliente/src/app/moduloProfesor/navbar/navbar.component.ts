@@ -59,5 +59,9 @@ export class NavbarComponent implements OnInit {
 
   deleteProble(problema: Problema): void{
     this.problemaService.delete(problema.id_problema).subscribe();
+    this.problemaService.get().subscribe(
+      res => this.problemas = res
+    );
+    this.ngOnInit();
   }
 }
