@@ -1,56 +1,43 @@
-.barranevegacion{
-    background-color: #3F51B5;
-    box-shadow: 2px 2px 10px #261550;
-    height: 100px;
-    width: 100%;
-    display: flex;
-}
+
 
 .navsubcont{
     display: flex;
+    
 }
 
 .navitem{
     display: grid;
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .navbar {
     position: relative;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     height: auto;
+    
 }
 
 nav {
     background-color: #3F51B5;
     box-shadow: 2px 2px 10px #261550;
     height: 100px;
+   
 }
 
 li {
     text-align: center;
     list-style: none;
     margin: 3%;
+    
 }
 
 ul{
     padding: 4%;
+    
 }
 
 .nav_logo {
@@ -60,11 +47,13 @@ ul{
     width: 90px;
     margin-right: 10px;
     margin-left: 30px;
+    
 }
 
 .navbar-nav {
     align-items: center;
     margin-right: 10px;
+    
 }
 
 img {
@@ -81,4 +70,5 @@ img {
 
 .info{
     display: grid;
+    
 }
