@@ -38,15 +38,7 @@ public interface PracticaManagementService {
 
     public Object eliminarPractica(String codigoCurso, String idPractica);
     
-    public ArrayList<String> listarVariablesPorDefecto(String idPractica);
-    
-    public ArrayList<String> listarVariablesPracticasCurso(String idPractica);
-
-    public Object crearVariablesPractica(String idPractica);
-
-    public Object modificarVariablesPractica(String codigoCurso, String idPractica);
-
-    public Object eliminarVariablesPractica(String codigoCurso, String idPractica);
+   
     
     List<PracticaDTO> list();
     
