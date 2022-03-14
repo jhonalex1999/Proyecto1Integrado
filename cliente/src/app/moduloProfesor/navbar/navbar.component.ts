@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   public photo$ = this.cookieService.get('Token_photo');
   public rol$ = this.cookieService.get('Token_rol');
   problemas: Problema[];
+  numNotificaciones: number = 0;
 
   loggedIn: boolean | undefined;
   activar: boolean | undefined;
@@ -33,6 +34,10 @@ export class NavbarComponent implements OnInit {
 
     this.problemaService.get().subscribe(
       res => this.problemas = res
+    );
+
+    this.problemaService.get().subscribe(
+      res => this.numNotificaciones = res.length
     );
     
   }
@@ -50,5 +55,9 @@ export class NavbarComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  deleteProble(problema: Problema): void{
+    this.problemaService.delete(problema.id_problema).subscribe();
   }
 }
