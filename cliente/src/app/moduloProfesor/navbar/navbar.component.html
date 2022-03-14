@@ -8,7 +8,7 @@
         </button>
 
         <button class="boton_menu" mat-icon-button matBadge="{{numNotificaciones}}" matBadgeSize="small"
-            matBadgeColor="warn" [matMenuTriggerFor]="matProblemas">
+            matBadgeColor="warn" [matBadgeHidden]="numNotificaciones == 0" [matMenuTriggerFor]="matProblemas">
             <mat-icon>error_outline</mat-icon>
             <mat-menu #matProblemas="">
                 <li>
