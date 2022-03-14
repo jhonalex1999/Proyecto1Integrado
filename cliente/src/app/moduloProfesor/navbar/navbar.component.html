@@ -16,9 +16,12 @@
                 </li>
                 <div >
                     <table style="margin: 5%;">
-                        <tr>
+                        <tr *ngIf="numNotificaciones > 0">
                             <th>Descripcion</th>
                             <th></th>
+                        </tr>
+                        <tr *ngIf="numNotificaciones == 0">
+                            <th>No hay errores</th>
                         </tr>
                         <tr *ngFor="let problema of problemas">
                             <td>{{problema.descripcion}}</td>
