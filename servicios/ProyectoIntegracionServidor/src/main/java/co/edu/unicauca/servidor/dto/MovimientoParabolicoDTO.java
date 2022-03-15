@@ -23,4 +23,6 @@ public class MovimientoParabolicoDTO {
     private ArrayList<String> tiempo;
     private String url_imagen;
     private int velocidad;
+    private ArrayList<Integer> angulos_utilizados;
+    private ArrayList<Integer> velocidades_utilizados;
 }

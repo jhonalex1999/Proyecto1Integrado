@@ -568,12 +568,14 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         altura.put("h3", 30.0);
         altura.put("h4", 40.0);
         altura.put("h5", 50.0);
+        objCaidaLibre.setPesos_utilizados(listaCaidaLibre);
         docData.put("codigo_planta", objCaidaLibre.getCodigo_planta());
         docData.put("errores", objCaidaLibre.getErrores());
         docData.put("gravedadN", objCaidaLibre.getGravedadN());
         docData.put("nRep", objCaidaLibre.getNRep());
         docData.put("tiempo", objCaidaLibre.getTiempo());
         docData.put("altura", altura);
+        docData.put("pesos_utilizados", objCaidaLibre.getPesos_utilizados());
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("laboratorio_caida_libre").document().create(docData);
 
         try {
@@ -626,6 +628,8 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     private boolean pasarDatosMovimientoParabolico(MovimientoParabolicoDTO objMovimientoParabolico) {
         Map<String, Object> docData = new HashMap<>();
         objMovimientoParabolico.setCodigo_planta(3);
+        objMovimientoParabolico.setAngulos_utilizados(listaMovimientoParabolicoAngulo);
+        objMovimientoParabolico.setVelocidades_utilizados(listaMovimientoParabolicoVelocidad);
         docData.put("codigo_planta", objMovimientoParabolico.getCodigo_planta());
         docData.put("datos_x", objMovimientoParabolico.getDatos_x());
         docData.put("datos_y", objMovimientoParabolico.getDatos_y());
@@ -633,7 +637,8 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         docData.put("tiempo", objMovimientoParabolico.getTiempo());
         docData.put("velocidad", objMovimientoParabolico.getVelocidad());
         docData.put("url", objMovimientoParabolico.getUrl_imagen());
-
+        docData.put("angulos_utilizados", objMovimientoParabolico.getAngulos_utilizados());
+        docData.put("velocidades_utilizados", objMovimientoParabolico.getVelocidades_utilizados());
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("laboratorio_movimiento_parabolico").document().create(docData);
 
         try {
