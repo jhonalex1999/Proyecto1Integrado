@@ -51,6 +51,11 @@ h1{
 margin-left: 10px;
 display: flex;
 float: left;
+margin-bottom: 7px;
+}
+
+.chip{
+    
 }
 
 .listchips{
