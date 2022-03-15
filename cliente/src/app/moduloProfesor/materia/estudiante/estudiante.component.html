@@ -5,22 +5,12 @@
     </div>
     <div>
       <button class="boton_add" mat-flat-button>Nueva Practica</button>
-      <button class="boton_ests" mat-icon-button><mat-icon>assignment</mat-icon></button>
+      <button [routerLink]="urlBack" class="boton_ests" mat-icon-button><abbr test="Volver a Practicas"><mat-icon>assignment</mat-icon></abbr></button>
     </div>
   </div>
 </div>
 
-<div class="listcursos">
-  <div style="width: 10%;"></div>
-  <div id="listitle" style="width: 40%;">Practicas en curso</div>
-  <div style="width: 10%;"></div>
-</div>
-
 <div class="container" >
-  <h2>Docente</h2>
-  <div *ngFor="let estudiante of estudiantes">
-    <p *ngIf="estudiante.rol != 'Estudiante'">{{estudiante.nombre_completo}}</p>
-  </div>
   <table class="table">
     <thead>
       <tr>

@@ -11,11 +11,12 @@ import { UsuarioService } from 'src/app/usuario/usuario.service';
 export class EstudianteComponent implements OnInit {
 
   public estudiantes: Usuario[];
-  public docente: Usuario;
+  public urlBack: string;
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
+    this.urlBack = this.router.url.split('/materia')[0]+'/materia'
     this.usuarioService.getEstudiantes(this.router.url.split('/')[5]).subscribe(
       res => this.estudiantes = res
     );
