@@ -473,7 +473,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     private Map<String, Object> getDataPractica(PracticaDTO post) {
         Map<String, Object> docData = new HashMap<>();
 
-        //docData.put("archivos", post.);
+        docData.put("archivos", post.getArchivos());
         docData.put("cod_planta", post.getCod_planta());
         docData.put("id_curso", post.getId_curso());
         docData.put("descripcion", post.getDescripcion());
