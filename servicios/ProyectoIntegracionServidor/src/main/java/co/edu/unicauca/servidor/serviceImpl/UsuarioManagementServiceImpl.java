@@ -43,10 +43,13 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         UsuarioDTO usuario = new UsuarioDTO();
         Boolean existe = buscarUsuario(correo);
         if (existe == false) {
+            int id = enQueVaId();
             String rol = "Estudiante";
+            usuario.setId_usuario(id);
             usuario.setNombre_completo(nombre);
             usuario.setRol(rol);
             usuario.setCorreo(correo);
+            usuario.setEstado(1);
             Map<String, Object> docData = getDocData(usuario);
             ApiFuture<WriteResult> writeResultApiFuture = getCollection("usuario").document().create(docData);
             try {
@@ -60,6 +63,28 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         } else {
             System.out.println("Ya existe");
             return false;
+        }
+    }
+
+    private int enQueVaId() {
+        UsuarioDTO usuario;
+        List<Integer> idsActuales = new ArrayList<>();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("USUARIO").get();
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                usuario = doc.toObject(UsuarioDTO.class);
+                idsActuales.add(usuario.getId_usuario());
+                //int id_usuario = usuario.getIdUsuario();
+            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(UsuarioManagementServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(UsuarioManagementServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (idsActuales.isEmpty()) {
+            return 1;
+        } else {
+            return idsActuales.size() + 1;
         }
     }
 
@@ -177,10 +202,11 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
 
     private Map<String, Object> getDocData(UsuarioDTO usuario) {
         Map<String, Object> docData = new HashMap<>();
+        docData.put("idUsuario", usuario.getId_usuario());
         docData.put("correo", usuario.getCorreo());
         docData.put("rol", usuario.getRol());
         docData.put("nombre_completo", usuario.getNombre_completo());
-
+        docData.put("estado", usuario.getEstado());
         return docData;
     }
 
@@ -283,7 +309,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     public Boolean cambiarEstadoParticipanteEntrada(String correo) {
         String Participante = BuscarParticipante(correo);
 
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection("participantes").document(Participante).update("estado", 1);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("usuario").document(Participante).update("estado", 1);
         try {
             if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
@@ -298,7 +324,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     public Boolean cambiarEstadoParticipanteSalida(String correo) {
         String Participante = BuscarParticipante(correo);
 
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection("participantes").document(Participante).update("estado", 0);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection("usuario").document(Participante).update("estado", 0);
         try {
             if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
@@ -320,7 +346,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 usuario = doc.toObject(UsuarioDTO.class);
-                usuario.setId_usuario(doc.getId());
+                usuario.setId(doc.getId());
                 response.add(usuario);
             }
             return response;
@@ -330,10 +356,9 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         }
     }
 
-
     private String BuscarParticipante(String correo) {
         String Participante = "vacio";
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("PARTICIPANTES").whereEqualTo("correo", correo).get();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("usuario").whereEqualTo("correo", correo).get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 Participante = doc.getId();
@@ -346,22 +371,21 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         }
         return Participante;
     }
-    
-    
+
     @Override
     public List<UsuarioDTO> list() {
 
         List<UsuarioDTO> response = new ArrayList<>();
         UsuarioDTO usuario;
-        
+
         //ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("usuario").get();
-        Query query =  firebase.getFirestore().collection("usuario").whereEqualTo("rol", "Docente");
+        Query query = firebase.getFirestore().collection("usuario").whereEqualTo("rol", "Docente");
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
-        
+
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 usuario = doc.toObject(UsuarioDTO.class);
-                usuario.setId_usuario(doc.getId());
+                usuario.setId(doc.getId());
                 response.add(usuario);
             }
             return response;
@@ -377,9 +401,9 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         ApiFuture<DocumentSnapshot> docData = ref.get();
         DocumentSnapshot doc = docData.get();
 
-        if(doc.exists()){
+        if (doc.exists()) {
             UsuarioDTO usuario = doc.toObject(UsuarioDTO.class);
-            usuario.setId_usuario(doc.getId());
+            usuario.setId(doc.getId());
             return usuario;
         }
 
@@ -394,11 +418,11 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         ApiFuture<WriteResult> writeResultApiFuture = usuarios.document().create(docData);
 
         try {
-            if(null != writeResultApiFuture.get()){
+            if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
             }
             return Boolean.FALSE;
-        } catch (Exception e){
+        } catch (Exception e) {
             return Boolean.FALSE;
         }
     }
@@ -408,7 +432,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         Map<String, Object> docData = getDocData(usuario);
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("usuario").document(id).set(docData);
         try {
-            if(null != writeResultApiFuture.get()){
+            if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
             }
             return Boolean.FALSE;
@@ -421,7 +445,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     public Boolean delete(String id) {
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("usuario").document(id).delete();
         try {
-            if(null != writeResultApiFuture.get()){
+            if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
             }
             return Boolean.FALSE;
@@ -429,6 +453,5 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
             return Boolean.FALSE;
         }
     }
-    
 
 }

@@ -395,7 +395,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
                 try {
                     for (DocumentSnapshot doc2 : querySnapshotApiFutureUsuario.get().getDocuments()) {
                         usuario = doc2.toObject(UsuarioDTO.class);
-                        usuario.setId_usuario(doc2.getId());
+                        usuario.setId(doc2.getId());
                         if (usuario.getEstado()== 1) {
                             contados += 1;
                         }

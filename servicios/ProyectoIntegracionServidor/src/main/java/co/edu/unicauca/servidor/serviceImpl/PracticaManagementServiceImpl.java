@@ -445,7 +445,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 grupo = doc.toObject(UsuarioDTO.class);
-                grupo.setId_usuario(doc.getId());
+                grupo.setId(doc.getId());
                 cursos = grupo.getCursos();
                 //System.out.println(cursos);
                 return cursos;
