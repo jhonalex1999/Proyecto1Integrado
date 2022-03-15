@@ -1,11 +1,18 @@
 <div class="banner_titulo">
     <div class="contenedor_titulo">
-        <div class="titulo_pagina">
-            <h1>Agenda Global</h1>
-        </div>
+      <div class="titulo_pagina">
+        <h1>Agenda Global</h1>
+      </div>
+      <div>
+        <button class="boton_agregar" mat-flat-button color="warn" (click)="cargar()">Mostrar Franjas Ocupadas</button>
+      </div>
     </div>
-</div>
+  </div>
+
+
+
+
+
 <div class="contenedorcalendar" >
-    <button (click)="cargar()">Mostrar Franjas Ocupadas</button>
     <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar>
 </div>

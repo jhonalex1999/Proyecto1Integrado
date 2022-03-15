@@ -6,6 +6,7 @@ import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { addMinutes, addHours, addDays, startOfDay } from 'date-fns';
 import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/service/service.service';
+import Swal from 'sweetalert2';
 import { Agendamiento } from '../../modelos/agendamiento';
 import { colors } from '../utils/colors';
 
@@ -17,6 +18,7 @@ import { colors } from '../utils/colors';
 })
 export class CalendarCaidaLibreComponent implements OnInit {
 
+ 
   eventSelected: Date;
   eventFranja: number;
   eventYear: number;
@@ -43,7 +45,7 @@ export class CalendarCaidaLibreComponent implements OnInit {
 
   public eventosAux: Agendamiento[];
 
-  private COD_LAB: number = 1;
+  private COD_LAB: number = 2;
 
   integrantes = new FormGroup({
     integrante_1: new FormControl('', [Validators.required, Validators.email]),
@@ -81,7 +83,11 @@ export class CalendarCaidaLibreComponent implements OnInit {
   eventClicked({ event }: { event: CalendarEvent }): void {
 
     if (event.meta.codG != -1) {
-      alert("La practica en esta franja horaria ya ha sido agendada por alguien más!");
+      Swal.fire({
+        title: "¡ERROR!",
+        text: "La practica en esta franja horaria ya ha sido agendada por alguien más.",
+        icon: "error"
+      });
     }else {
       this.eventSelected = event.start;
       this.eventFranja = event.meta.id;
@@ -90,7 +96,10 @@ export class CalendarCaidaLibreComponent implements OnInit {
       this.eventDate = event.start.getDate();
       this.eventHour = event.start.getHours();
       this.eventMinute = event.start.getMinutes();
-      alert("Haz Clickeado el evento! Dia " + event.start.getDate() + " Hora " + event.start.getHours());
+      //alert("Haz Clickeado el evento! Dia " + event.start.getDate() + " Hora " + event.start.getHours());
+      Swal.fire({
+        title: "¡EVENTO REGISTRADO!", text:"Haz Clickeado el evento! Día " + event.start.getDate() + ", Hora " + event.start.getHours(), icon:"success"
+      });
     }
 
 
@@ -110,9 +119,15 @@ export class CalendarCaidaLibreComponent implements OnInit {
       rta = respuesta
       console.log(rta)
       if (rta == 1) {
-        alert("¡Practica agendada exitosamente!");
+        Swal.fire({
+          title:"¡Practica agendada exitosamente!",icon:"success"
+        });
+        //alert("");
       } else if (rta == 0) {
-        alert("Envio un correo no universitario")
+        Swal.fire({
+          title: "¡ADVERTENCIA!", text:"Envió un correo no universitario.", icon:"warning"
+        });
+        //alert("Envio un correo no universitario")
       }
     });
   } 
@@ -164,4 +179,6 @@ export class CalendarCaidaLibreComponent implements OnInit {
       this.eventosQuemados = response;
     });
   }
+
+
 }

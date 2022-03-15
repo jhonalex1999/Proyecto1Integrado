@@ -7,6 +7,7 @@ import { EstudianteComponent } from './moduloProfesor/materia/estudiante/estudia
 import { MateriaComponent } from './moduloProfesor/materia/materia.component';
 import { PracticaComponent } from './moduloProfesor/materia/practica.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { GuardsGuard } from './guards.guard';
 
 const routes: Routes = [{
   path: '',
@@ -21,16 +22,15 @@ const routes: Routes = [{
 { path: ':correo/cursos/:id/materia', component: MateriaComponent },
 { path: ':correo/cursos/:id/materia/:nombre/estudiante', component: EstudianteComponent },
 { path: ':correo/cursos/:id/materia/practica', component: PracticaComponent },
-{ path: ':correo/cursos/:id/materia/:id/practica', component: PracticaComponent },
 
 
 { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
-{ path: 'inicio', loadChildren: () => import('./moduloEstudiante/inicio/inicio.module').then(m => m.InicioModule) },
-{ path: 'calendario', loadChildren: () => import('./moduloEstudiante/calendarios/calendario/calendario.module').then(m => m.CalendarioModule) },
-{ path: 'materias', loadChildren: () => import('./moduloEstudiante/materias/materias.module').then(m => m.MateriasModule) },
-{ path: 'caidaLibre', loadChildren: () => import('./moduloEstudiante/labs/caida-libre/caida-libre.module').then(m => m.CaidaLibreModule) },
-{ path: 'leyHooke', loadChildren: () => import('./moduloEstudiante/labs/ley-hooke/ley-hooke.module').then(m => m.LeyHookeModule) },
-{ path: 'movParabolico', loadChildren: () => import('./moduloEstudiante/labs/mov-parabolico/mov-parabolico.module').then(m => m.MovParabolicoModule) },
+{ path: 'inicio', loadChildren: () => import('./moduloEstudiante/inicio/inicio.module').then(m => m.InicioModule),canActivate:[GuardsGuard] },
+{ path: 'caidalibre', loadChildren: () => import('./moduloEstudiante/labs/caida-libre/caida-libre.module').then(m => m.CaidaLibreModule),canActivate:[GuardsGuard] },
+{ path: 'leyhooke', loadChildren: () => import('./moduloEstudiante/labs/ley-hooke/ley-hooke.module').then(m => m.LeyHookeModule),canActivate:[GuardsGuard] },
+{ path: 'movparabolico', loadChildren: () => import('./moduloEstudiante/labs/mov-parabolico/mov-parabolico.module').then(m => m.MovParabolicoModule),canActivate:[GuardsGuard] },
+{ path: 'calendario', loadChildren: () => import('./moduloEstudiante/calendarios/calendario/calendario.module').then(m => m.CalendarioModule),canActivate:[GuardsGuard] },
+{ path: 'materias', loadChildren: () => import('./moduloEstudiante/materias/materias.module').then(m => m.MateriasModule),canActivate:[GuardsGuard] },
 ];
 
 @NgModule({

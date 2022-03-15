@@ -16,8 +16,9 @@ export class VincularmateriaComponent implements OnInit {
   }
 
   enviarcodigo(data:any){
+    console.log(data)
     this.authService.codigos(data);
-    window.location.reload();
+    //window.location.reload();
   }
 
 }

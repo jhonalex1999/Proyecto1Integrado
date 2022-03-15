@@ -54,7 +54,7 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "{correo}/{codCurso}/matricularCurso")
-    public ResponseEntity matricularCurso(@PathVariable(value = "codCurso") int codigoCurso, @PathVariable(value = "correo") String correo_institucional) {
+    public ResponseEntity matricularCurso(@PathVariable(value = "codCurso") String codigoCurso, @PathVariable(value = "correo") String correo_institucional) {
         return new ResponseEntity(service.agregarCurso(correo_institucional, codigoCurso), HttpStatus.OK);
     }
 

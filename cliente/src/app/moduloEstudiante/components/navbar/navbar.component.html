@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+
+    <button mat-button routerLink="/inicio">
+    <mat-icon>home</mat-icon> 
+    {{userName$}}</button>
+    <img class = "img1" src="{{userPhoto$}}" id="user-photo">
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button routerLink="/calendario">Ver Calendario</button>
+        <button mat-button (click)="onLogout()">Salir</button>
+    </div>
+    <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+     <mat-icon>menu</mat-icon>
+    </button>
+  
+  </mat-toolbar>
+  <mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item routerLink="/calendario">Ver Calendario</button>
+    <button mat-menu-item (click)="onLogout()">Salir</button>
+    <!--<button mat-menu-item>Help</button>-->
+  </mat-menu>

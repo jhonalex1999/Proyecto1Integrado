@@ -45,7 +45,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         if (existe == false) {
             int id = enQueVaId();
             String rol = "Estudiante";
-            usuario.setId_usuario(id);
+            usuario.setIdUsuario(id);
             usuario.setNombre_completo(nombre);
             usuario.setRol(rol);
             usuario.setCorreo(correo);
@@ -73,7 +73,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 usuario = doc.toObject(UsuarioDTO.class);
-                idsActuales.add(usuario.getId_usuario());
+                idsActuales.add(usuario.getIdUsuario());
                 //int id_usuario = usuario.getIdUsuario();
             }
         } catch (InterruptedException ex) {
@@ -89,7 +89,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     }
 
     @Override
-    public Boolean agregarCurso(String correo_institucional, int codigo_curso) {
+    public Boolean agregarCurso(String correo_institucional, String codigo_curso) {
         String Agendamiento = "vacio";
         //Primero buscara el curso
         //String nombre_curso = buscarCodigoCurso(codigo);
@@ -224,7 +224,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
 
     private Map<String, Object> getDocData(UsuarioDTO usuario) {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("idUsuario", usuario.getId_usuario());
+        docData.put("idUsuario", usuario.getIdUsuario());
         docData.put("correo", usuario.getCorreo());
         docData.put("rol", usuario.getRol());
         docData.put("nombre_completo", usuario.getNombre_completo());
