@@ -1,10 +1,21 @@
 <div class="banner_titulo">
   <div class="contenedor_titulo">
     <div class="titulo_pagina">
-      <h1>Estudiantes Matriculados</h1>
+      <h1>Estudiantes matriculados</h1>
+    </div>
+    <div>
+      <button class="boton_add" mat-flat-button>Nueva Practica</button>
+      <button class="boton_ests" mat-icon-button><mat-icon>assignment</mat-icon></button>
     </div>
   </div>
 </div>
+
+<div class="listcursos">
+  <div style="width: 10%;"></div>
+  <div id="listitle" style="width: 40%;">Practicas en curso</div>
+  <div style="width: 10%;"></div>
+</div>
+
 <div class="container" >
   <h2>Docente</h2>
   <div *ngFor="let estudiante of estudiantes">
