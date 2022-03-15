@@ -53,10 +53,10 @@
       <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
         <mat-menu #menu="matMenu">
-          <!--<button mat-menu-item [routerLink]="[url+'/'+curso.id_curso+'/form']">
+          <button mat-menu-item [routerLink]="[url+'/'+practica.id_practica+'/practica']">
               <mat-icon>mode_edit</mat-icon>
               <span>Editar</span>
-            </button>-->
+            </button>
           <button mat-menu-item (click)="updatePractica(practica)">
             <mat-icon>done</mat-icon>
             <span>Marcar Como Completada</span>
