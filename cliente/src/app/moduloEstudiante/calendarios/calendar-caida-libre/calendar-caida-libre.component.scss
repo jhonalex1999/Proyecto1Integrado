@@ -8,26 +8,24 @@
     float: left;
     padding: 20px;
     border: 1px dashed rgb(191, 202, 223);
-}  
+}
 
-.content{
-    width:100vw;
-    height:100vh;
-    margin:0;
-    background-image: linear-gradient(rgba(1, 1, 1, 0.459), rgba(1, 1, 1, 0.6)), url("https://ocecauca.files.wordpress.com/2015/05/dsc_0801.jpg");
-    overflow:hidden !important;
-    font-family: 'Source Sans 3', sans-serif !important;
-    background-position:center center;
-    background-repeat: no-repeat; 
+.content {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-image: linear-gradient(rgba(1, 1, 1, 0.459), rgba(1, 1, 1, 0.6)),
+        url("https://ocecauca.files.wordpress.com/2015/05/dsc_0801.jpg");
+    overflow: hidden !important;
+    font-family: "Source Sans 3", sans-serif !important;
+    background-position: center center;
+    background-repeat: no-repeat;
     background-size: cover;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--white);
-    position:relative;
-    
-    
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    position: relative;
 }
 
 .mat-tab-label {
@@ -42,6 +40,48 @@
     background-color: rgb(65, 72, 85);
     color: rgb(255, 255, 255);
 }
-.mat-ink-bar {
-    background-color: green;
+.svg-wrapper {
+    height: 60px;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+}
+
+.shape {
+    fill: transparent;
+    stroke-dasharray: 140 540;
+    stroke-dashoffset: -474;
+    stroke-width: 8px;
+    stroke: #3e549a;
+}
+
+.text {
+    color: #3e549a;
+    font-family: "Roboto Condensed";
+    font-size: 22px;
+    letter-spacing: 8px;
+    line-height: 32px;
+    text-align: center;
+    position: relative;
+    top: -48px;
+}
+
+@keyframes draw {
+    0% {
+        stroke-dasharray: 140 540;
+        stroke-dashoffset: -474;
+        stroke-width: 8px;
+    }
+    100% {
+        stroke-dasharray: 760;
+        stroke-dashoffset: 0;
+        stroke-width: 2px;
+    }
+}
+
+.svg-wrapper:hover .shape {
+    -webkit-animation: 0.5s draw linear forwards;
+    animation: 0.5s draw linear forwards;
 }

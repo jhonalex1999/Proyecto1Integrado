@@ -1,36 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <!--FONT AWESOME-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
-<div class="col-lg-12 laboratorios">
-    <body>
-        <div *ngIf="(user$)!">
-            <h2>Bienvenido {{userName$}} a los laboratorios remotos de mécanica.</h2>
-            <nav>
-                <div class="salir">
-                    <button class="btn btn-danger" (click)="onLogout()">Logout</button>
-                </div>
-            </nav>
+<app-navbar></app-navbar>
+
+<body>
+
+
+    <div class="banner_titulo">
+        <div class="contenedor_titulo">
+            <div class="titulo_pagina">
+                <h1>Inicio</h1>
+            </div>
+            <div>
+                <button class="boton_agregar" mat-button (click)="openDialog()">Vincular Materia</button>
+            </div>
         </div>
-    </body>
-</div>
-<div class="background">
+    </div>
+
+
     <div class="materias">
         <mat-card class="primera-card" *ngFor="let lista of listado">
             <mat-card-title class="titulo-practica">{{lista}}</mat-card-title>
-            <mat-card-content> Content</mat-card-content>
-            <br>
-            <br>
+            <mat-card-content>
+                <p>
+                    Content
+                </p>
+            </mat-card-content>
             <button mat-raised-button class="irPractica" routerLink="/materias">Ir al curso</button>
         </mat-card>
     </div>
-    <div class="opciones">
-        <button class="opCalendario" mat-raised-button routerLink="/calendario">Ver Calendario</button>
-        <button mat-raised-button (click)="openDialog()">Vincular Materia</button>
+</body>
+<footer class="footer">
+    <div class="content">
+        <section class="social_icons">
+            <a href="http://www.unicauca.edu.co/versionP/" title="Pagina Web Unicauca" target="_blank"><i
+                    class="fa fa-university"></i></a>
+            <a href="https://es-la.facebook.com/universidadelcauca/" title="Facebook" target="_blank"><i
+                    class="fa fa-facebook"></i></a>
+            <a href="https://www.instagram.com/universidadelcauca/?hl=es" title="Instagram" target="_blank"><i
+                    class="fa fa-instagram"></i></a>
+            <a href="https://twitter.com/unicauca" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/c/unicaucapopayan/featured" title="YouTube" target="_blank"><i
+                    class="fa fa-youtube"></i></a>
+        </section>
     </div>
-</div>
-<br>
-<div>
+</footer>
 
-
-</div>
+</html>

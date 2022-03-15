@@ -6,6 +6,11 @@ import { InicioComponent } from './inicio.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { NavbarModule } from '../components/navbar/navbar.module';
 
 //import { DemoUtilsModule } from '../calendarios/utils/module';
 
@@ -20,7 +25,12 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
-//    DemoUtilsModule
+    //    DemoUtilsModule
+    MatMenuModule,
+    MatToolbarModule,
+    FlexLayoutModule,
+    MatIconModule,
+    NavbarModule
   ]
 })
 export class InicioModule { }

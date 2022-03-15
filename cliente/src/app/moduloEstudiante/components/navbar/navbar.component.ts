@@ -2,50 +2,25 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Auth } from '@angular/fire/auth';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/service/service.service';
-import { VincularmateriaComponent } from '../vincularmateria/vincularmateria.component';
+import { VincularmateriaComponent } from '../../vincularmateria/vincularmateria.component';
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
-export class InicioComponent implements OnInit {
-
-  rol$: string;
-
-  constructor(public authService: AuthService, private router: Router, private cookieService: CookieService, private httpClient: HttpClient, private auth: Auth, public dialog: MatDialog) { }
+export class NavbarComponent implements OnInit {
   public user$ = this.cookieService.get('Token_email');
   public userName$ = this.cookieService.get('Token_name');
   public userPhoto$ = this.cookieService.get('Token_photo');
-  public listado : any = [];
 
-  materias: string;
   codigo: number;
 
-  openDrawerMenu(){
-    var x = document.getElementById("opciones")!;
-    if (x.className === "opciones"){
-      x.className += " responsive";
-    } else {
-      x.className = "opciones";
-    }
-  }
+  constructor(public authService: AuthService, private router: Router, private cookieService: CookieService, private httpClient: HttpClient, public dialog: MatDialog) { }
 
-
-  
   ngOnInit(): void {
-    this.authService.verCursosMatriculados().subscribe(respuesta => {this.listado = respuesta});
-    this.authService.saberRol().subscribe(respuesta => {
-      this.rol$ = respuesta
-    });
-    if (this.cookieService.check('Token_access')) {
-      this.router.navigate(['/inicio']);
-    } else {
-      this.router.navigate(['/login'])
-    }
   }
 
   onLogout() {
@@ -72,5 +47,5 @@ export class InicioComponent implements OnInit {
       this.codigo = result;
     });
   }
-
 }
+  
