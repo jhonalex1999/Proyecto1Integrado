@@ -55,8 +55,9 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
     @Override
     public Boolean descargarArchivoProfesor(String codigo_planta) throws MalformedURLException, IOException, Exception {
         try {
-            String descripcion = "";
+            //String descripcion = "";
             PracticaDTO practica;
+            ArrayList<String> urls = new ArrayList();
 
             ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("practica").whereEqualTo("cod_planta", codigo_planta).get();
             if (querySnapshotApiFuture.get().isEmpty()) {
@@ -65,41 +66,42 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
             try {
                 for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                     practica = doc.toObject(PracticaDTO.class);
-                    descripcion = practica.getDescripcion();
-                    if (descripcion.equals("")) {
-                        return false;
-                    }
+                    urls = practica.getArchivos();
+                    //descripcion = practica.getDescripcion();
+                    //if (descripcion.equals("")) {
+                    //    return false;
+                    //}
                 }
             } catch (Exception e) {
                 return null;
             }
-            String ruta = System.getProperty("user.home");
-            // Url con la informacion
+            for (int i = 0; i < urls.size(); i++) {
+                String ruta = System.getProperty("user.home");
+                // Url con la informacion
+                URL url = new URL(urls.get(i));
 
-            URL url = new URL(descripcion);
+                // establecemos conexion
+                URLConnection urlCon = url.openConnection();
 
-            // establecemos conexion
-            URLConnection urlCon = url.openConnection();
+                // Sacamos por pantalla el tipo de fichero
+                //System.out.println(urlCon.getContentType());
 
-            // Sacamos por pantalla el tipo de fichero
-            System.out.println(urlCon.getContentType());
+                // Se obtiene el inputStream de la foto web y se abre el fichero
+                // local.
+                InputStream is = urlCon.getInputStream();
+                FileOutputStream fos = new FileOutputStream(ruta + "/Downloads/Guia-" + codigo_planta + "-" + i + ".pdf");
 
-            // Se obtiene el inputStream de la foto web y se abre el fichero
-            // local.
-            InputStream is = urlCon.getInputStream();
-            FileOutputStream fos = new FileOutputStream(ruta + "/Downloads/Guia-" + codigo_planta + ".pdf");
-
-            // Lectura de la foto de la web y escritura en fichero local
-            byte[] array = new byte[1000]; // buffer temporal de lectura.
-            int leido = is.read(array);
-            while (leido > 0) {
-                fos.write(array, 0, leido);
-                leido = is.read(array);
+                // Lectura de la foto de la web y escritura en fichero local
+                byte[] array = new byte[1000]; // buffer temporal de lectura.
+                int leido = is.read(array);
+                while (leido > 0) {
+                    fos.write(array, 0, leido);
+                    leido = is.read(array);
+                }
+                // cierre de conexion y fichero.
+                is.close();
+                fos.close();
             }
-
-            // cierre de conexion y fichero.
-            is.close();
-            fos.close();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
