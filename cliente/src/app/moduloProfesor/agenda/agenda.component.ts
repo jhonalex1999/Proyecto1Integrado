@@ -39,26 +39,33 @@ export class AgendaComponent implements OnInit {
     this.events = [{}];
 
     this.options = {
+      initialView: "dayGridWeek",
       plugins: [dayGridPlugin, timeGridPlugin],
       defaultDate: new Date(),
       locale: 'es',
       editable: false,
       eventLimit: false,
       dropabble: false,
+      
       header: {
         left: 'prev,next',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        right: 'timeGridWeek,dayGridMonth,timeGridDay'
       },
     }
   }
 
   cargarEventos(index: number) {
-    this.events.push({
-      title: this.practica[index].titulo,
-      start: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_inicio,
-      end: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_fin
-    });
+    try {
+      this.events.push({
+        title: this.practica[index].titulo,
+        start: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_inicio,
+        end: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_fin
+      });
+    } catch (error) {
+      
+    }
+    
   }
 
   cargar() {

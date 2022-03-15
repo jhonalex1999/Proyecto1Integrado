@@ -24,13 +24,13 @@ export class MateriaComponent implements OnInit {
   public activarCalendario: boolean = false;
   public franjaHoraria!: FranjaHoraria[];
 
-  practica: Practica[] | undefined;
+  practicas: Practica[] | undefined;
   curso: Curso | undefined;
   url: string | undefined;
 
   loggedIn: boolean | undefined;
 
-  constructor(private practicaService: PracticaService, private cursoService: CursoService,private router: Router, private cookieService: CookieService) { }
+  constructor(private practicaService: PracticaService, private cursoService: CursoService, private router: Router, private cookieService: CookieService) { }
 
   public user$ = this.cookieService.get('Token_email');
   ngOnInit() {
@@ -38,27 +38,28 @@ export class MateriaComponent implements OnInit {
     var id = this.router.url.split('/')[3];
 
     this.practicaService.get(id).subscribe(
-      e => this.practica = e
+      e => this.practicas = e
     );
-    
+
     this.cursoService.get(id).subscribe(
       c => this.curso = c
     );
 
   }
 
-  delete(practicaBorrar:Practica): void{
-    console.log("Delete practica con ID: "+practicaBorrar.id_practica);
+  delete(practicaBorrar: Practica): void {
+    console.log("Delete practica con ID: " + practicaBorrar.id_practica);
     this.practicaService.delete(practicaBorrar.id_practica!).subscribe(
-      res=>this.practicaService.get(this.router.url.split('/')[3]).subscribe(
-        response=>this.practica=response
+      res => this.practicaService.get(this.router.url.split('/')[3]).subscribe(
+        response => this.practicas = response
       )
     );
   }
 
-  updatePractica(practica: Practica): void{
+  updatePractica(practica: Practica): void {
     console.log("Update practica con ID: " + practica.id_practica);
     practica.estado = "0";
-    this.practicaService.update(practica.id_practica,practica).subscribe();
+    this.practicaService.update(practica.id_practica, practica).subscribe();
   }
+    
 }
