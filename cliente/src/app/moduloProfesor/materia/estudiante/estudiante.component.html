@@ -1,0 +1,27 @@
+<div class="banner_titulo">
+  <div class="contenedor_titulo">
+    <div class="titulo_pagina">
+      <h1>Estudiantes Matriculados</h1>
+    </div>
+  </div>
+</div>
+<div class="container" >
+  <h2>Docente</h2>
+  <div *ngFor="let estudiante of estudiantes">
+    <p *ngIf="estudiante.rol != 'Estudiante'">{{estudiante.nombre_completo}}</p>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre Completo</th>
+        <th scope="col">Correo</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let estudiante of estudiantes">
+      <tr *ngIf="estudiante.rol == 'Estudiante'">
+        <td>{{estudiante.nombre_completo}}</td>
+        <td>{{estudiante.correo}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

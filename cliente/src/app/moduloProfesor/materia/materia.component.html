@@ -4,9 +4,8 @@
       <h1>{{curso?.nombre_curso}}</h1>
     </div>
     <div>
-      
       <button class="boton_add" mat-flat-button [routerLink]="[url+'/practica']">Nueva Practica</button>
-      <button class="boton_ests" mat-icon-button [routerLink]=""><mat-icon>people</mat-icon></button>
+      <button class="boton_ests" mat-icon-button [routerLink]="[url+'/'+ curso?.nombre_curso +'/estudiante']"><abbr title="Estudiantes Matriculados"><mat-icon>people</mat-icon></abbr></button>
     </div>
   </div>
 </div>

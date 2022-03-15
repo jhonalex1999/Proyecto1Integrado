@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AgendaComponent } from './moduloProfesor/agenda/agenda.component';
 import { CursosComponent } from './moduloProfesor/cursos/cursos.component';
 import { FormCursosComponent } from './moduloProfesor/cursos/form-cursos.component';
+import { EstudianteComponent } from './moduloProfesor/materia/estudiante/estudiante.component';
 import { MateriaComponent } from './moduloProfesor/materia/materia.component';
 import { PracticaComponent } from './moduloProfesor/materia/practica.component';
 import { UsuarioComponent } from './usuario/usuario.component';
@@ -18,6 +19,7 @@ const routes: Routes = [{
 { path: ':correo/cursos/form', component: FormCursosComponent },
 { path: ':correo/agenda', component: AgendaComponent },
 { path: ':correo/cursos/:id/materia', component: MateriaComponent },
+{ path: ':correo/cursos/:id/materia/:nombre/estudiante', component: EstudianteComponent },
 { path: ':correo/cursos/:id/materia/practica', component: PracticaComponent },
 { path: ':correo/cursos/:id/materia/:id/practica', component: PracticaComponent },
 
