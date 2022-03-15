@@ -35,90 +35,100 @@ public class PracticaController {
     @Autowired
     private PracticaManagementService service;
 
+    @GetMapping(value = "/{codigo_planta}/descargarArchivoProfesor")
+    public ResponseEntity descargarArchivoProfesor(@PathVariable(value = "codigo_planta") String codigo_planta) throws Exception {
+        return new ResponseEntity(service.descargarArchivoProfesor(codigo_planta), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/{codigoPlanta}/listarAgendamiento")
     public ResponseEntity listarAgendamiento(@PathVariable(value = "codigoPlanta") int codigoPlanta) {
         return new ResponseEntity(service.listarAgendamiento(codigoPlanta), HttpStatus.OK);
     }
+
     @GetMapping(value = "/listarPracticas")
-    public ResponseEntity listarPracticas(){
+    public ResponseEntity listarPracticas() {
         return new ResponseEntity(service.listarPracticas(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{codGrupal}/verificarAgendamiento")
-    public ResponseEntity verificarAgendamiento(@PathVariable(value = "codGrupal") int codGrupal){
+    public ResponseEntity verificarAgendamiento(@PathVariable(value = "codGrupal") int codGrupal) {
         return new ResponseEntity(service.verificarAgendamiento(codGrupal), HttpStatus.OK);
     }
+
     @PostMapping(value = "/{idAgendamiento}/agregarParticipantes")
     public ResponseEntity agregarParticipantes(@RequestBody ArrayList<String> participantes, @PathVariable(value = "idAgendamiento") Integer idAgendamiento) {
         return new ResponseEntity(service.agregarParticipantes(participantes, idAgendamiento), HttpStatus.OK);
     }
+
     @GetMapping(value = "/{idAgendamiento}/{codGrupal}/buscarHorario")
     public ResponseEntity buscarHorario(@PathVariable(value = "idAgendamiento") int idAgendamiento, @PathVariable(value = "codGrupal") int codGrupal) {
         return new ResponseEntity(service.buscarHorario(idAgendamiento, codGrupal), HttpStatus.OK);
     }
+
     @GetMapping(value = "/{correo}/saberCodigoGrupo")
     public ResponseEntity saberCodigoGrupo(@PathVariable(value = "correo") String correo) {
         return new ResponseEntity(service.saberCodigoGrupo(correo), HttpStatus.OK);
     }
-    
-    
-    
-    
-    
+
+    @GetMapping(value = "/{codigo_planta}/descripcionProfesorPractica")
+    public ResponseEntity descripcionProfesorPractica(@PathVariable(value = "codigo_planta") int codigo_planta) {
+        return new ResponseEntity(service.descripcionProfesorPractica(codigo_planta), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{codGrupal}/{codigoPlanta}/duracion")
+    public ResponseEntity duracion(@PathVariable(value = "codGrupal") int codGrupal, @PathVariable(value = "codigoPlanta") int codigoPlanta) {
+        return new ResponseEntity(service.duracion(codGrupal, codigoPlanta), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/listarPracticasCurso/{correo}")
-    public ResponseEntity listarPracticasCurso(@PathVariable(value = "correo") String correo){
+    public ResponseEntity listarPracticasCurso(@PathVariable(value = "correo") String correo) {
         return new ResponseEntity(service.listarPracticasCurso(correo), HttpStatus.OK);
     }
-    
-     @PostMapping(value = "{codigoCurso}/CrearPractica")
+
+    @PostMapping(value = "{codigoCurso}/CrearPractica")
     public ResponseEntity crearPractica(@PathVariable(value = "codigoCurso") String codigoCurso) {
         return new ResponseEntity(service.crearPractica(codigoCurso), HttpStatus.OK);
     }
-    
-     @PutMapping(value = "{codCurso}/modificarPractica/{idPractica}")
+
+    @PutMapping(value = "{codCurso}/modificarPractica/{idPractica}")
     public ResponseEntity modificarPractica(@PathVariable(value = "codCurso") String codigoCurso, @PathVariable(value = "idPractica") String idPractica) {
         return new ResponseEntity(service.modificarPractica(codigoCurso, idPractica), HttpStatus.OK);
     }
-    
-     @DeleteMapping(value = "{codCurso}/eliminarPractica/{idPractica}")
+
+    @DeleteMapping(value = "{codCurso}/eliminarPractica/{idPractica}")
     public ResponseEntity eliminarPractica(@PathVariable(value = "codCurso") String codigoCurso, @PathVariable(value = "idPractica") String idPractica) {
         return new ResponseEntity(service.eliminarPractica(codigoCurso, idPractica), HttpStatus.OK);
     }
-    
-    
-    
+
     @GetMapping(value = "/list")
-    public ResponseEntity list(){
+    public ResponseEntity list() {
         return new ResponseEntity(service.list(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/list/{id}")
     public ResponseEntity edit(@PathVariable(value = "id") String id) throws ExecutionException, InterruptedException, ExecutionException {
         return new ResponseEntity(service.listById(id), HttpStatus.OK);
-            
+
     }
-    
+
     @GetMapping(value = "/listbyCorreo/{id}")
-    public ResponseEntity listByIdCurso(@PathVariable(value = "id") String id)  {
+    public ResponseEntity listByIdCurso(@PathVariable(value = "id") String id) {
         return new ResponseEntity(service.listByIdDocente(id), HttpStatus.OK);
     }
-    
 
     @PostMapping(value = "/add")
-    public ResponseEntity add(@RequestBody PracticaDTO practica){
+    public ResponseEntity add(@RequestBody PracticaDTO practica) {
         return new ResponseEntity(service.add(practica), HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity edit(@PathVariable(value = "id") String id, @RequestBody PracticaDTO practica){
+    public ResponseEntity edit(@PathVariable(value = "id") String id, @RequestBody PracticaDTO practica) {
         return new ResponseEntity(service.edit(id, practica), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity delete(@PathVariable(value = "id") String id){
+    public ResponseEntity delete(@PathVariable(value = "id") String id) {
         return new ResponseEntity(service.delete(id), HttpStatus.OK);
     }
-    
-     
-    
+
 }

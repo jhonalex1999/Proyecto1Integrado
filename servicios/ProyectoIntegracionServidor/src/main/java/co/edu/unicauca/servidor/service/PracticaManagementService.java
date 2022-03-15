@@ -7,6 +7,8 @@ package co.edu.unicauca.servidor.service;
 
 import co.edu.unicauca.servidor.dto.AgendamientoDTO;
 import co.edu.unicauca.servidor.dto.PracticaDTO;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,17 +39,23 @@ public interface PracticaManagementService {
     public Object modificarPractica(String codigoCurso, String idPractica);
 
     public Object eliminarPractica(String codigoCurso, String idPractica);
-    
-   
-    
+
+    Boolean descargarArchivoProfesor(String codigo_planta) throws MalformedURLException, IOException, Exception;
+
+    String descripcionProfesorPractica(int codigo_planta);
+
+    int duracion(int codGrupal, int codigoPlanta);
+
     List<PracticaDTO> list();
-    
+
     PracticaDTO listById(String id) throws ExecutionException, InterruptedException;
 
     Boolean add(PracticaDTO practica);
+
     Boolean edit(String id, PracticaDTO practica);
+
     Boolean delete(String id);
 
     public List<PracticaDTO> listByIdDocente(String correo);
-    
+
 }

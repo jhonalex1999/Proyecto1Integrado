@@ -14,6 +14,7 @@ import lombok.Data;
 @Data
 public class AgendamientoDTO {
 
+    private String id;
     private Integer cod_grupal;
     private Integer cod_planta;
     private Boolean estado_disposicion;
