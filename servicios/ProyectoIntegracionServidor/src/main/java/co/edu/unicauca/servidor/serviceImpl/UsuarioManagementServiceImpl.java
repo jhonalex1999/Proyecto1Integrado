@@ -15,6 +15,7 @@ import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.FieldValue;
+import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import java.util.ArrayList;
@@ -332,8 +333,11 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
 
         List<UsuarioDTO> response = new ArrayList<>();
         UsuarioDTO usuario;
-
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("usuario").get();
+        
+        //ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection("usuario").get();
+        Query query =  firebase.getFirestore().collection("usuario").whereEqualTo("rol", "Docente");
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
+        
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 usuario = doc.toObject(UsuarioDTO.class);

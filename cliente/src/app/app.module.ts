@@ -39,8 +39,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
 import { CursosComponent } from './moduloProfesor/cursos/cursos.component';
 import { FormCursosComponent } from './moduloProfesor/cursos/form-cursos.component';
 import { NavbarComponent } from './moduloProfesor/navbar/navbar.component';
@@ -98,6 +99,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
     MatDatepickerModule,
     MatChipsModule,
     FullCalendarModule,
+    MatTableModule,
 
   ],
   providers: [

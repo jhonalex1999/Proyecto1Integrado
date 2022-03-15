@@ -12,22 +12,27 @@ export class UsuarioService {
 
   constructor(private http:HttpClient) { }
   
-  //Crear curso
+  //Crear Usuario
   create(usuario:Usuario):Observable<Usuario>{
     return this.http.post<Usuario>(this.url+'/add', usuario);
   }
 
-  //Obtener un Curso
+  //Obtener un Usuario
   get(id:string):Observable<Usuario>{
     return this.http.get<Usuario>(this.url+'/list/'+id);
   }
 
-  //Update Curso
+  //Obtener Usuarios
+  getAll():Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(this.url+'/list');
+  }
+
+  //Update Usuario
   update(id:string,usuario:Usuario):Observable<Usuario>{
     return this.http.put<Usuario>(this.url+'/update'+'/'+id,usuario);
   }
 
-  //Eliminar Curso
+  //Eliminar Usuario
   delete(id:string):Observable<Usuario>{
     return this.http.delete<Usuario>(this.url+'/delete/'+id);
   }
