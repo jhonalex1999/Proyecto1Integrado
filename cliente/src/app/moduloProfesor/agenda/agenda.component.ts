@@ -17,15 +17,26 @@ export class AgendaComponent implements OnInit {
   constructor(private franjaService: FranjaHorariaService, private cookieService: CookieService, private practicaService: PracticaService) { }
 
   public user$ = this.cookieService.get('Token_email');
-  public events: any[];
+  public events = [{}];
   public options: any;
   public franjaHoraria: FranjaHoraria[];
-  public practica: Practica;
+  public practica: Practica[];
+
+  public aux: any;
 
   ngOnInit(): void {
     this.franjaService.getAll().subscribe(
-      p => this.franjaHoraria = p
+      p => {
+        this.franjaHoraria = p;
+      }
     );
+
+    this.practicaService.getAll().subscribe(
+      e => {
+        this.practica = e;
+      });
+
+    this.events = [{}];
 
     this.options = {
       plugins: [dayGridPlugin, timeGridPlugin],
@@ -42,39 +53,22 @@ export class AgendaComponent implements OnInit {
     }
   }
 
-  public band: boolean = false;
-  async validarHorario(): Promise<boolean> {
-    try {
-      if (this.franjaHoraria.length && this.band == false) {
-        await this.cargar();
-        this.band = true;
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      return true;
-    }
-
-  }
-
-  cargar() {
-    this.events = [{}]
-    for (let index = 0; index < this.franjaHoraria.length; index++) {
-      this.practicaService.getById(this.franjaHoraria[index].id_practica).subscribe(
-        e => this.practica = e
-      );
-      this.eventosCargar(this.practica.titulo, index);
-    }
-  }
-
-  eventosCargar(id: string, index: number) {
-    
+  cargarEventos(index: number) {
     this.events.push({
-      title: this.practica.titulo,
+      title: this.practica[index].titulo,
       start: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_inicio,
       end: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_fin
     });
   }
+
+  cargar() {
+    this.events = [{}];
+    console.log(this.practica);
+    for (let index = 0; index < this.franjaHoraria.length; index++) {
+      this.cargarEventos(index);
+    }
+    console.log(this.events);
+  }
+
 
 }

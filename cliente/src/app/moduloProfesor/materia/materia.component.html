@@ -4,11 +4,9 @@
       <h1>{{curso?.nombre_curso}}</h1>
     </div>
     <div>
-
+      
       <button class="boton_add" mat-flat-button [routerLink]="[url+'/practica']">Nueva Practica</button>
-      <button class="boton_ests" mat-icon-button [routerLink]="">
-        <mat-icon>people</mat-icon>
-      </button>
+      <button class="boton_ests" mat-icon-button [routerLink]=""><mat-icon>people</mat-icon></button>
     </div>
   </div>
 </div>
@@ -30,40 +28,17 @@
         <mat-panel-description>
           Entrega: {{practica.fecha_entrega}}
         </mat-panel-description>
-
-        <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
-          <mat-menu #menu="matMenu">
-            <!--<button mat-menu-item [routerLink]="[url+'/'+curso.id_curso+'/form']">
-                <mat-icon>mode_edit</mat-icon>
-                <span>Editar</span>
-              </button>-->
-            <button mat-menu-item (click)="updatePractica(practica)">
-              <mat-icon>done</mat-icon>
-              <span>Marcar Como Completada</span>
-            </button>
-            <button mat-menu-item (click)="delete(practica)">
-              <mat-icon>delete</mat-icon>
-              <span>Borrar</span>
-            </button>
-          </mat-menu>
-        </button>
-
-
       </mat-expansion-panel-header>
-      <mat-divider></mat-divider>
+
       <mat-panel-description>
         <div class="desc_practica">
           <div class="desc">
             {{practica.descripcion}}
           </div>
           <div class="doc_adj">
-            <h3><mat-icon style="vertical-align: text-bottom;">attachment</mat-icon>Archivos adjuntos</h3>
+            <h3>Documentos adjuntos</h3>
             <ul *ngFor="let archivo of practica.archivos; let i = index" [attr.data-index]="i">
-
-              
-              <a href="{{archivo}}"><mat-icon style="vertical-align: text-bottom;">file_present</mat-icon>Archivo #{{i+1}}</a>
-
+              <a href="{{archivo}}">Archivo #{{i+1}}</a>
             </ul>
           </div>
 
@@ -75,7 +50,23 @@
       </mat-panel-description>
 
 
-      
+      <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="[url+'/'+practica.id_practica+'/practica']">
+              <mat-icon>mode_edit</mat-icon>
+              <span>Editar</span>
+            </button>
+          <button mat-menu-item (click)="updatePractica(practica)">
+            <mat-icon>done</mat-icon>
+            <span>Marcar Como Completada</span>
+          </button>
+          <button mat-menu-item (click)="delete(practica)">
+            <mat-icon>delete</mat-icon>
+            <span>Borrar</span>
+          </button>
+        </mat-menu>
+      </button>
 
     </mat-expansion-panel>
 

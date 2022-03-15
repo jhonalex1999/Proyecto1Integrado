@@ -26,6 +26,7 @@ export class PracticaComponent implements OnInit {
   public events: any[] | undefined;
   public options: any;
   public practica: Practica[];
+  public practicaTodo: Practica[];
   public franjaHoraria: FranjaHoraria[];
   url!: string;
   public practicaUnica: Practica;
@@ -67,6 +68,13 @@ export class PracticaComponent implements OnInit {
       p => this.franjaHoraria = p
     );
 
+    this.practicaService.getAll().subscribe(
+      e => {
+        this.practicaTodo = e;
+      });
+
+    this.events = [{}];
+
     this.options = {
       plugins: [dayGridPlugin, timeGridPlugin],
       defaultDate: new Date(),
@@ -90,19 +98,15 @@ export class PracticaComponent implements OnInit {
   }
 
   cargar(): void {
-    this.events = [{}]
+    this.events = [{}];
     for (let index = 0; index < this.franjaHoraria.length; index++) {
-      this.practicaService.getById(this.franjaHoraria[index].id_practica).subscribe(
-        e => this.practicaUnica = e
-      );
-      this.eventosCargar(this.practicaUnica.titulo, index);
+      this.eventosCargar(index);
     }
   }
 
-  eventosCargar(id: string, index: number) {
-
+  eventosCargar(index: number) {
     this.events.push({
-      title: this.practicaUnica.titulo,
+      title: this.practica[index].titulo,
       start: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_inicio,
       end: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_fin
     });
@@ -124,7 +128,7 @@ export class PracticaComponent implements OnInit {
 
   }
 
-  async create(): Promise<void> {
+  create(): void {
     //Practica Nueva
     this.practicaNueva.id_curso = this.router.url.split('/')[3];
     this.practicaNueva.estado = "1";
@@ -133,34 +137,30 @@ export class PracticaComponent implements OnInit {
     if (this.event!) {
       this.subirArchivos();
     }
-
-    console.log(this.practicaNueva.archivos);
     var back = this.url.split('/practica');
 
     setTimeout(() => {
       this.practicaService.create(this.practicaNueva).subscribe(
-        res => this.router.navigate([back[0]])
+        async res => {
+          this.router.navigate([back[0]]);
+          await this.recargar();
+        }
       );
     }, 3500);
-    
 
-    setTimeout(() => {
-      this.recargar();
-    }, 1500);
+    //this.recargar();
   }
 
   recargar() {
     this.practicaService.get(this.router.url.split('/')[3]).subscribe(
-      res => this.practica = res
+      res => {
+        this.practica = res;
+        this.crearFranja();
+      }
     );
-
-    setTimeout(() => {
-      this.crearFranja();
-    }, 1500);
   }
 
   crearFranja(): void {
-
     for (let i = 0; i < this.practica.length; i++) {
       if (this.practica[i].titulo == this.practicaNueva.titulo) {
         this.franjaNueva.id_practica = this.practica[i].id_practica;
@@ -171,7 +171,6 @@ export class PracticaComponent implements OnInit {
     this.franjaNueva.fecha = this.dateInicioDia;
     this.franjaNueva.hora_inicio = this.dateInicioHora + ':00';
     this.franjaNueva.hora_fin = this.dateFinHora + ':00';
-
     this.franjaService.create(this.franjaNueva).subscribe();
   }
 
@@ -194,9 +193,25 @@ export class PracticaComponent implements OnInit {
       }
     }
   }
-  
+
   async subirArchivosFire(nombre: string, imgBase64: any): Promise<any> {
     let respuesta = await this.storageRef.child(nombre).putString(imgBase64, 'data_url');
     return await respuesta.ref.getDownloadURL();
+  }
+
+
+  rutaLlegada(): boolean {
+    if (this.router.url.split('/').length == 6) {
+      return true;
+    } else if (this.router.url.split('/').length == 5) {
+      return false;
+    }
+    return false;
+  }
+
+  update(): void {
+    this.practicaService.update(this.practicaNueva).subscribe(
+      res => this.router.navigate([this.router.url.split("/")[1] + '/cursos'])
+    );
   }
 }

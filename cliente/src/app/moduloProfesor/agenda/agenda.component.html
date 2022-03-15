@@ -6,5 +6,6 @@
     </div>
 </div>
 <div class="contenedorcalendar" >
-    <p-fullCalendar *ngIf="validarHorario()" [events]="events" [options]="options"></p-fullCalendar>
+    <button (click)="cargar()">Mostrar Franjas Ocupadas</button>
+    <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar>
 </div>

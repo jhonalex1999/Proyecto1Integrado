@@ -19,6 +19,7 @@ const routes: Routes = [{
 { path: ':correo/agenda', component: AgendaComponent },
 { path: ':correo/cursos/:id/materia', component: MateriaComponent },
 { path: ':correo/cursos/:id/materia/practica', component: PracticaComponent },
+{ path: ':correo/cursos/:id/materia/:id/practica', component: PracticaComponent },
 
 
 { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
