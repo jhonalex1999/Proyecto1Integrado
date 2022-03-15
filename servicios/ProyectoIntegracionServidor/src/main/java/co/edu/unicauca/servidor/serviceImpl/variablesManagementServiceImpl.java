@@ -151,7 +151,7 @@ public class variablesManagementServiceImpl implements VariablesManagementServic
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 Variable = doc.toObject(Variables_Caida_LibreDTO.class);
-                Variable.setId_practica(doc.getId());
+                Variable.setId(doc.getId());
                 response.add(Variable);
             }
             return (Variables_Caida_LibreDTO) response;
@@ -218,25 +218,30 @@ public class variablesManagementServiceImpl implements VariablesManagementServic
 
     private Map<String, Object> getDocDataVariablesLeyHooke(Variables_Ley_HookeDTO post) {
         Map<String, Object> docData = new HashMap<>();
+        /*
         docData.put("id_practica", post.getId_practica());
         docData.put("rango_fuerza", post.getRango_fuerza());
-        docData.put("tipo_resorte", post.getTipo_resorte());
+        docData.put("tipo_resorte", post.getTipo_resorte());*/
         return docData;
     }
 
     private Map<String, Object> getDocDataVariablesCaidaLibre(Variables_Caida_LibreDTO post) {
         Map<String, Object> docData = new HashMap<>();
+        /*
         docData.put("id_practica", post.getId_practica());
         docData.put("num_lanzamientos", post.getNum_lanzamientos());
         docData.put("rango_altura", post.getRango_altura());
+*/
         return docData;
     }
 
     private Map<String, Object> getDocDataVariablesMovimientoParabolico(Variables_Movimiento_ParabolicoDTO post) {
         Map<String, Object> docData = new HashMap<>();
+        /*
         docData.put("id_practica", post.getId_practica());
         docData.put("rango_angulo", post.getRango_angulo());
         docData.put("velocidad", post.getVelocidad());
+*/
         return docData;
     }
 

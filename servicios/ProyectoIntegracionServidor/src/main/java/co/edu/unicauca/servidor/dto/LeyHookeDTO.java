@@ -6,6 +6,7 @@ package co.edu.unicauca.servidor.dto;
  * and open the template in the editor.
  */
 import java.util.ArrayList;
+import java.util.HashMap;
 import lombok.Data;
 
 /**
@@ -15,12 +16,10 @@ import lombok.Data;
 @Data
 public class LeyHookeDTO {
 
+   
     private String id;
     private Integer codigo_planta;
-    private ArrayList<String> elongacion;
-    private String foto;
-    private ArrayList<String> fuerza;
-    private String id_practica;
-    private ArrayList<String> rangos_elongacion;
-    private ArrayList<String> rangos_fuerza;
+    private HashMap<String, Double> elongaciones;
+    private int nRep;
+    private HashMap<String, Double> pesos;
 }

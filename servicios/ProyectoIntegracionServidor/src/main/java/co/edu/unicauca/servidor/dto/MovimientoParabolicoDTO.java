@@ -16,12 +16,11 @@ import lombok.Data;
 public class MovimientoParabolicoDTO {
 
     private String id;
-    private String id_practica;
-    private Integer cod_planta;
-    private ArrayList<String> x_max;
-    private ArrayList<String> y_max;
+    private Integer codigo_planta;
+    private ArrayList<String> datos_x;
+    private ArrayList<String> datos_y;
+    private int nRep;
     private ArrayList<String> tiempo;
-    private ArrayList<String> foto;
-    private ArrayList<String> rango_angulo;
-    private ArrayList<String> rango_velocidad;
+    private String url_imagen;
+    private int velocidad;
 }

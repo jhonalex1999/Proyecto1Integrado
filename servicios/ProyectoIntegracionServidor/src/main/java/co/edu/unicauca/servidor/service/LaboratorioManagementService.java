@@ -8,6 +8,9 @@ package co.edu.unicauca.servidor.service;
 import co.edu.unicauca.servidor.dto.CaidaLibreDTO;
 import co.edu.unicauca.servidor.dto.LeyHookeDTO;
 import co.edu.unicauca.servidor.dto.MovimientoParabolicoDTO;
+import co.edu.unicauca.servidor.dto.Variables_Caida_LibreDTO;
+import co.edu.unicauca.servidor.dto.Variables_Ley_HookeDTO;
+import co.edu.unicauca.servidor.dto.Variables_Movimiento_ParabolicoDTO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,14 +19,15 @@ import java.util.List;
  * @author julio
  */
 public interface LaboratorioManagementService {
+    Boolean descargarDatos(int codigo_planta);
 
-    List<LeyHookeDTO> listarDatosHardwareLeyDeHooke();
+    List<Variables_Ley_HookeDTO> listarDatosHardwareLeyDeHooke();
 
-    List<MovimientoParabolicoDTO> listarDatosHardwareMovimientoParabolico();
+    List<Variables_Movimiento_ParabolicoDTO> listarDatosHardwareMovimientoParabolico();
 
-    List<CaidaLibreDTO> listarDatosHardwareCaidaLibre();
+    List<Variables_Caida_LibreDTO> listarDatosHardwareCaidaLibre();
 
-    Boolean crearPdf();
+    Boolean insertarProblema(String idLaboratorio, String problema);
 
     Boolean finalizarPractica(int codGrupal);
 
@@ -31,15 +35,32 @@ public interface LaboratorioManagementService {
 
     String buscarQuienEsLider(String correo);
 
-    Boolean reportarError(int idLaboratorio, String descripcion);
+    Integer saberCodigoGrupo(String correo);
 
     ArrayList<String> listar_Altura_CL(int codigo_planta);
 
-    ArrayList<String> listar_Elongacion_LH(int codigo_planta);
-
-    ArrayList<String> listar_Fuerza_LH(int codigo_planta);
+    ArrayList<String> listar_Pesos_LH(int codigo_planta);
 
     ArrayList<String> listar_Angulo_MP(int codigo_planta);
 
     ArrayList<String> listar_Velocidad_MP(int codigo_planta);
+
+    Boolean iniciarLeyHooke(int peso);
+    Boolean iniciarCaidaLibre(int peso);
+    Boolean iniciarMovimientoParabolico(int angulo, int velocidad);
+
+    Boolean finalizarProceso(String planta);
+
+    ArrayList<Double> retornarTiempo(int id_planta);
+
+    ArrayList<Double> retornarAltura(int codigo_planta);
+
+    ArrayList<Double> retornarElongaciones(int codigo_planta);
+
+    ArrayList<Double> retornarPesos(int codigo_planta);
+
+    ArrayList<Double> retornarX(int codigo_planta);
+
+    ArrayList<Double> retornarY(int codigo_planta);
+
 }

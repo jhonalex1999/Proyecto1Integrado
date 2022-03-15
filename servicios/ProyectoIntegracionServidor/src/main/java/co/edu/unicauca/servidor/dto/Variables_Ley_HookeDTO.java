@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 public class Variables_Ley_HookeDTO {
 
-    private String id_practica;
-    private ArrayList<String> rango_fuerza;
-    private ArrayList<String> tipo_resorte;
+    private String id;
+    private Integer codigo_planta;
+    private ArrayList<String> rango_pesos;
 }

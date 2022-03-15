@@ -21,4 +21,5 @@ public class UsuarioDTO {
     private String rol;
     private String nombre_completo;
     private ArrayList<String> cursos;
+    private Integer estado;
 }

@@ -141,6 +141,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
 
                 post.setCod_grupal(codGrupal);
                 post.setCorreo(participantes.get(i));
+
                 if (i == 0) {
                     post.setRol("Lider");
                 } else {
@@ -639,9 +640,9 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
 
     private Map<String, Object> getDocDataVariablesLeydeHooke(Variables_Caida_LibreDTO post) {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("id_practica", post.getId_practica());
+        docData.put("id_practica", post.getId());
         docData.put("num_lanzamientos", post.getNum_lanzamientos());
-        docData.put("rango_altura", post.getRango_altura());
+        docData.put("rango_altura", post.getRangos_altura());
         return docData;
     }
 

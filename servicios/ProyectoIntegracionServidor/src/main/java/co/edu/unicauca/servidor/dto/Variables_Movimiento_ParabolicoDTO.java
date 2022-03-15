@@ -14,9 +14,9 @@ import lombok.Data;
  */
 @Data
 public class Variables_Movimiento_ParabolicoDTO {
-
-    private String id_practica;
+    private String id;
+    private Integer codigo_planta;
     private ArrayList<String> rango_angulo;
-    private ArrayList<String> velocidad;
+    private ArrayList<String> rango_velocidad;
 
 }

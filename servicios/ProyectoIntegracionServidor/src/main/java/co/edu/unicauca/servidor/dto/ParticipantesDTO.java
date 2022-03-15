@@ -18,5 +18,4 @@ public class ParticipantesDTO {
     private Integer cod_grupal;
     private String correo;
     private String rol;
-    private Integer estado;
 }

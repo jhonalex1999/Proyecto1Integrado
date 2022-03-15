@@ -6,6 +6,7 @@ package co.edu.unicauca.servidor.dto;
  * and open the template in the editor.
  */
 import java.util.ArrayList;
+import java.util.HashMap;
 import lombok.Data;
 
 /**
@@ -15,10 +16,10 @@ import lombok.Data;
 @Data
 public class CaidaLibreDTO {
     private String id;
-    private ArrayList<Integer> altura;
     private Integer codigo_planta;
-    private String foto;
-    private String id_practica;
-    private ArrayList<Integer> tiempo;
-    private ArrayList<String> rangos_altura;
+    private HashMap<String, Double> errores;
+    private HashMap<String, Double> gravedadN;
+    private int nRep;
+    private HashMap<String, Double> tiempo;
+    private HashMap<String, Double> altura;
 }

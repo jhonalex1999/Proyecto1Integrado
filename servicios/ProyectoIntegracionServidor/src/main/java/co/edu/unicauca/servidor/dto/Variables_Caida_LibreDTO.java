@@ -15,7 +15,9 @@ import lombok.Data;
 @Data
 public class Variables_Caida_LibreDTO {
 
-    private String id_practica;
-    private ArrayList<String> rango_altura;
-    private ArrayList<String> num_lanzamientos;
+    private String id;
+    private Integer codigo_planta;
+    private Integer num_lanzamientos;
+    private ArrayList<String> rangos_altura;
+    private Integer peso;
 }
