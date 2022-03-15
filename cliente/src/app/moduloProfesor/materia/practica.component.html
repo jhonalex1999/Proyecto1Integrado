@@ -64,6 +64,7 @@
                     <div class="contenedor_campos">
                         <div>
                             <p>Establesca el rango horario de disponibilidad de la planta</p>
+                            <button mat-raised-button color="primary" (click)="cargar()" style="margin-bottom: 10px;">Mostrar Franjas Ocupadas</button>
                             <div>
                                 <label for="FechaInicio" class="col-form-label">Fecha Inicio</label>
                                 <div class="col-sm-6">
@@ -93,7 +94,6 @@
                         <div class="calendario">
                             <div id="eventos" class="eventos">
                                 <div class="container">
-                                    <button (click)="cargar()">Mostrar Franjas Ocupadas</button>
                                     <p-fullCalendar [events]="events" [options]="options">
                                     </p-fullCalendar>
                                 </div>
