@@ -21,7 +21,7 @@
                             <th></th>
                         </tr>
                         <tr *ngIf="numNotificaciones == 0">
-                            <th>No hay errores</th>
+                            <th>No se han reportado nuevos errores</th>
                         </tr>
                         <tr *ngFor="let problema of problemas">
                             <td>{{problema.descripcion}}</td>
