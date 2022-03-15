@@ -2,16 +2,10 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-<mat-toolbar color="primary">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+<app-navbar></app-navbar>
 
-    <button mat-button routerLink="/inicio">
-    <mat-icon>home</mat-icon> 
-    {{userName$}}</button>
-    <img class = "img1" src="{{userPhoto$}}" id="user-photo">
-    <!-- This fills the remaining space of the current row -->
-    <span class="fill-remaining-space"></span>
-
-</mat-toolbar>
 <body>
     <!------ Modificar según el tiempo la carga de la página ---------->
     <meta http-equiv="refresh" content="1800; url=http://localhost:4200/materias" />
@@ -21,57 +15,55 @@
             <div class="col-md-12">
                 <div class="container-grabacion">
                     <!-- <iframe  src="https://rtsp.me/embed/e5dRnHFD/" frameborder="0" allowfullscreen></iframe>-->
-                    <iframe class="grabacion" src="http://186.146.176.79:8555/" frameborder="0" allowfullscreen></iframe>
+                    <iframe class="grabacion" src="http://186.146.176.79:8555/" frameborder="0"
+                        allowfullscreen></iframe>
                 </div>
 
                 <div class="grafica">
                     <h1 class="text-1">campo para la grafica</h1>
-                    <div style="display: block">
-                        <canvas baseChart
-                          [data]="scatterChartData"
-                          [options]="scatterChartOptions"
-                          [type]="scatterChartType">
-                        </canvas>
-                    </div>
+                    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
                 </div>
 
             </div>
             <div class="col">
                 <div class=" row container-practica">
                     <h1 class="text">Datos de la practica</h1>
-                    
-                    <countdown class="text" [config]="config" (event)="handleEvent($event)"></countdown>
+                    <countdown class="text" [config]="config" (event)="handleEvent($event)" (event)="timesUp($event)" ></countdown>
                     <div class="datos-practica" *ngIf="rol$ == 'Lider'">
                         <div *ngIf="bandera$; else sino">
-                            <label>Altura</label>
-                            <select name="OS" class="desplegable" >
-                                <option *ngFor="let lista of listadoOpciones" >{{lista}}</option>
+                            <label>Repeticiones</label>
+                            <select id="peso" name="OS" class="desplegable">
+                                <option *ngFor="let lista of listadoOpciones">{{lista}}</option>
                             </select>
-                            <button class="btn btn-primary button">Enviar datos</button>
-                            <button class="btn btn-primary button-1" (click)="descargar()">Descargar PDF</button>
-                            <button class="btn btn-primary button-2" >Iniciar</button>
-                            <button class="btn btn-primary button-3" >Reiniciar</button>
-                            <button class="btn btn-danger button-4" (click)="finalizar_practica()">Terminar practica</button>
-                            <button class="btn btn-danger button-9" mat-raised-button routerLink="/inicio" >Regresar</button>
+                            <button class="config_boton" mat-raised-button color="primary" [disabled]="disabled_FinalizarSimulacion"
+                                (click)="descargar()">Descargar</button>
+                            <button class="config_boton" mat-raised-button color="primary" [disabled]="disabled_Iniciar" (click)="inicio('peso')">Iniciar</button>
+                            <button class="config_boton" mat-raised-button color="primary" (click)="finalizarSimulaciones()">Terminar
+                                 Simulaciones</button>
+                            <button class="config_boton" mat-raised-button color="primary" [disabled]="disabled_FinalizarPractica"
+                                (click)="finalizarPractica()">Terminar
+                                practica</button>
+                            <button class="config_boton" mat-raised-button color="primary" (click)="reportarFalla()">Reportar Falla</button>
                         </div>
                         <ng-template #sino>
-                            <button class="btn btn-warning button-6" (click)="verificar()">Check</button>
-                            <button class="btn btn-danger button-9" mat-raised-button routerLink="/inicio" >Regresar</button>
+                            <button mat-raised-button color="primary" (click)="verificar()">Check</button>
+                            <br>
+                            <br>
                         </ng-template>
                     </div>
 
                     <div class="datos-practica" *ngIf="rol$ == 'Observador'">
-                        <button class="btn btn-primary button-7" (click)="descargar()">Descargar PDF</button>
-                        <button class="btn btn-danger button-8" mat-raised-button routerLink="/inicio">Regresar</button>
+                        <button class="btn btn-primary button-7" (click)="descargar()">Descargar</button>
 
                     </div>
-                    
+
                 </div>
                 <div class="container-datos-practica">
                     <h1 class="text-1">Datos</h1>
+                    <p class="text-2">{{listadoOpciones}}</p>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </body>

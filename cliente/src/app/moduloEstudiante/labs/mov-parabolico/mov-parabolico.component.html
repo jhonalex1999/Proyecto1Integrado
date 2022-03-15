@@ -1,0 +1,73 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<app-navbar></app-navbar>
+
+<body>
+    <!------ Modificar según el tiempo la carga de la página ---------->
+    <meta http-equiv="refresh" content="3600; url=http://localhost:4200/materias" />
+    <div class="container-xxl emp-profile container-min container-fluid container-main">
+        <h1 class="tittle">Practica Movimiento Parabolico</h1>
+        <div>
+            <div class="col-md-12">
+                <div class="container-grabacion">
+                    <!-- <iframe  src="https://rtsp.me/embed/e5dRnHFD/" http://186.146.176.79:8555/ frameborder="0" allowfullscreen></iframe>-->
+                    <iframe class="grabacion" src="http://sanhb.ddns.net:8555" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="grafica">
+                    <h1 class="text-1">campo para la grafica</h1>
+                    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class=" row container-practica">
+                    <h1 class="text">Datos de la practica</h1>
+                    
+                    <countdown class="text" [config]="config" (event)="handleEvent($event)" (event)="timesUp($event)"></countdown>
+                    <div class="datos-practica" *ngIf="rol$ == 'Lider'">
+                        <div *ngIf="bandera$; else sino">
+                            <label>Angulo</label>
+                            <select id="angulo" name="OS" class="desplegable" >
+                                <option *ngFor="let lista of listadoOpAngulo" >{{lista}}</option>
+                            </select>
+                            <label>Velocidad</label>
+                            <select id="velocidad" name="OS" class="desplegable" >
+                                <option *ngFor="let lista of listadoOpVelocidad" >{{lista}}</option>
+                            </select>
+                            <button class="config_boton" mat-raised-button color="primary" [disabled]="disabled_FinalizarSimulacion"
+                                (click)="descargar()">Descargar</button>
+                            <button class="config_boton" mat-raised-button color="primary" [disabled]="disabled_Iniciar" (click)="inicio('angulo','velocidad')">Iniciar</button>
+                            <button class="config_boton" mat-raised-button color="primary" (click)="finalizarSimulaciones()">Terminar
+                                 Simulaciones</button>
+                            <button class="config_boton" mat-raised-button color="primary" [disabled]="disabled_FinalizarPractica"
+                                (click)="finalizarPractica()">Terminar
+                                practica</button>
+                            <button class="config_boton" mat-raised-button color="primary" (click)="reportarFalla()">Reportar Falla</button>
+                        </div>
+                        <ng-template #sino>
+                            <button mat-raised-button color="primary" (click)="verificar()">Check</button>
+                            <br>
+                            <br>
+                        </ng-template>
+                    </div>
+
+                    <div class="datos-practica" *ngIf="rol$ == 'Observador'">
+                        <button class="btn btn-primary button-7" (click)="descargar()">Descargar</button>
+
+                    </div>
+                    
+                </div>
+                <div class="container-datos-practica">
+                    <h1 class="text-1">Datos</h1>
+                    <p class="text-2">{{listadoOpAngulo}}</p>
+                    <p class="text-2">{{listadoOpVelocidad}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
