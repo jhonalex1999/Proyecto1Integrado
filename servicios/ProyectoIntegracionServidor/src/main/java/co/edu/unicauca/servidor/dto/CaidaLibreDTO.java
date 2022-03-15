@@ -22,4 +22,5 @@ public class CaidaLibreDTO {
     private int nRep;
     private HashMap<String, Double> tiempo;
     private HashMap<String, Double> altura;
+    private ArrayList<Integer> pesos_utilizados;
 }

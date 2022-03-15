@@ -89,14 +89,14 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     }
 
     @Override
-    public Boolean agregarCurso(String correo_institucional, int codigo) {
+    public Boolean agregarCurso(String correo_institucional, int codigo_curso) {
         String Agendamiento = "vacio";
         //Primero buscara el curso
-        String nombre_curso = buscarCodigoCurso(codigo);
+        //String nombre_curso = buscarCodigoCurso(codigo);
         int existe = buscarExiste(correo_institucional);
         //Si lo encontro matriculara y devolvera un TRUE, de lo contrario mandara un FALSE
         if (existe > 0) {
-            if (!"".equals(nombre_curso)) {
+            if (!"".equals(codigo_curso)) {
                 ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("usuario").whereEqualTo("correo", correo_institucional).get();
                 try {
                     for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
@@ -107,7 +107,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
                 } catch (ExecutionException ex) {
                     Logger.getLogger(LaboratorioManagementServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                ApiFuture<WriteResult> writeResultApiFuture = getCollection("usuario").document(Agendamiento).update("correo", correo_institucional, "cursos", FieldValue.arrayUnion(nombre_curso));
+                ApiFuture<WriteResult> writeResultApiFuture = getCollection("usuario").document(Agendamiento).update("correo", correo_institucional, "cursos", FieldValue.arrayUnion(codigo_curso));
 
                 try {
                     if (null != writeResultApiFuture.get()) {
@@ -134,6 +134,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
     @Override
     public ArrayList<String> buscarCursosMatriculados(String correo) {
         ArrayList<String> cursos;
+        ArrayList<String> cursos_estudiante;
         UsuarioDTO grupo;
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("usuario").whereEqualTo("correo", correo).get();
 
@@ -141,13 +142,34 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 grupo = doc.toObject(UsuarioDTO.class);
                 cursos = grupo.getCursos();
-                return cursos;
+                cursos_estudiante = codigoGrupo(cursos);
+                if (cursos_estudiante.isEmpty()) {
+                    return null;
+                }
+                return cursos_estudiante;
             }
 
         } catch (Exception e) {
             return null;
         }
         return null;
+    }
+
+    public ArrayList<String> codigoGrupo(ArrayList<String> codigos_cursos) {
+        CursoDTO cursos;
+        ArrayList<String> cursos_estudiante = new ArrayList();
+        for (int i = 0; i < codigos_cursos.size(); i++) {
+            ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("curso").whereEqualTo("codigo_matricula", codigos_cursos.get(i)).get();
+            try {
+                for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                    cursos = doc.toObject(CursoDTO.class);
+                    cursos_estudiante.add(cursos.getNombre_curso());
+                }
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return cursos_estudiante;
     }
 
     //Metodo para saber el ID del usuario
@@ -182,7 +204,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         }
     }
 
-    public String buscarCodigoCurso(int idCurso) {
+    /*public String buscarCodigoCurso(int idCurso) {
         CursoDTO curso;
         String nombre_curso = "";
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("curso").whereEqualTo("codigo_matricula", idCurso).get();
@@ -198,7 +220,7 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
         } catch (Exception e) {
             return null;
         }
-    }
+    }*/
 
     private Map<String, Object> getDocData(UsuarioDTO usuario) {
         Map<String, Object> docData = new HashMap<>();

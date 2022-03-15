@@ -22,4 +22,5 @@ public class LeyHookeDTO {
     private HashMap<String, Double> elongaciones;
     private int nRep;
     private HashMap<String, Double> pesos;
+    private ArrayList<Integer> pesos_utilizados;
 }

@@ -115,7 +115,8 @@ public class RealTime {
                 if (dataSnapshot.child("iniciar").getValue().toString().equals("false")) {
                     Map<String, Object> hopperUpdates = new HashMap<>();
                     hopperUpdates.put("peso", peso);
-                    hopperUpdates.put("iniciar", true);
+                    hopperUpdates.put("nRep", 1);
+                    hopperUpdates.put("iniciar", true);         
                     hopperRef.updateChildrenAsync(hopperUpdates);
                     bandera2=true;
                 }

@@ -49,7 +49,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * 
+ *
  */
 @Service
 public class LaboratorioManagementServiceImpl implements LaboratorioManagementService {
@@ -59,6 +59,12 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
 
     @Autowired
     private RealTime firebase2;
+
+    //Listas de pesos
+    ArrayList<Integer> listaLeyHooke = new ArrayList();
+    ArrayList<Integer> listaCaidaLibre = new ArrayList();
+    ArrayList<Integer> listaMovimientoParabolicoAngulo = new ArrayList();
+    ArrayList<Integer> listaMovimientoParabolicoVelocidad = new ArrayList();
 
     @Override
     public Boolean descargarDatos(int codigo_planta) {
@@ -178,32 +184,48 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
             w.write("Correos estudiantes: " + nombres_estudiantes + "\n");
             w.write("Lider y simulador del equipo: " + lider + "\n");
             if (codigo_planta == 1) {
-                w.write("----------------------Valores X--------------------- \n");
-                for (int i = 0; i < valores_elongaciones.size(); i++) {
-                    w.write("Elongacion: " + valores_elongaciones.get(i) + "\n");
+                w.write("-------------------------------------------------- \n");
+                for (int k = 0; k < listaLeyHooke.size(); k++) {
+                    w.write("Peso: " + listaLeyHooke.get(k) + "\n");
+                    w.write("----------------------Valores X--------------------- \n");
+                    for (int i = 0; i < valores_elongaciones.size(); i++) {
+                        w.write("Elongacion: " + valores_elongaciones.get(i) + "\n");
+                    }
+                    w.write("----------------------Valores Y--------------------- \n");
+                    for (int j = 0; j < valores_pesos.size(); j++) {
+                        w.write("Peso: " + valores_pesos.get(j) + "\n");
+                    }
                 }
-                w.write("----------------------Valores Y--------------------- \n");
-                for (int j = 0; j < valores_pesos.size(); j++) {
-                    w.write("Peso: " + valores_pesos.get(j) + "\n");
-                }
+                listaLeyHooke.clear();
             } else if (codigo_planta == 2) {
-                w.write("----------------------Valores X--------------------- \n");
-                for (int i = 0; i < valores_errores.size(); i++) {
-                    w.write("Error: " + valores_errores.get(i) + "\n");
+                w.write("-------------------------------------------------- \n");
+                for (int k = 0; k < listaCaidaLibre.size(); k++) {
+                    w.write("Peso: " + listaCaidaLibre.get(k) + "\n");
+                    w.write("----------------------Valores X--------------------- \n");
+                    for (int i = 0; i < valores_errores.size(); i++) {
+                        w.write("Error: " + valores_errores.get(i) + "\n");
+                        w.write("----------------------Valores Y--------------------- \n");
+                        for (int j = 0; j < valores_tiempo.size(); j++) {
+                            w.write("Tiempo: " + valores_tiempo.get(j) + "\n");
+                        }
+                    }
                 }
-                w.write("----------------------Valores Y--------------------- \n");
-                for (int j = 0; j < valores_tiempo.size(); j++) {
-                    w.write("Tiempo: " + valores_tiempo.get(j) + "\n");
-                }
+                listaCaidaLibre.clear();
             } else if (codigo_planta == 3) {
-                w.write("----------------------Valores X--------------------- \n");
-                for (int i = 0; i < valores_x.size(); i++) {
-                    w.write("X: " + valores_x.get(i) + "\n");
+                w.write("-------------------------------------------------- \n");
+                for (int k = 0; k < listaMovimientoParabolicoAngulo.size(); k++) {
+                    w.write("Angulo: " + listaMovimientoParabolicoAngulo.get(k) + " - Velocidad: " + listaMovimientoParabolicoVelocidad.get(k) + "\n");
+                    w.write("----------------------Valores X--------------------- \n");
+                    for (int i = 0; i < valores_x.size(); i++) {
+                        w.write("X: " + valores_x.get(i) + "\n");
+                    }
+                    w.write("----------------------Valores Y--------------------- \n");
+                    for (int j = 0; j < valores_y.size(); j++) {
+                        w.write("Y: " + valores_y.get(j) + "\n");
+                    }
                 }
-                w.write("----------------------Valores Y--------------------- \n");
-                for (int j = 0; j < valores_y.size(); j++) {
-                    w.write("Y: " + valores_y.get(j) + "\n");
-                }
+                listaMovimientoParabolicoAngulo.clear();
+                listaMovimientoParabolicoVelocidad.clear();
             }
             w.close();
         } catch (IOException e) {
@@ -396,7 +418,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
                     for (DocumentSnapshot doc2 : querySnapshotApiFutureUsuario.get().getDocuments()) {
                         usuario = doc2.toObject(UsuarioDTO.class);
                         usuario.setId(doc2.getId());
-                        if (usuario.getEstado()== 1) {
+                        if (usuario.getEstado() == 1) {
                             contados += 1;
                         }
                     }
@@ -432,7 +454,6 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         }
     }
 
-    
     @Override
     public Integer saberCodigoGrupo(String correo) {
         ParticipantesDTO participantes;
@@ -547,12 +568,14 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         altura.put("h3", 30.0);
         altura.put("h4", 40.0);
         altura.put("h5", 50.0);
+        objCaidaLibre.setPesos_utilizados(listaCaidaLibre);
         docData.put("codigo_planta", objCaidaLibre.getCodigo_planta());
         docData.put("errores", objCaidaLibre.getErrores());
         docData.put("gravedadN", objCaidaLibre.getGravedadN());
         docData.put("nRep", objCaidaLibre.getNRep());
         docData.put("tiempo", objCaidaLibre.getTiempo());
         docData.put("altura", altura);
+        docData.put("pesos_utilizados", objCaidaLibre.getPesos_utilizados());
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("laboratorio_caida_libre").document().create(docData);
 
         try {
@@ -577,12 +600,13 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     private boolean pasarDatosLeyHooke(LeyHookeDTO objHooke) {
         Map<String, Object> docData = new HashMap<>();
         objHooke.setCodigo_planta(1);
+        objHooke.setPesos_utilizados(listaLeyHooke);
         docData.put("codigo_planta", objHooke.getCodigo_planta());
         docData.put("elongaciones", objHooke.getElongaciones());
         docData.put("nRep", objHooke.getNRep());
         docData.put("pesos", objHooke.getPesos());
+        docData.put("pesos_utilizados", objHooke.getPesos_utilizados());
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("laboratorio_ley_hooke").document().create(docData);
-
         try {
             if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
@@ -592,7 +616,6 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
             return Boolean.FALSE;
         }
     }
-
 
     public Boolean GuardarMovimientoParabolico() {
         MovimientoParabolicoDTO objMovimientoParabolico = firebase2.getMovimientoParabolico();
@@ -605,6 +628,8 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     private boolean pasarDatosMovimientoParabolico(MovimientoParabolicoDTO objMovimientoParabolico) {
         Map<String, Object> docData = new HashMap<>();
         objMovimientoParabolico.setCodigo_planta(3);
+        objMovimientoParabolico.setAngulos_utilizados(listaMovimientoParabolicoAngulo);
+        objMovimientoParabolico.setVelocidades_utilizados(listaMovimientoParabolicoVelocidad);
         docData.put("codigo_planta", objMovimientoParabolico.getCodigo_planta());
         docData.put("datos_x", objMovimientoParabolico.getDatos_x());
         docData.put("datos_y", objMovimientoParabolico.getDatos_y());
@@ -612,7 +637,8 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         docData.put("tiempo", objMovimientoParabolico.getTiempo());
         docData.put("velocidad", objMovimientoParabolico.getVelocidad());
         docData.put("url", objMovimientoParabolico.getUrl_imagen());
-
+        docData.put("angulos_utilizados", objMovimientoParabolico.getAngulos_utilizados());
+        docData.put("velocidades_utilizados", objMovimientoParabolico.getVelocidades_utilizados());
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("laboratorio_movimiento_parabolico").document().create(docData);
 
         try {
@@ -623,19 +649,6 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         } catch (Exception e) {
             return Boolean.FALSE;
         }
-    }
-
-    @Override
-    public Boolean finalizarProceso(String planta) {
-        if (planta.equals("1")) {
-            GuardarLeyHooke();
-        }else if(planta.equals("2")){
-            GuardarCaidaLibre();
-        }else{
-            GuardarMovimientoParabolico();
-        }
-        firebase2.finalizarProceso(planta);
-        return true;
     }
 
     @Override
@@ -719,7 +732,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
 
     @Override
     public ArrayList<Double> retornarX(int codigo_planta) {
-       MovimientoParabolicoDTO movimiento_parabolico;
+        MovimientoParabolicoDTO movimiento_parabolico;
         ArrayList<Double> x = new ArrayList<>();;
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("laboratorio_movimiento_parabolico").whereEqualTo("codigo_planta", codigo_planta).get();
         try {
@@ -727,10 +740,9 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
                 movimiento_parabolico = doc.toObject(MovimientoParabolicoDTO.class);
                 movimiento_parabolico.setId(doc.getId());
                 for (int i = 0; i < movimiento_parabolico.getDatos_x().size(); i++) {
-                    x.add( Double.parseDouble( movimiento_parabolico.getDatos_x().get(i)));
+                    x.add(Double.parseDouble(movimiento_parabolico.getDatos_x().get(i)));
                 }
-              
-                
+
                 return x;
             }
             //return cursos;
@@ -743,16 +755,16 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     @Override
     public ArrayList<Double> retornarY(int codigo_planta) {
         MovimientoParabolicoDTO movimiento_parabolico;
-         ArrayList<Double> y=new ArrayList<>();;
+        ArrayList<Double> y = new ArrayList<>();;
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("laboratorio_movimiento_parabolico").whereEqualTo("codigo_planta", codigo_planta).get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 movimiento_parabolico = doc.toObject(MovimientoParabolicoDTO.class);
                 movimiento_parabolico.setId(doc.getId());
                 for (int i = 0; i < movimiento_parabolico.getDatos_y().size(); i++) {
-                     y.add(Double.parseDouble(movimiento_parabolico.getDatos_y().get(i)));
+                    y.add(Double.parseDouble(movimiento_parabolico.getDatos_y().get(i)));
                 }
-                
+
                 return y;
             }
             //return cursos;
@@ -764,71 +776,87 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
 
     @Override
     public Boolean iniciarLeyHooke(int peso) {
-        int pesobd=0;
-        if(peso==50){
-             pesobd=1;
-        }else if(peso==100){
-             pesobd=2;
-        }else if(peso==150){
-             pesobd=3;
-        }else if(peso==200){
-             pesobd=4;
-        }else if(peso==250){
-             pesobd=5;
+        int pesobd = 0;
+        if (peso == 50) {
+            pesobd = 1;
+        } else if (peso == 100) {
+            pesobd = 2;
+        } else if (peso == 150) {
+            pesobd = 3;
+        } else if (peso == 200) {
+            pesobd = 4;
+        } else if (peso == 250) {
+            pesobd = 5;
         }
-        
+        listaLeyHooke.add(peso);
         Boolean bandera = firebase2.iniciarLeyHooke(pesobd);
-        return bandera;  
+        return bandera;
     }
 
     @Override
     public Boolean iniciarCaidaLibre(int peso) {
-         int pesobd=0;
-        if(peso==50){
-             pesobd=1;
-        }else if(peso==100){
-             pesobd=2;
-        }else if(peso==150){
-             pesobd=3;
-        }else if(peso==200){
-             pesobd=4;
-        }else if(peso==250){
-             pesobd=5;
+        int pesobd = 0;
+        if (peso == 50) {
+            pesobd = 1;
+        } else if (peso == 100) {
+            pesobd = 2;
+        } else if (peso == 150) {
+            pesobd = 3;
+        } else if (peso == 200) {
+            pesobd = 4;
+        } else if (peso == 250) {
+            pesobd = 5;
         }
-        
+        listaCaidaLibre.add(peso);
         Boolean bandera = firebase2.iniciarCaidaLibre(pesobd);
-        return bandera; 
+        return bandera;
     }
 
     @Override
     public Boolean iniciarMovimientoParabolico(int angulo, int velocidad) {
-          int angulobd=0;
-          int velocidadbd=0;
-        if(angulo==50){
-             angulobd=1;
-        }else if(angulo==100){
-              angulobd=2;
-        }else if(angulo==150){
-              angulobd=3;
-        }else if(angulo==200){
-              angulobd=4;
-        }else if(angulo==250){
-              angulobd=5;
+        int angulobd = 0;
+        int velocidadbd = 0;
+        if (angulo == 50) {
+            angulobd = 1;
+        } else if (angulo == 100) {
+            angulobd = 2;
+        } else if (angulo == 150) {
+            angulobd = 3;
+        } else if (angulo == 200) {
+            angulobd = 4;
+        } else if (angulo == 250) {
+            angulobd = 5;
         }
-          
-        if(velocidad==50){
-            velocidadbd=1;
-        }else if(velocidad==100){
-             velocidadbd=2;
-        }else if(velocidad==150){
-             velocidadbd=3;
-        }else if(velocidad==200){
-             velocidadbd=4;
-        }else if(velocidad==250){
-             velocidadbd=5;
+
+        if (velocidad == 50) {
+            velocidadbd = 1;
+        } else if (velocidad == 100) {
+            velocidadbd = 2;
+        } else if (velocidad == 150) {
+            velocidadbd = 3;
+        } else if (velocidad == 200) {
+            velocidadbd = 4;
+        } else if (velocidad == 250) {
+            velocidadbd = 5;
         }
+        listaMovimientoParabolicoAngulo.add(angulo);
+        listaMovimientoParabolicoVelocidad.add(velocidad);
         Boolean bandera = firebase2.iniciarMovimientoParabolico(angulobd, velocidadbd);
-        return bandera; 
+        return bandera;
     }
-  
+
+    @Override
+    public Boolean finalizarProceso(String planta) {
+        if (planta.equals("1")) {
+            GuardarLeyHooke();
+
+        } else if (planta.equals("2")) {
+            GuardarCaidaLibre();
+        } else {
+            GuardarMovimientoParabolico();
+        }
+        firebase2.finalizarProceso(planta);
+        return true;
+    }
+
 }
