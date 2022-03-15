@@ -35,6 +35,8 @@ public interface UsuarioManagamentService {
     Boolean cambiarEstadoParticipanteEntrada(String correo);
 
     Boolean cambiarEstadoParticipanteSalida(String correo);
+
+    List<UsuarioDTO> listarEstudiantesCurso(String idCurso);
     
     
     List<UsuarioDTO> list();

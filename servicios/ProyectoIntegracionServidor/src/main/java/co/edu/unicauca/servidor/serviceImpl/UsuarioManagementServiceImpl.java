@@ -308,8 +308,28 @@ public class UsuarioManagementServiceImpl implements UsuarioManagamentService {
             return Boolean.FALSE;
         }
     }
-    
-    
+
+    @Override
+    public List<UsuarioDTO> listarEstudiantesCurso(String idCurso) {
+        List<UsuarioDTO> response = new ArrayList<>();
+        UsuarioDTO usuario;
+
+        Query query = firebase.getFirestore().collection("usuario").whereArrayContains("cursos", idCurso);
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
+
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                usuario = doc.toObject(UsuarioDTO.class);
+                usuario.setId_usuario(doc.getId());
+                response.add(usuario);
+            }
+            return response;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     private String BuscarParticipante(String correo) {
         String Participante = "vacio";

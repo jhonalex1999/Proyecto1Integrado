@@ -82,7 +82,12 @@ public class UsuarioController {
     public ResponseEntity cambiarEstadoParticipanteSalida(@PathVariable(value = "correo") String correo) {
         return new ResponseEntity(service.cambiarEstadoParticipanteSalida(correo), HttpStatus.OK);
     }
-    
+
+    @GetMapping(value = "/listestcurso/{id}")
+    public ResponseEntity listEstCurso(@PathVariable(value = "id") String id)  {
+        return new ResponseEntity(service.listarEstudiantesCurso(id), HttpStatus.OK);
+    }
+
      @GetMapping(value = "/list")
     public ResponseEntity list(){
         return new ResponseEntity(service.list(), HttpStatus.OK);
