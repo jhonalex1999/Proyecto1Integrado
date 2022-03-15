@@ -6,5 +6,5 @@ export class Practica {
     estado: string | undefined;
     fecha_entrega: string | undefined;
     titulo: string | undefined;
-    archivos: string[] | undefined;
+    archivos: string[] = [];
 }

@@ -100,7 +100,7 @@ export class PracticaComponent implements OnInit {
   }
 
   eventosCargar(id: string, index: number) {
-    
+
     this.events.push({
       title: this.practicaUnica.titulo,
       start: this.franjaHoraria[index].fecha + 'T' + this.franjaHoraria[index].hora_inicio,
@@ -124,21 +124,29 @@ export class PracticaComponent implements OnInit {
 
   }
 
-  create(): void {
+  async create(): Promise<void> {
     //Practica Nueva
     this.practicaNueva.id_curso = this.router.url.split('/')[3];
     this.practicaNueva.estado = "1";
     this.practicaNueva.fecha_entrega = this.dateDia + 'T' + this.dateHora + ':00';
+    //Subir Archivos
+    if (this.event!) {
+      this.subirArchivos();
+    }
 
+    console.log(this.practicaNueva.archivos);
     var back = this.url.split('/practica');
-    this.practicaService.create(this.practicaNueva).subscribe(
-      res => this.router.navigate([back[0]])
-    );
+
+    setTimeout(() => {
+      this.practicaService.create(this.practicaNueva).subscribe(
+        res => this.router.navigate([back[0]])
+      );
+    }, 3500);
+    
 
     setTimeout(() => {
       this.recargar();
     }, 1500);
-
   }
 
   recargar() {
@@ -164,10 +172,6 @@ export class PracticaComponent implements OnInit {
     this.franjaNueva.hora_inicio = this.dateInicioHora + ':00';
     this.franjaNueva.hora_fin = this.dateFinHora + ':00';
 
-    //Subir Archivos
-    if (this.event!) {
-      this.subirArchivos();
-    }
     this.franjaService.create(this.franjaNueva).subscribe();
   }
 
@@ -179,22 +183,20 @@ export class PracticaComponent implements OnInit {
   archivosFuera: any[] = [];
   subirArchivos() {
     let archivos = this.event.target.files;
-
+    let aux;
     for (let index = 0; index < archivos.length; index++) {
       let reader = new FileReader();
       reader.readAsDataURL(archivos[index]);
-      reader.onloadend = () => {
+      reader.onloadend = async () => {
         this.archivosFuera.push(reader.result);
-        this.subirArchivosFire(this.router.url.split('/')[3] + '/' + archivos[index].name, reader.result);
+        aux = await this.subirArchivosFire(await this.router.url.split('/')[3] + '/' + archivos[index].name, await reader.result);
+        await this.practicaNueva.archivos.push(aux);
       }
     }
-    //console.log(file.name);
-
   }
-
-  async subirArchivosFire(nombre: string, imgBase64: any) {
+  
+  async subirArchivosFire(nombre: string, imgBase64: any): Promise<any> {
     let respuesta = await this.storageRef.child(nombre).putString(imgBase64, 'data_url');
-    console.log(respuesta.ref.getDownloadURL());
     return await respuesta.ref.getDownloadURL();
   }
 }

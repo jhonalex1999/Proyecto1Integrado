@@ -16,7 +16,7 @@ import lombok.Data;
 public class PracticaDTO {
 
     private String id_practica;
-    ArrayList<String> archivos;
+    private ArrayList<String> archivos;
     private String cod_planta;
     private String descripcion;
     private String estado;
