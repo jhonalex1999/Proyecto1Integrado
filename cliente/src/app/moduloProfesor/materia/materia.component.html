@@ -20,7 +20,7 @@
 <div class="contenedor_practicas">
 
   <mat-accordion *ngFor="let practica of practica">
-    <mat-expansion-panel *ngIf="practica.estado == '1'">
+    <mat-expansion-panel style="margin-top: 10px;" *ngIf="practica.estado == '1'">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon matSuffix>assignment</mat-icon>{{practica.titulo}}
@@ -89,7 +89,7 @@
 <div class="contenedor_practicas">
 
   <mat-accordion *ngFor="let practica of practica">
-    <mat-expansion-panel *ngIf="practica.estado == '0'">
+    <mat-expansion-panel style="margin-top: 10px;" *ngIf="practica.estado == '0'">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon matSuffix>assignment</mat-icon>{{practica.titulo}}
@@ -97,24 +97,7 @@
         <mat-panel-description>
           Entrega: {{practica.fecha_entrega}}
         </mat-panel-description>
-      </mat-expansion-panel-header>
 
-      <mat-panel-description>
-        <div class="desc_practica">
-          <div class="desc">
-            {{practica.descripcion}}
-          </div>
-          <div>
-            <h3>Documentos adjuntos</h3>
-          </div>
-
-          <div>
-            <h3>Asignados:</h3>
-            <h3>Entregados:</h3>
-          </div>
-        </div>
-      </mat-panel-description>
-      <mat-card-footer>
         <button class="boton_mas" mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
           <mat-menu #menu="matMenu">
@@ -124,7 +107,30 @@
             </button>
           </mat-menu>
         </button>
-      </mat-card-footer>
+      </mat-expansion-panel-header>
+      <mat-divider></mat-divider>
+
+      <mat-panel-description>
+        <div class="desc_practica">
+          <div class="desc">
+            {{practica.descripcion}}
+          </div>
+          <div>
+            <h3><mat-icon style="vertical-align: text-bottom;">attachment</mat-icon>Archivos adjuntos</h3>
+            <ul *ngFor="let archivo of practica.archivos; let i = index" [attr.data-index]="i">
+              <a href="{{archivo}}"><mat-icon style="vertical-align: text-bottom;">file_present</mat-icon>Archivo #{{i+1}}</a>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Asignados:</h3>
+            <h3>Entregados:</h3>
+          </div>
+        </div>
+      </mat-panel-description>
+
+       
+
     </mat-expansion-panel>
   </mat-accordion>
 
