@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Practica } from './practica';
 
@@ -8,36 +8,36 @@ import { Practica } from './practica';
 })
 export class PracticaService {
 
-  private url:string="http://localhost:8080/practica";
+  private url: string = "http://localhost:8080/practica";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   //Obtener practicas
-  getAll():Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+'/list');
+  getAll(): Observable<Practica[]> {
+    return this.http.get<Practica[]>(this.url + '/list');
   }
 
   //Crear Practica
-  create(practica:Practica):Observable<Practica>{
-    return this.http.post<Practica>(this.url+'/add', practica);
+  create(practica: Practica): Observable<Practica> {
+    return this.http.post<Practica>(this.url + '/add', practica);
   }
 
   //Obtener un Curso
-  get(correo:string):Observable<Practica[]>{
-    return this.http.get<Practica[]>(this.url+'/listbyCorreo/'+correo);
+  get(correo: string): Observable<Practica[]> {
+    return this.http.get<Practica[]>(this.url + '/listbyCorreo/' + correo);
   }
 
-  getById(id:string):Observable<Practica>{
-    return this.http.get<Practica>(this.url+'/list/'+id);
+  getById(id: string): Observable<Practica> {
+    return this.http.get<Practica>(this.url + '/list/' + id);
   }
 
   //Update Curso
-  update(practica:Practica):Observable<Practica>{
-    return this.http.put<Practica>(this.url+'/update'+'/'+practica.id_practica,practica);
+  update(id_practica: string, practica: Practica): Observable<Practica> {
+    return this.http.put<Practica>(this.url + '/update' + '/' + id_practica, practica);
   }
 
   //Eliminar Curso
-  delete(id:string):Observable<Practica>{
-    return this.http.delete<Practica>(this.url+'/delete/'+id);
+  delete(id: string): Observable<Practica> {
+    return this.http.delete<Practica>(this.url + '/delete/' + id);
   }
 }

@@ -48,9 +48,11 @@
                     </div>
                     <div class="contenedor_botones">
                         <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+                        <button mat-raised-button color="primary" class="boton_agregar" *ngIf="rutaLlegada() == false"
+                                    (click)="update()">Actualizar</button>
                     </div>
                 </mat-step>
-                <mat-step label="Adjuntos" completed="false" optional="">
+                <mat-step label="Adjuntos" completed="false" optional="" *ngIf="rutaLlegada() == true">
                     <p>Cargue los archivos que considere necesarios</p>
 
                     <input style="padding-bottom: 20px;" type="file" accept="" multiple (change)="cargarEvento($event)">
@@ -60,7 +62,7 @@
                         <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
                     </div>
                 </mat-step>
-                <mat-step label="Horarios" completed="false">
+                <mat-step label="Horarios" completed="false" *ngIf="rutaLlegada() == true">
                     <div class="contenedor_campos">
                         <div>
                             <p>Establesca el rango horario de disponibilidad de la planta</p>
@@ -85,10 +87,6 @@
                                 
                                 <button mat-raised-button color="primary" class="boton_agregar" *ngIf="rutaLlegada() == true"
                                     (click)="create()">Guardar</button>
-
-                                <button mat-raised-button color="primary" class="boton_agregar" *ngIf="rutaLlegada() == false"
-                                    (click)="update()">Actualizar</button>
-
                             </div>
                         </div>
                         <div class="calendario">

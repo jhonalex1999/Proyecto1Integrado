@@ -59,6 +59,6 @@ export class MateriaComponent implements OnInit {
   updatePractica(practica: Practica): void{
     console.log("Update practica con ID: " + practica.id_practica);
     practica.estado = "0";
-    this.practicaService.update(practica).subscribe();
+    this.practicaService.update(practica.id_practica,practica).subscribe();
   }
 }

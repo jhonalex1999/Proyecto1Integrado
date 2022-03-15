@@ -210,8 +210,11 @@ export class PracticaComponent implements OnInit {
   }
 
   update(): void {
-    this.practicaService.update(this.practicaNueva).subscribe(
-      res => this.router.navigate([this.router.url.split("/")[1] + '/cursos'])
-    );
+    this.practicaNueva.id_curso = this.router.url.split('/')[3];
+    this.practicaNueva.estado = "1";
+    //console.log(this.practicaNueva);
+    this.practicaService.update(this.router.url.split('/')[5], this.practicaNueva).subscribe();
+
+    this.router.navigateByUrl(this.router.url.split('/materia')[0]+'/materia')
   }
 }

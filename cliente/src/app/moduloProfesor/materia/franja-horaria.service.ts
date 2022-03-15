@@ -24,7 +24,7 @@ export class FranjaHorariaService {
 
   //Obtener un Curso
   get(id:string):Observable<FranjaHoraria>{
-    return this.http.get<FranjaHoraria>(this.url+'/'+id);
+    return this.http.get<FranjaHoraria>(this.url+'/list/'+id);
   }
 
   //Update Curso

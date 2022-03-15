@@ -22,6 +22,7 @@ const routes: Routes = [{
 { path: ':correo/cursos/:id/materia', component: MateriaComponent },
 { path: ':correo/cursos/:id/materia/:nombre/estudiante', component: EstudianteComponent },
 { path: ':correo/cursos/:id/materia/practica', component: PracticaComponent },
+{ path: ':correo/cursos/:id/materia/:id/practica', component: PracticaComponent },
 
 
 { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
