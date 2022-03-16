@@ -8,6 +8,7 @@ package co.edu.unicauca.servidor.firebase;
 import co.edu.unicauca.servidor.dto.CaidaLibreDTO;
 import co.edu.unicauca.servidor.dto.LeyHookeDTO;
 import co.edu.unicauca.servidor.dto.MovimientoParabolicoDTO;
+import co.edu.unicauca.servidor.serviceImpl.LaboratorioManagementServiceImpl;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.Acl.User;
 import com.google.firebase.FirebaseApp;
@@ -21,6 +22,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
@@ -81,7 +84,7 @@ public class RealTime {
         ref3.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                
+
                 MovimientoParabolico = dataSnapshot.getValue(MovimientoParabolicoDTO.class);
             }
 
@@ -116,9 +119,9 @@ public class RealTime {
                     Map<String, Object> hopperUpdates = new HashMap<>();
                     hopperUpdates.put("peso", peso);
                     hopperUpdates.put("nRep", 1);
-                    hopperUpdates.put("iniciar", true);         
+                    hopperUpdates.put("iniciar", true);
                     hopperRef.updateChildrenAsync(hopperUpdates);
-                    bandera2=true;
+                    bandera2 = true;
                 }
             }
 
@@ -128,6 +131,7 @@ public class RealTime {
         });
         return bandera2;
     }
+
     public Boolean iniciarCaidaLibre(int peso) {
         DatabaseReference hopperRef;
         hopperRef = ref2;
@@ -140,7 +144,7 @@ public class RealTime {
                     hopperUpdates.put("peso", peso);
                     hopperUpdates.put("iniciar", true);
                     hopperRef.updateChildrenAsync(hopperUpdates);
-                    bandera2=true;
+                    bandera2 = true;
                 }
             }
 
@@ -150,7 +154,8 @@ public class RealTime {
         });
         return bandera2;
     }
-    public Boolean iniciarMovimientoParabolico(int angulo,int velocidad) {
+
+    public Boolean iniciarMovimientoParabolico(int angulo, int velocidad) {
         DatabaseReference hopperRef;
         hopperRef = ref3;
         hopperRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -159,11 +164,11 @@ public class RealTime {
                 //System.out.println(dataSnapshot.child("iniciar").getValue().toString());
                 if (dataSnapshot.child("iniciar").getValue().toString().equals("false")) {
                     Map<String, Object> hopperUpdates = new HashMap<>();
-                     hopperUpdates.put("angulo", angulo);
-                      hopperUpdates.put("velocidad", velocidad);
+                    hopperUpdates.put("angulo", angulo);
+                    hopperUpdates.put("velocidad", velocidad);
                     hopperUpdates.put("iniciar", true);
                     hopperRef.updateChildrenAsync(hopperUpdates);
-                    bandera2=true;
+                    bandera2 = true;
                 }
             }
 
@@ -173,9 +178,7 @@ public class RealTime {
         });
         return bandera2;
     }
-    
 
- 
     public void finalizarProceso(String planta) {
         DatabaseReference hopperRef;
         Map<String, Object> hopperUpdates = new HashMap<>();
@@ -188,7 +191,7 @@ public class RealTime {
             hopperUpdates.put("subir_datos", "OFF");
             hopperRef = ref3;
         }
-        hopperUpdates.put("finalizado", true);
+        //hopperUpdates.put("finalizado", true);
         hopperRef.updateChildrenAsync(hopperUpdates);
     }
 

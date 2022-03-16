@@ -5,6 +5,7 @@
  */
 package co.edu.unicauca.servidor.serviceImpl;
 
+import co.edu.unicauca.servidor.dto.AgendamientoDTO;
 import co.edu.unicauca.servidor.dto.CaidaLibreDTO;
 import co.edu.unicauca.servidor.dto.CursoDTO;
 import co.edu.unicauca.servidor.dto.LeyHookeDTO;
@@ -187,14 +188,14 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
                 w.write("-------------------------------------------------- \n");
                 for (int k = 0; k < listaLeyHooke.size(); k++) {
                     w.write("Peso: " + listaLeyHooke.get(k) + "\n");
-                    w.write("----------------------Valores X--------------------- \n");
-                    for (int i = 0; i < valores_elongaciones.size(); i++) {
-                        w.write("Elongacion: " + valores_elongaciones.get(i) + "\n");
-                    }
-                    w.write("----------------------Valores Y--------------------- \n");
-                    for (int j = 0; j < valores_pesos.size(); j++) {
-                        w.write("Peso: " + valores_pesos.get(j) + "\n");
-                    }
+                }
+                w.write("----------------------Valores X--------------------- \n");
+                for (int i = 0; i < valores_elongaciones.size(); i++) {
+                    w.write("Elongacion: " + valores_elongaciones.get(i) + "\n");
+                }
+                w.write("----------------------Valores Y--------------------- \n");
+                for (int j = 0; j < valores_pesos.size(); j++) {
+                    w.write("Peso: " + valores_pesos.get(j) + "\n");
                 }
                 listaLeyHooke.clear();
             } else if (codigo_planta == 2) {
@@ -316,6 +317,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         List<String> nombres = new ArrayList<>();
         response = buscarGrupo(codGrupal);
         agendamiento = buscarAgendamiento(codGrupal);
+        int cod_planta = saberPlanta(codGrupal);
         Boolean bandera = false;
         Map<String, Object> docData = new HashMap<>();
         nombres = obtenerNombresEstudiantes(codGrupal);
@@ -328,7 +330,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         }
         for (int id = 0; id < response.size(); id++) {
 
-            ApiFuture<WriteResult> writeResultApiFuture = getCollection("participantes").document(response.get(id)).delete();
+            //ApiFuture<WriteResult> writeResultApiFuture = getCollection("participantes").document(response.get(id)).delete();
             try {
                 if (null != writeResultApiFutureHistorial.get()) {
                     bandera = true;
@@ -339,7 +341,26 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
                 bandera = false;
             }
         }
+        firebase2.finalizarProceso(String.valueOf(cod_planta));
         return bandera;
+    }
+
+    public int saberPlanta(int codGrupal) {
+        AgendamientoDTO participantes;
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("agendamiento").whereEqualTo("cod_grupal", codGrupal).get();
+
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                participantes = doc.toObject(AgendamientoDTO.class);
+                participantes.setId(doc.getId());
+                System.out.println(participantes.getCod_planta());
+                return participantes.getCod_planta();
+            }
+            //return cursos;
+        } catch (Exception e) {
+            return 0;
+        }
+        return 0;
     }
 
     public ArrayList<String> obtenerNombresEstudiantes(int codGrupal) {
@@ -777,15 +798,15 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     @Override
     public Boolean iniciarLeyHooke(int peso) {
         int pesobd = 0;
-        if (peso == 50) {
+        if (peso == 100) {
             pesobd = 1;
-        } else if (peso == 100) {
-            pesobd = 2;
         } else if (peso == 150) {
-            pesobd = 3;
+            pesobd = 2;
         } else if (peso == 200) {
-            pesobd = 4;
+            pesobd = 3;
         } else if (peso == 250) {
+            pesobd = 4;
+        } else if (peso == 300) {
             pesobd = 5;
         }
         listaLeyHooke.add(peso);
@@ -849,13 +870,11 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     public Boolean finalizarProceso(String planta) {
         if (planta.equals("1")) {
             GuardarLeyHooke();
-
         } else if (planta.equals("2")) {
             GuardarCaidaLibre();
         } else {
             GuardarMovimientoParabolico();
         }
-        firebase2.finalizarProceso(planta);
         return true;
     }
 

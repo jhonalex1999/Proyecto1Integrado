@@ -18,4 +18,5 @@ public class Variables_Ley_HookeDTO {
     private String id;
     private Integer id_practica;
     private ArrayList<Integer> rango_pesos;
+    private ArrayList<Integer> pesos_utilizados;
 }
