@@ -27,7 +27,7 @@ public interface LaboratorioManagementService {
 
     List<Variables_Caida_LibreDTO> listarDatosHardwareCaidaLibre();
 
-    Boolean insertarProblema(String idLaboratorio, String problema);
+    Boolean insertarProblema(int idLaboratorio, String problema);
 
     Boolean finalizarPractica(int codGrupal);
 

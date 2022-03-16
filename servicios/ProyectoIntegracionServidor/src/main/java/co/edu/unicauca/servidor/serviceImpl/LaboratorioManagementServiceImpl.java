@@ -21,6 +21,7 @@ import co.edu.unicauca.servidor.service.LaboratorioManagementService;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.FieldValue;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import com.itextpdf.text.Document;
@@ -294,10 +295,10 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     }
 
     @Override
-    public Boolean insertarProblema(String idLaboratorio, String problema) {
+    public Boolean insertarProblema(int idLaboratorio, String problema) {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("id_laboratorio", idLaboratorio);
-        docData.put("problema", problema);
+        docData.put("id_practica", idLaboratorio);
+        docData.put("descripcion", problema);
         ApiFuture<WriteResult> writeResultApiFuture = getCollection("problema").document().create(docData);
 
         try {
@@ -324,13 +325,14 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
         docData.put("cod_grupal", codGrupal);
         docData.put("historial_usuario", nombres);
         ApiFuture<WriteResult> writeResultApiFutureHistorial = getCollection("historial").document().create(docData);
-        //ApiFuture<WriteResult> writeResultApiFutureNombres = getCollection("HISTORIAL").document(Agendamiento).update("codGrupal", codGrupal, "nombres", FieldValue.arrayUnion(nombres));
         for (int i = 0; i < agendamiento.size(); i++) {
-            //ApiFuture<WriteResult> writeResultApiFutureAgendamiento = getCollection("AGENDAMIENTO").document(agendamiento.get(i)).delete();
+            ApiFuture<WriteResult> writeResultApiFutureNombres = getCollection("historial").document(agendamiento.get(i)).update("codGrupal", codGrupal, "historial_usuarios", FieldValue.arrayUnion(nombres));
+        }      
+        for (int i = 0; i < agendamiento.size(); i++) {
+            ApiFuture<WriteResult> writeResultApiFutureAgendamiento = getCollection("agendamiento").document(agendamiento.get(i)).delete();
         }
         for (int id = 0; id < response.size(); id++) {
-
-            //ApiFuture<WriteResult> writeResultApiFuture = getCollection("participantes").document(response.get(id)).delete();
+            ApiFuture<WriteResult> writeResultApiFuture = getCollection("participantes").document(response.get(id)).delete();
             try {
                 if (null != writeResultApiFutureHistorial.get()) {
                     bandera = true;

@@ -2,7 +2,6 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
 <app-navbar></app-navbar>
@@ -24,15 +23,10 @@
                     <h1 class="text-1">campo para la grafica</h1>
                     <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
                 </div>
-
             </div>
-            <div class="col">
+            <div class="parent">
                 <div class=" row container-practica">
-                    <h1 class="text"><i class="fa fa-clock-o" aria-hidden="true"></i>Datos de la practica: <countdown class="text" [config]="config" (event)="handleEvent($event)" (event)="timesUp($event)"></countdown></h1>
-                    
-                    
-                    
-                    
+                    <h1 class="text">Datos de la practica: <countdown  [config]="config" (event)="handleEvent($event)" (event)="timesUp($event)"></countdown></h1>           
                     <div class="datos-practica" *ngIf="rol$ == 'Lider'">
                         <div *ngIf="bandera$; else sino">
                             <label>Pesos</label>
@@ -47,7 +41,7 @@
                             <button class="config_boton" mat-raised-button color="primary" [disabled]="disabled_FinalizarPractica"
                                 (click)="finalizarPractica()">Terminar
                                 practica</button>
-                            <button class="config_boton" mat-raised-button color="primary" (click)="reportarFalla()">Reportar Falla</button>
+                            <button class="config_boton" mat-raised-button color="primary" (click)="openDialog()">Reportar Falla</button>
                         </div>
                         <ng-template #sino>
                             <button mat-raised-button color="primary" (click)="verificar()">Check</button>
@@ -55,16 +49,15 @@
                             <br>
                         </ng-template>
                     </div>
-
                     <div class="datos-practica" *ngIf="rol$ == 'Observador'">
                         <button class="btn btn-primary button-7" (click)="descargar()">Descargar</button>
-
                     </div>
-
                 </div>
                 <div class="container-datos-practica">
                     <h1 class="text-1">Datos</h1>
+                    <p class="text-pesos">Pesos:</p>
                     <p class="text-2">{{listadoOpPesos}}</p>
+
                 </div>
             </div>
         </div>

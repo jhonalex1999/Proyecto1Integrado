@@ -53,7 +53,7 @@ public class LaboratorioController {
     }
 
     @PostMapping(value = "/{idLaboratorio}/{problema}/insertarProblema")
-    public ResponseEntity insertarProblema(@PathVariable(value = "idLaboratorio") String idLaboratorio, @PathVariable(value = "problema") String problema) {
+    public ResponseEntity insertarProblema(@PathVariable(value = "idLaboratorio") int idLaboratorio, @PathVariable(value = "problema") String problema) {
         return new ResponseEntity(service.insertarProblema(idLaboratorio, problema), HttpStatus.OK);
     }
 

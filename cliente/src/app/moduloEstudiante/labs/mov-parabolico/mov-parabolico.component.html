@@ -23,11 +23,9 @@
                 </div>
 
             </div>
-            <div class="col">
+            <div class="parent">
                 <div class=" row container-practica">
-                    <h1 class="text">Datos de la practica</h1>
-                    
-                    <countdown class="text" [config]="config" (event)="handleEvent($event)" (event)="timesUp($event)"></countdown>
+                    <h1 class="text">Datos de la practica <countdown class="text" [config]="config" (event)="handleEvent($event)" (event)="timesUp($event)"></countdown></h1>
                     <div class="datos-practica" *ngIf="rol$ == 'Lider'">
                         <div *ngIf="bandera$; else sino">
                             <label>Angulo</label>
@@ -63,7 +61,9 @@
                 </div>
                 <div class="container-datos-practica">
                     <h1 class="text-1">Datos</h1>
+                    <p class="text-pesos">Angulo:</p>
                     <p class="text-2">{{listadoOpAngulo}}</p>
+                    <p class="text-pesos">Velocidad:</p>
                     <p class="text-2">{{listadoOpVelocidad}}</p>
                 </div>
             </div>

@@ -51,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PracticaComponent } from './moduloProfesor/materia/practica.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { EstudianteComponent } from './moduloProfesor/materia/estudiante/estudiante.component';
+import { ProblemaComponent } from './moduloEstudiante/reporteproblema/problema.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { EstudianteComponent } from './moduloProfesor/materia/estudiante/estudia
     FormCursosComponent,
     UsuarioComponent,
     EstudianteComponent,
+    ProblemaComponent
   ],
   imports: [
     BrowserModule,

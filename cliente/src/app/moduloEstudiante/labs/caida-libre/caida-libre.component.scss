@@ -10,11 +10,19 @@ body {
     position: relative;
 }
 .emp-profile {
-    padding: 3%;
     margin-top: 3%;
-    margin-bottom: 3%;
     border-radius: 0.5rem;
     background: #fff;
+}
+
+.parent {
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align: center;
+  }
+
+.container-main{
+    margin-top: 150px;
 }
 .img1 {
     border: 1px solid rgba(100, 100, 100, 0.411);
@@ -30,6 +38,7 @@ body {
     margin-top: 10px;
 }
 
+
 //BANNER DEBAJO DE LA NAVBAR
 
 .contenedor_titulo {
@@ -44,8 +53,6 @@ body {
     /*This fills the remaining space, by using flexbox.  
    Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
-}
-.container-min {
 }
 .profile-img {
     text-align: center;
@@ -142,6 +149,7 @@ body {
 
 .text {
     text-align: center;
+    margin-right: 30px;
     font-size: 30px;
     color: #000000;
 }
@@ -239,47 +247,49 @@ body {
     right: 0;
 }
 
-.col {
-    margin-top: 30px;
-}
 .container-practica {
+    margin-top: 15px;
     float: left;
-    width: 1000px;
+    width: 650px;
     text-align: center;
 }
 .container-datos-practica {
-    margin-left: 1010px;
-    margin-top: 450px;
-    width: 700px;
+    margin-left: 600px;
+    margin-top: 320px;
+    width: 600px;
     height: 300px;
     background: rgb(255, 255, 255);
 }
 
+.text-pesos{
+    font-size: 25px;
+}
+
 .datos-practica {
     background: rgba(54, 54, 51, 0.027);
-    width: 1000px;
-    height: 250px;
+    width: 650px;
+    height: 200px;
     text-align: center;
 }
 
 .grafica {
     float: left;
-    width: 700px;
-    height: 430px;
+    width: 600px;
+    height: 350px;
     background: rgba(223, 223, 223, 0.945);
     margin-left: 10px;
 }
 
 .container-grabacion {
     float: left;
-    width: 1000px;
-    height: 430px;
+    width: 650px;
+    height: 350px;
     background: rgba(85, 85, 84, 0.945);
 }
 
 .grabacion {
-    width: 1000px;
-    height: 430px;
+    width: 650px;
+    height: 350px;
 }
 
 .prueba {
@@ -310,7 +320,8 @@ body {
     }
 
     .container-main {
-        margin-top: 50px;
+        margin-top: 100px;
+        
     }
 
     .button {
@@ -577,32 +588,7 @@ body {
     }
 }
 
-@media screen and (max-width: 1225px) {
-    .container-grabacion {
-        float: left;
-        margin-top: 100px;
-        width: 500px;
-        height: 300px;
-        margin-right: 20px;
-        background: rgba(85, 85, 84, 0.945);
-        margin-bottom: 30px;
-    }
 
-    .grafica {
-        float: right;
-        width: 500px;
-        height: 200px;
-        margin: 20px;
-        margin-left: 20px;
-        margin-top: 100px;
-        background: rgba(223, 223, 223, 0.945);
-    }
-
-    .container-main {
-        margin-top: 400px;
-        width: 100%;
-    }
-}
 
 @media screen and (max-width: 900px) {
     .container-grabacion {

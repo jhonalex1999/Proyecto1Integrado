@@ -234,4 +234,9 @@ export class AuthService {
     console.log("Entro a obtenerTipo");
     return this.httpClient.get(`${this.API_BASE}/`+ this.cookie.get('Token_email') + `/`  +`sacarRol`,{responseType:'text'});
   }
+
+  reportar_error(codigo_planta:any,descripcion:any){
+    console.log("Entro a reportar error");
+    return this.httpClient.post(`${this.API_BASE_LAB}/`+ codigo_planta + `/` + descripcion + `/` + `insertarProblema`,codigo_planta,descripcion).subscribe(result => this.data = result);
+  }
 }

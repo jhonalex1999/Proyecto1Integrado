@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Reporte de problemas</h2>
+<mat-dialog-content class="principal">
+        <p>Informanos que ocurrió:</p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Problema:</mat-label>
+            <input class="input" matInput [(ngModel)]="data.codigo">
+          </mat-form-field>
+</mat-dialog-content>
+
+<div class="botones">
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancelar</button>
+        <button mat-raised-button [mat-dialog-close]="data.codigo" cdkFocusInitial (click)="enviarcodigo(data.codigo)"> 
+            Enviar
+        </button>
+    </mat-dialog-actions>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { CookieService } from 'ngx-cookie-service';
@@ -6,6 +7,7 @@ import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
 import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/service/service.service';
 import Swal from 'sweetalert2';
+import { ProblemaComponent } from '../../reporteproblema/problema.component';
 
 var KEY = 'timeLH';
 var DEFAULT = 0; //3600 es 1 hora
@@ -49,7 +51,7 @@ export class LeyHookeComponent implements OnInit {
 
   storageLeyHooke: Storage;
 
-  constructor(private authSvc: AuthService, private router: Router, private readonly cookieService: CookieService) {
+  constructor(private authSvc: AuthService, private router: Router, private readonly cookieService: CookieService, public dialog: MatDialog) {
     //Object.assign(this, { multi })
   }
 
@@ -187,11 +189,20 @@ export class LeyHookeComponent implements OnInit {
     });
     this.disabled_FinalizarPractica = false;
   }
+  codigo: string
 
-
-
-  reportarFalla() {
-    console.log("reportarFalla()");
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ProblemaComponent, {
+      data: { name: this.codigo },
+      height: '40%',
+      width: '40%'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Gracias por su reporte!');
+      console.log(result);
+      this.codigo = result;
+    });
+    console.log(this.codigo);
   }
 
   prueba() {

@@ -1,0 +1,17 @@
+.input{
+    width: 200px;
+    height: 100px;
+}
+
+::ng-deep .mat-dialog-container {
+    height: 400px !important;
+    width: 400px !important;
+}
+
+.example-full-width {
+    width: 100%;
+  }
+
+.botones{
+    display: flex;
+}
