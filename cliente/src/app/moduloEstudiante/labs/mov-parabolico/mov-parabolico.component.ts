@@ -58,23 +58,9 @@ export class MovParabolicoComponent implements OnInit {
 
   }
 
-  conexionRealTime() {
-    get(child(this.db.ref, 'guias/-LfMZIgigD9gfaBLeupS/tematica')).then((res) => {
-      if (res.exists()) {
-        console.log(res.val());
-        this.tematica = res.val();
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
-
 
   //public user$: Observable<any> = this.authSvc.afAuth.user;
   ngOnInit(): void {
-    this.conexionRealTime();
     this.verificarDuracion();
     this.listarX();
     this.listarY();
@@ -195,6 +181,11 @@ export class MovParabolicoComponent implements OnInit {
 
   finalizarPractica() {
     this.authSvc.saberCodigoGrupo().subscribe(respuesta => {
+      Swal.fire({
+        icon:'success', title:'¡Practica Finalizada!',
+        timer: 3000,
+        timerProgressBar: true,
+      })
       this.authSvc.finalizarPractica(respuesta).subscribe((result: any) => { result })
       this.router.navigate(['/materias'])
     });

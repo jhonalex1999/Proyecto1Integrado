@@ -135,11 +135,11 @@ export class CalendarMovParabolicoComponent implements OnInit {
     this.eventosQuemados.forEach((agendamiento: Agendamiento) => {
 
 
-    var horaInicio = agendamiento.horaInicio.split(':')[0];
-    var MinutosInicio = agendamiento.horaInicio.split(':')[1];
+    var horaInicio = agendamiento.hora_inicio.split(':')[0];
+    var MinutosInicio = agendamiento.hora_inicio.split(':')[1];
 
-    var horaFin = agendamiento.horaFin.split(':')[0];
-    var MinutosFin = agendamiento.horaFin.split(':')[1];
+    var horaFin = agendamiento.hora_fin.split(':')[0];
+    var MinutosFin = agendamiento.hora_fin.split(':')[1];
 
     var numHoraInicio = parseInt(horaInicio);
     var numMinutosInicio = parseInt(MinutosInicio);
@@ -155,13 +155,13 @@ export class CalendarMovParabolicoComponent implements OnInit {
         title: 'Practica Movimiento Parabolico',
         end: addMinutes(addHours(addDays(startOfDay(new Date(agendamiento.fecha)),1),numHoraFin),numMinutosFin),
         meta: {
-          id: agendamiento.idAgendamiento,
-          codG: agendamiento.codGrupal,
+          id: agendamiento.id_agendamiento,
+          codG: agendamiento.cod_grupal,
         },
         
       }
 
-      if(agendamiento.codGrupal==-1){
+      if(agendamiento.cod_grupal==-1){
         objCalendario[contador].color=colors.blue;
       }else{
         objCalendario[contador].color=colors.grey;

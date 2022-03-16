@@ -53,7 +53,7 @@ public class UsuarioController {
         return new ResponseEntity(service.eliminarCurso(correo, codigoCurso), HttpStatus.OK);
     }
 
-    @PostMapping(value = "{correo}/{codCurso}/matricularCurso")
+    @PostMapping(value = "{correo}/{codCurso}/matricularCurso2")
     public ResponseEntity matricularCurso(@PathVariable(value = "codCurso") String codigoCurso, @PathVariable(value = "correo") String correo_institucional) {
         return new ResponseEntity(service.agregarCurso(correo_institucional, codigoCurso), HttpStatus.OK);
     }

@@ -123,7 +123,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
                 for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                     participantes = doc.toObject(ParticipantesDTO.class);
                     nombres_estudiantes.add(participantes.getCorreo());
-                    codigo_grupo = participantes.getCod_grupal();
+                    codigo_grupo = participantes.getCodGrupal();
                     if (participantes.getRol().equals("Lider")) {
                         lider = participantes.getCorreo();
                     }
@@ -404,7 +404,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     public Boolean buscarCompletitudEstudiantes(int codGrupal) {
         UsuarioDTO usuario;
         ParticipantesDTO participantes;
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("participantes").whereEqualTo("cod_grupal", codGrupal).get();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("participantes").whereEqualTo("codGrupal", codGrupal).get();
 
         int contados = 0;
         try {
@@ -462,7 +462,7 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 participantes = doc.toObject(ParticipantesDTO.class
                 );
-                return participantes.getCod_grupal();
+                return participantes.getCodGrupal();
             }
             return 0;
 
@@ -476,15 +476,15 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     }
 
     @Override
-    public ArrayList<String> listar_Altura_CL(int codigo_planta) {
-        ArrayList<String> rangos_altura;
+    public ArrayList<Integer> listar_Altura_CL(int codigo_planta) {
+        ArrayList<Integer> rangos_altura;
         Variables_Caida_LibreDTO laboratorio_caida_libre;
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("variable_caida_libre").whereEqualTo("codigo_planta", codigo_planta).get();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("variables_caida_libre").whereEqualTo("id_practica", codigo_planta).get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 laboratorio_caida_libre = doc.toObject(Variables_Caida_LibreDTO.class);
                 laboratorio_caida_libre.setId(doc.getId());
-                rangos_altura = laboratorio_caida_libre.getRangos_altura();
+                rangos_altura = laboratorio_caida_libre.getRango_altura();
                 return rangos_altura;
             }
             //return cursos;
@@ -495,10 +495,10 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     }
 
     @Override
-    public ArrayList<String> listar_Pesos_LH(int codigo_planta) {
-        ArrayList<String> rangos_pesos;
+    public ArrayList<Integer> listar_Pesos_LH(int codigo_planta) {
+        ArrayList<Integer> rangos_pesos;
         Variables_Ley_HookeDTO laboratorio_ley_hooke;
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("variable_ley_hooke").whereEqualTo("codigo_planta", codigo_planta).get();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("variables_ley_hooke").whereEqualTo("id_practica", codigo_planta).get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 laboratorio_ley_hooke = doc.toObject(Variables_Ley_HookeDTO.class);
@@ -514,10 +514,10 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     }
 
     @Override
-    public ArrayList<String> listar_Angulo_MP(int codigo_planta) {
-        ArrayList<String> rangos_angulo;
+    public ArrayList<Integer> listar_Angulo_MP(int codigo_planta) {
+        ArrayList<Integer> rangos_angulo;
         Variables_Movimiento_ParabolicoDTO laboratorio_movimiento_parabolico;
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("variable_movimiento_parabolico").whereEqualTo("codigo_planta", codigo_planta).get();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("variables_movimiento_parabolico").whereEqualTo("id_practica", codigo_planta).get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 laboratorio_movimiento_parabolico = doc.toObject(Variables_Movimiento_ParabolicoDTO.class);
@@ -533,10 +533,10 @@ public class LaboratorioManagementServiceImpl implements LaboratorioManagementSe
     }
 
     @Override
-    public ArrayList<String> listar_Velocidad_MP(int codigo_planta) {
-        ArrayList<String> rangos_velocidad;
+    public ArrayList<Integer> listar_Velocidad_MP(int codigo_planta) {
+        ArrayList<Integer> rangos_velocidad;
         Variables_Movimiento_ParabolicoDTO laboratorio_movimiento_parabolico;
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("variable_movimiento_parabolico").whereEqualTo("codigo_planta", codigo_planta).get();
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = firebase.getFirestore().collection("variables_movimiento_parabolico").whereEqualTo("id_practica", codigo_planta).get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 laboratorio_movimiento_parabolico = doc.toObject(Variables_Movimiento_ParabolicoDTO.class);

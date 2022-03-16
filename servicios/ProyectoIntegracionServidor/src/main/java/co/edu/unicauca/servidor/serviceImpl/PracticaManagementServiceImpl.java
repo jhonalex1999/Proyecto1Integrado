@@ -141,7 +141,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
             for (int i = 0; i < participantes.size(); i++) {
                 ParticipantesDTO post = new ParticipantesDTO();
 
-                post.setCod_grupal(codGrupal);
+                post.setCodGrupal(codGrupal);
                 post.setCorreo(participantes.get(i));
 
                 if (i == 0) {
@@ -193,7 +193,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 participantes = doc.toObject(ParticipantesDTO.class);
-                codActuales.add(participantes.getCod_grupal());
+                codActuales.add(participantes.getCodGrupal());
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(UsuarioManagementServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -219,7 +219,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
 
     private Map<String, Object> getDocDataParticipantes(ParticipantesDTO post) {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("codGrupal", post.getCod_grupal());
+        docData.put("codGrupal", post.getCodGrupal());
         docData.put("correo", post.getCorreo());
         docData.put("rol", post.getRol());
         return docData;
@@ -466,7 +466,8 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 participantes = doc.toObject(ParticipantesDTO.class);
-                return participantes.getCod_grupal();
+                participantes.setId_participante(doc.getId());
+                return participantes.getCodGrupal();
             }
             return 0;
 
@@ -644,7 +645,7 @@ public class PracticaManagementServiceImpl implements PracticaManagementService 
         Map<String, Object> docData = new HashMap<>();
         docData.put("id_practica", post.getId());
         docData.put("num_lanzamientos", post.getNum_lanzamientos());
-        docData.put("rango_altura", post.getRangos_altura());
+        docData.put("rango_altura", post.getRango_altura());
         return docData;
     }
 

@@ -6,6 +6,11 @@ import { Auth } from '@angular/fire/auth';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/service/service.service';
 import { VincularmateriaComponent } from '../vincularmateria/vincularmateria.component';
+import { environment } from 'src/environments/environment';
+import firebase from 'firebase/compat/app';
+
+
+firebase.initializeApp(environment.firebase);
 
 @Component({
   selector: 'app-inicio',

@@ -116,8 +116,7 @@ export class AuthService {
 
   codigos(codigo_materia: any) {
     console.log("Entro a matricular curso()");
-    console.log(codigo_materia);
-    return this.httpClient.post(`${this.API_BASE}/` + this.cookie.get('Token_email') + `/` + codigo_materia + `/` + `matricularCurso`, codigo_materia);
+    return this.httpClient.post(`${this.API_BASE}/` + this.cookie.get('Token_email') + `/` + codigo_materia + `/` + `matricularCurso2`, codigo_materia);
   }
 
   verCursosMatriculados() {
@@ -132,12 +131,12 @@ export class AuthService {
   }
 
   saberCodigoGrupo() {
-    return this.httpClient.get(`${this.API_BASE_LAB}/` + this.cookie.get('Token_email') + `/` + `saberCodigoGrupo`, { responseType: 'text' });
+    return this.httpClient.get(`${this.API_BASE_PRACTICA}/` + this.cookie.get('Token_email') + `/` + `saberCodigoGrupo`, { responseType: 'text' });
   }
 
-  verificarAgendamientoGrupo(codigo: any, codigo_planta: number): Observable<Boolean> {
+  verificarAgendamientoGrupo(codigo_grupal: any, ): Observable<Boolean> {
     console.log("Entro a verificarAgendamiento");
-    return this.httpClient.get<Boolean>(`${this.API_BASE_PRACTICA}/` + codigo + `/` + codigo_planta + `/` + `verificarAgendamiento`);
+    return this.httpClient.get<Boolean>(`${this.API_BASE_PRACTICA}/` + codigo_grupal + `/` + `verificarAgendamiento`);
   }
   verificarGrupoCompleto(codigo: any) {
     console.log("Entro a verificargrupos");

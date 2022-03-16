@@ -56,7 +56,8 @@ export class CaidaLibreComponent implements OnInit {
     this.verificarDuracion();
     this.listarAltura();
     this.listarTiempo();
-    this.authSvc.obtenerOpcionesCL_Repeticiones(this.COD_LAB).subscribe(respuesta => { this.listadoOpciones = respuesta });
+    this.authSvc.obtenerOpcionesCL_Repeticiones(this.COD_LAB).subscribe(respuesta => { this.listadoOpciones = respuesta 
+    console.log(respuesta)});
     this.authSvc.saberRol().subscribe(respuesta => {
       this.rol$ = respuesta
     });
@@ -185,6 +186,11 @@ export class CaidaLibreComponent implements OnInit {
 
   finalizarPractica() {
     this.authSvc.saberCodigoGrupo().subscribe(respuesta => {
+      Swal.fire({
+        icon:'success', title:'¡Practica Finalizada!',
+        timer: 3000,
+        timerProgressBar: true,
+      })
       this.authSvc.finalizarPractica(respuesta).subscribe((result: any) => { result })
       this.router.navigate(['/materias'])
     });

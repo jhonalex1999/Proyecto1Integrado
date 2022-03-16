@@ -16,6 +16,6 @@ import lombok.Data;
 public class Variables_Ley_HookeDTO {
 
     private String id;
-    private Integer codigo_planta;
-    private ArrayList<String> rango_pesos;
+    private Integer id_practica;
+    private ArrayList<Integer> rango_pesos;
 }

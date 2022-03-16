@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/service/service.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-vincularmateria',
@@ -16,9 +18,19 @@ export class VincularmateriaComponent implements OnInit {
   }
 
   enviarcodigo(data:any){
-    console.log(data)
-    this.authService.codigos(data);
-    //window.location.reload();
+    this.authService.codigos(data).subscribe(respuesta => {
+      if(respuesta==true){
+        console.log("Imprime true");
+        window.location.reload();
+      }else{
+        Swal.fire({
+          title: "¡ERROR!",
+          text: "Codigo de materia invalido o no encontrado.",
+          icon: "error"
+        });
+      }
+    });
+    
   }
 
 }

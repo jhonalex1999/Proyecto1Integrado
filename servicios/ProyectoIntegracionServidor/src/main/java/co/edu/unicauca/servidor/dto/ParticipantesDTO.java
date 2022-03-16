@@ -13,9 +13,9 @@ import lombok.Data;
  */
 @Data
 public class ParticipantesDTO {
-
+    
     private String id_participante;
-    private Integer cod_grupal;
+    private Integer codGrupal;
     private String correo;
     private String rol;
 }
